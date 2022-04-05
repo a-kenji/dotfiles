@@ -6,10 +6,12 @@
 } @ inputs: (flake-utils.lib.eachDefaultSystem (
   system: let
     pkgs = nixpkgs.legacyPackages.${system};
-  in {
+  in rec {
     devShells = {
-      shell = pkgs.mkShell {
+      default = pkgs.mkShell {
         nativeBuildInputs = [
+          pkgs.git
+          pkgs.just
         ];
       };
       fmtShell = pkgs.mkShell {
@@ -20,9 +22,9 @@
           pkgs.alejandra
         ];
       };
+      devShell = devShells.default;
     };
 
-    #devShell = pkgs.callPackage ./shell.nix {
-    #};
+    nixosModules = import ./modules;
   }
 ))
