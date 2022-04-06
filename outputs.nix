@@ -3,7 +3,8 @@
   flake-utils,
   nixpkgs,
   ...
-} @ inputs: (flake-utils.lib.eachDefaultSystem (
+} @ inputs:
+(flake-utils.lib.eachDefaultSystem (
   system: let
     pkgs = nixpkgs.legacyPackages.${system};
   in rec {
@@ -20,11 +21,14 @@
           pkgs.treefmt
           pkgs.stylua
           pkgs.alejandra
+          pkgs.shfmt
+          pkgs.shellcheck
         ];
       };
       devShell = devShells.default;
     };
-
-    nixosModules = import ./modules;
   }
 ))
+// {
+  nixosModules = import ./modules {inherit inputs;};
+}

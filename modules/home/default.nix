@@ -1,7 +1,7 @@
 {
   pkgs,
-  config,
+  configDir,
   ...
 }: {
-  nvim = import ./nvim {inherit pkgs;};
+  nvim = import ./nvim {inherit pkgs configDir;};
 }
