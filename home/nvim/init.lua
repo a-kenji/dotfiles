@@ -21,7 +21,6 @@ vim.wo.colorcolumn = "80"
 
 require("kenji.builtin_plugins")
 
-
 --- Functional wrapper for mapping custom keybindings
 function map(mode, lhs, rhs, opts)
 	local options = { noremap = true }

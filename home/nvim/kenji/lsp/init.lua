@@ -15,8 +15,7 @@ vim.api.nvim_set_keymap("n", "<space>vsd", ":lua vim.diagnostic.open_float()<CR>
 --nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 ---- Add nvim-lspconfig plugin
 local lspconfig = require("lspconfig")
-local on_attach = function(client, bufnr)
-end
+local on_attach = function(client, bufnr) end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
