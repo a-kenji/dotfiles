@@ -3,24 +3,22 @@
   nixpkgs,
   home-manager,
   ...
-}:
-let 
+}: let
   hmConfiguration = {
     extraModules ? [],
     system ? "x86_64-linux",
   }: (home-manager.lib.homeManagerConfiguration {
     configuration = {...}: {
-      imports = 
-      extraModules
-      ++ [
-    self.outputs.nixosModules.home.nvim
-      ];
+      imports =
+        extraModules
+        ++ [
+          self.outputs.nixosModules.home.nvim
+        ];
     };
     inherit system;
     homeDirectory = "/home/kenji";
     username = "kenji";
   });
-in
-{
+in {
   common = hmConfiguration {};
 }
