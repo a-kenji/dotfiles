@@ -25,10 +25,10 @@
       lualine-nvim
       plenary-nvim
       nvim-treesitter
-      luasnip
       telescope-nvim
       commentary
       nvim-lightbulb
+      luasnip
       # git
       diffview-nvim
       git-blame-nvim
@@ -41,10 +41,10 @@
       # lsp
       nvim-lspconfig
       lsp_extensions-nvim
-      completion-nvim
       cmp-nvim-lsp
       cmp-path
       cmp-buffer
+      cmp_luasnip
       nvim-cmp
       # end lsp
     ];

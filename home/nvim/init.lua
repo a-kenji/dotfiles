@@ -14,12 +14,10 @@ vim.o.termguicolors = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-
 --Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
-vim.o.colorcolumn = 80
-vim.wo.colorcolumn = 80
+vim.wo.colorcolumn = "80"
 
 --- Functional wrapper for mapping custom keybindings
 function map(mode, lhs, rhs, opts)
@@ -37,13 +35,13 @@ map("i", "fd", "<esc>", { silent = true })
 map("n", "<leader>p", '"+p')
 map("v", "<C-c>", '"+y')
 
-require'diffview'.setup {}
+require("diffview").setup({})
 vim.g.gitblame_enabled = 0
 map("n", "<leader>gb", ":GitBlameToggle<CR>")
-
 
 require("kenji.telescope.setup")
 require("kenji.telescope.mappings")
 require("kenji.theme")
 require("kenji.lsp")
+require("kenji.snippets")
 require("kenji.completion")
