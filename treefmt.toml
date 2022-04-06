@@ -2,11 +2,11 @@
 command = "alejandra"
 includes = ["*.nix"]
 
-[formatter.lua]
-command = "stylua"
-options = [
-]
-includes = ["*.lua"]
+#[formatter.lua]
+#command = "stylua"
+#options = [
+#]
+#includes = ["*.lua"]
 
 [formatter.shell]
 command = "sh"
