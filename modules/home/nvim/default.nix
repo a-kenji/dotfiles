@@ -13,14 +13,14 @@
     withRuby = false;
     withPython3 = false;
     plugins = with pkgs.vimPlugins; [
-      vim-nix
       # entrypoint for the configuration
       # needs a package as a plugin
       {
-        plugin = direnv-vim;
+        plugin = vim-nix;
         config = "require('init')";
         type = "lua";
       }
+      direnv-vim
       lightspeed-nvim
       lualine-nvim
       plenary-nvim
@@ -29,6 +29,10 @@
       telescope-nvim
       commentary
       nvim-lightbulb
+      # git
+      diffview-nvim
+      git-blame-nvim
+      # end git
       # themes
       edge
       sonokai
