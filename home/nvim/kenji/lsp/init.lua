@@ -1,13 +1,12 @@
 vim.api.nvim_set_keymap("n", "<space>vd", ":lua vim.lsp.buf.definition()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vi", ":lua vim.lsp.buf.implementation()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vrr", ":lua vim.lsp.buf.references()<CR>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap("n", "<space>vsh", ":lua vim.lsp.buf.signature_help()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vrn", ":lua vim.lsp.buf.rename()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vca", ":lua vim.lsp.buf.code_action()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vsd", ":lua vim.diagnostic.open_float()<CR>", { noremap = false, nowait = true })
 
---nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
---nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
 --nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 --nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
 --nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
@@ -17,7 +16,6 @@ vim.api.nvim_set_keymap("n", "<space>vsd", ":lua vim.diagnostic.open_float()<CR>
 ---- Add nvim-lspconfig plugin
 local lspconfig = require("lspconfig")
 local on_attach = function(client, bufnr)
-	require("completion").on_attach(client)
 end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true

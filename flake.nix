@@ -9,5 +9,5 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = {...} @ args: import ./outputs.nix args;
+  outputs = {...} @ args: import ./outputs args;
 }

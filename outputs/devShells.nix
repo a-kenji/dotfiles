@@ -1,15 +1,9 @@
 {
-  self,
-  flake-utils,
-  nixpkgs,
-  ...
-} @ inputs:
-(flake-utils.lib.eachDefaultSystem (
-  system: let
-    pkgs = nixpkgs.legacyPackages.${system};
-  in rec {
-    devShells = {
-      default = pkgs.mkShell {
+  pkgs,
+}:
+
+{
+        default = pkgs.mkShell {
         nativeBuildInputs = [
           pkgs.git
           pkgs.just
@@ -25,10 +19,4 @@
           pkgs.shellcheck
         ];
       };
-      devShell = devShells.default;
-    };
-  }
-))
-// {
-  nixosModules = import ./modules {inherit inputs;};
 }
