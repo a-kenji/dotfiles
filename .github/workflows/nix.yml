@@ -22,7 +22,6 @@ jobs:
       with:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-        nix_path: nixpkgs=channel:nixos-unstable
         # Nix Flakes doesn't work on shallow clones
         fetch-depth: 0
     - name: "treefmt"
