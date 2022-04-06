@@ -23,12 +23,12 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local handlers = {
-  ['textDocument/hover'] = function(...)
-    local bufnr, _ = vim.lsp.handlers.hover(...)
-    if bufnr then
-      vim.keymap.set('n', 'K', '<Cmd>wincmd p<CR>', { silent = true, buffer = bufnr })
-    end
-  end,
+	["textDocument/hover"] = function(...)
+		local bufnr, _ = vim.lsp.handlers.hover(...)
+		if bufnr then
+			vim.keymap.set("n", "K", "<Cmd>wincmd p<CR>", { silent = true, buffer = bufnr })
+		end
+	end,
 }
 
 require("lspconfig").rust_analyzer.setup({
