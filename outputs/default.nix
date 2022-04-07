@@ -13,6 +13,4 @@
 ))
 // {
   nixosModules = import (self + "/modules") {inherit inputs;};
-
-  hmConfigurations = import ./home-manager.nix inputs;
 }

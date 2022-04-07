@@ -12,4 +12,4 @@ jobs:
       with:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-    - run: nix build .#hmConfigurations.common.activationPackage
+    - run: nix build .#nixosModules.home-manager.common.activationPackage

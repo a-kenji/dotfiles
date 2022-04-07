@@ -7,4 +7,6 @@
   configDir = self + "/home";
 in {
   home = import ./home {inherit pkgs configDir;};
+
+  home-manager = import ./home-manager inputs;
 }
