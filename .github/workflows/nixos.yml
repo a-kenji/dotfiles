@@ -13,3 +13,4 @@ jobs:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
     - run: nix build .#nixosConfigurations.common-test.config.system.build.toplevel
+    - run: nix build .#nixosModules.tests.minimal

@@ -5,7 +5,6 @@
   defaultModules = [
     # make flake inputs accessiable in NixOS
     {_module.args.inputs = inputs;}
-    #self.outputs.nixosModules.home
     {
       imports = [
         ({pkgs, ...}: {
@@ -24,6 +23,7 @@ in {
     modules =
       defaultModules
       ++ [
+        inputs.home-manager.nixosModules.home-manager
         {
           # don't use this configuration, this is a test
           boot.loader.grub.enable = true;
