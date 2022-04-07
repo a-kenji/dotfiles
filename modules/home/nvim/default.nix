@@ -26,7 +26,6 @@
     withPython3 = false;
     withNodeJs = true;
     extraPackages = [
-      pkgs.withNode.nvim
     ];
     plugins = with pkgs.vimPlugins;
       [
