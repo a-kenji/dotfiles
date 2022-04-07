@@ -13,4 +13,5 @@
 ))
 // {
   nixosModules = import (self + "/modules") {inherit inputs;};
+  nixosConfigurations = import (self + "/nixos") {inherit inputs;};
 }
