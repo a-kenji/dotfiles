@@ -1,7 +1,7 @@
 {
   self,
-  nixpkgs,
+  pkgs,
   ...
 }: {
-  minimal = import ./minimal.nix {};
+  minimal = import ./minimal.nix {inherit pkgs self;};
 }

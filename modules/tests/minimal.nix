@@ -1,9 +1,12 @@
-{pkgs}: let
+{
+  pkgs,
+  self,
+}: let
   system = "x86_64-linux";
 in
   pkgs.nixosTest {
     nodes.machine = {
-      config,
+      #config,
       pkgs,
       ...
     }: {
