@@ -103,8 +103,8 @@ require("lspconfig").sumneko_lua.setup({
 require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = { "org" }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-		additional_vim_regex_highlighting = { "org" }, -- Required since TS highlighter doesn't support all syntax features (conceal)
+		disable = { "org", "latex" }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+		additional_vim_regex_highlighting = { "org", "latex" }, -- Required since TS highlighter doesn't support all syntax features (conceal)
 	},
 	incremental_selection = {
 		enable = true,

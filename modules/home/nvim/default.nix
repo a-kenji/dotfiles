@@ -24,6 +24,10 @@
     vimdiffAlias = true;
     withRuby = false;
     withPython3 = false;
+    withNodeJs = true;
+    extraPackages = [
+      pkgs.withNode.nvim
+    ];
     plugins = with pkgs.vimPlugins;
       [
         # entrypoint for the configuration
@@ -65,7 +69,7 @@ in {
   xdg.configFile."nvim/parser/rust.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-rust}/parser";
   xdg.configFile."nvim/parser/python.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-python}/parser";
   xdg.configFile."nvim/parser/bash.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-bash}/parser";
-  #xdg.configFile."nvim/parser/latex.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-latex}/parser";
+  xdg.configFile."nvim/parser/latex.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-latex}/parser";
   xdg.configFile."nvim/parser/nix.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-nix}/parser";
   xdg.configFile = {
     "nvim/lua" = {
