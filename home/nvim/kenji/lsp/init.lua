@@ -5,7 +5,14 @@ vim.api.nvim_set_keymap("n", "<space>vsh", ":lua vim.lsp.buf.signature_help()<CR
 vim.api.nvim_set_keymap("n", "<space>vrn", ":lua vim.lsp.buf.rename()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vca", ":lua vim.lsp.buf.code_action()<CR>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap("n", "<space>D", ":lua vim.lsp.buf.type_definition()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vsd", ":lua vim.diagnostic.open_float()<CR>", { noremap = false, nowait = true })
+
+-- LSP management
+vim.api.nvim_set_keymap("n", "<leader>lr", ":LspRestart<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>li", ":LspInfo<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ls", ":LspStart<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lt", ":LspStop<CR>", { silent = true })
 
 --nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 --nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
@@ -142,6 +149,13 @@ require("nvim-treesitter.configs").setup({
 				["[M"] = "@function.outer",
 				["[]"] = "@class.outer",
 			},
+		},
+		rainbow = {
+			enable = true,
+			extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+			max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+			colors = {}, -- table of hex strings
+			termcolors = {}, -- table of colour name strings
 		},
 	},
 })

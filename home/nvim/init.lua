@@ -40,6 +40,10 @@ map("v", "<C-c>", '"+y')
 require("diffview").setup({})
 vim.g.gitblame_enabled = 0
 map("n", "<leader>gb", ":GitBlameToggle<CR>")
+require("nvim-autopairs").setup({
+	disable_filetype = { "TelescopePrompt", "vim" },
+})
+require("surround").setup({ mappings_style = "sandwich" })
 
 require("kenji.telescope.setup")
 require("kenji.telescope.mappings")
