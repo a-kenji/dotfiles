@@ -6,12 +6,13 @@
 in
   pkgs.nixosTest {
     nodes.machine = {
-      #config,
+      config,
       pkgs,
       ...
     }: {
       #imports = [ ../common ];
       virtualisation.graphics = false;
+      boot.kernelModules = [ "kvm-intel" ];
     };
 
     testScript = ''
