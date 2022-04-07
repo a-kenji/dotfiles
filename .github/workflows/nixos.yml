@@ -22,5 +22,5 @@ jobs:
       with:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-          "system-features = nixos-test benchmark big-parallel kvm"
+          system-features = nixos-test benchmark big-parallel kvm
     - run: nix build .#nixosModules.tests.minimal
