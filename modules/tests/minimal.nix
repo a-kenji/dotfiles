@@ -12,7 +12,7 @@ in
     }: {
       #imports = [ ../common ];
       virtualisation.graphics = false;
-      boot.kernelModules = [ "kvm-intel" ];
+      boot.kernelModules = ["kvm-intel"];
     };
 
     testScript = ''
