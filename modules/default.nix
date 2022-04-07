@@ -10,5 +10,5 @@ in {
 
   home-manager = import ./home-manager inputs;
 
-  tests = import ./tests inputs;
+  tests = import ./tests {inherit pkgs;};
 }
