@@ -13,4 +13,14 @@ jobs:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
     - run: nix build .#nixosConfigurations.common-test.config.system.build.toplevel
+  nixos-tests:
+    runs-on: ubuntu-latest
+    name: "nixos-test"
+    steps:
+    - uses: actions/checkout@v3
+    - uses: cachix/install-nix-action@v16
+      with:
+        extra_nix_config: |
+          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+          "system-features = nixos-test benchmark big-parallel kvm"
     - run: nix build .#nixosModules.tests.minimal
