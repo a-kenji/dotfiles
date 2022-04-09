@@ -7,6 +7,7 @@
   servername = "${home}/nvim-socket";
   checkfile = "${home}/checkhealth";
   nvimBin = "${home}/.nix-profile/bin/nvim";
+  user = "test";
 in
   pkgs.nixosTest {
     nodes.machine = {
@@ -21,9 +22,12 @@ in
           home-manager.users = {
             test = {
               imports = [
-                self.nixosModules.home.nvim
+                self.outputs.nixosModules.home.nvim
               ];
               programs.home-manager.enable = true;
+              home.homeDirectory = home;
+              home.username = "test";
+              xdg.configHome = home + "/.config";
             };
           };
         }
@@ -33,7 +37,8 @@ in
         createHome = true;
         group = "users";
         uid = 1000;
-        isSystemUser = true;
+        #isSystemUser = true;
+        isNormalUser = true;
         inherit home;
       };
       virtualisation.graphics = false;
@@ -41,21 +46,28 @@ in
     };
 
     testScript = ''
+      from shlex import quote
+      def su(user, cmd):
+          return f"su - {user} -c {quote(cmd)}"
+
       start_all()
       machine.wait_for_file("${nvimBin}")
       machine.succeed(
-      '${nvimBin} --version'
+      su('${user}', '${nvimBin} --version')
       )
       machine.execute(
-      '${nvimBin} --listen ${servername} --headless >&2 &'
+      su('${user}', '${nvimBin} --listen ${servername} --headless >&2 &')
       )
       machine.succeed(
-      '${nvimBin} --server ${servername} --remote-send "<cmd>checkhealth<CR>"'
+      su('${user}', '${nvimBin} --server ${servername} --remote-send "<cmd>checkhealth<CR>"')
       )
       machine.succeed(
-      '${nvimBin} --server ${servername} --remote-send "<cmd>w ${checkfile}<CR>"'
+      su('${user}', '${nvimBin} --server ${servername} --remote-send "<cmd>w ${checkfile}<CR>"')
       )
       machine.wait_for_file("${checkfile}")
-      machine.succeed("cat ${checkfile}")
+      machine.succeed(
+      su('${user}', 'cat ${checkfile}')
+      )
+      #machine.succeed("cat ${home}/.config/nvim/init.lua")
     '';
   }
