@@ -3,14 +3,16 @@
   self,
 }: let
   system = "x86_64-linux";
-  servername = "/home/test/nvim-socket";
-  checkfile = "/home/test/checkhealth";
-  nvimBin = "/home/test/.nix-profile/bin/nvim";
+  home = "/home/test";
+  servername = "${home}/nvim-socket";
+  checkfile = "${home}/checkhealth";
+  nvimBin = "${home}/.nix-profile/bin/nvim";
 in
   pkgs.nixosTest {
     nodes.machine = {
       config,
       pkgs,
+      lib,
       ...
     }: {
       imports = [
@@ -21,6 +23,7 @@ in
               imports = [
                 self.nixosModules.home.nvim
               ];
+              programs.home-manager.enable = true;
             };
           };
         }
@@ -31,7 +34,7 @@ in
         group = "users";
         uid = 1000;
         isSystemUser = true;
-        home = "/home/test";
+        inherit home;
       };
       virtualisation.graphics = false;
       documentation.enable = false;
