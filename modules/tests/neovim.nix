@@ -7,7 +7,7 @@
   servername = "${home}/nvim-socket";
   checkfile = "${home}/checkhealth";
   nvimBin = "${home}/.nix-profile/bin/nvim";
-  user = "test";
+  user = "alice";
 in
   pkgs.nixosTest {
     nodes.machine = {
@@ -20,24 +20,24 @@ in
         self.inputs.home-manager.nixosModules.home-manager
         {
           home-manager.users = {
-            test = {
+            ${user} = {
               imports = [
                 self.outputs.nixosModules.home.nvim
               ];
               programs.home-manager.enable = true;
               home.homeDirectory = home;
-              home.username = "test";
+              home.username = user;
+              home.stateVersion = "21.11";
               xdg.configHome = home + "/.config";
             };
           };
         }
       ];
 
-      users.users.test = {
+      users.users.${user} = {
         createHome = true;
         group = "users";
         uid = 1000;
-        #isSystemUser = true;
         isNormalUser = true;
         inherit home;
       };

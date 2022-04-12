@@ -35,4 +35,4 @@ jobs:
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           system-features = nixos-test benchmark big-parallel kvm
         nix_path: nixpkgs=channel:nixos-unstable
-    - run: nix build .#nixosModules.tests.neovim --impure
+    - run: nix build .#nixosModules.tests.neovim
