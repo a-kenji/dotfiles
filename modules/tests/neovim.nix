@@ -3,7 +3,7 @@
   self,
 }: let
   system = "x86_64-linux";
-  home = "/home/test";
+  home = "/home/${user}";
   servername = "${home}/nvim-socket";
   checkfile = "${home}/checkhealth";
   nvimBin = "${home}/.nix-profile/bin/nvim";
@@ -25,10 +25,8 @@ in
                 self.outputs.nixosModules.home.nvim
               ];
               programs.home-manager.enable = true;
-              home.homeDirectory = home;
               home.username = user;
               home.stateVersion = "21.11";
-              xdg.configHome = home + "/.config";
             };
           };
         }
@@ -36,10 +34,8 @@ in
 
       users.users.${user} = {
         createHome = true;
-        group = "users";
         uid = 1000;
         isNormalUser = true;
-        inherit home;
       };
       virtualisation.graphics = false;
       documentation.enable = false;
