@@ -37,13 +37,22 @@ map("i", "fd", "<esc>", { silent = true })
 map("n", "<leader>p", '"+p')
 map("v", "<C-c>", '"+y')
 
+-- repeatedly allow to shift
+map("v", "<", '<gv')
+map("v", ">", '>gv')
+vim.o.scrolloff = 5
+
+
 require("diffview").setup({})
+require('Comment').setup({})
 vim.g.gitblame_enabled = 0
+vim.g.direnv_silent_load = 1
 map("n", "<leader>gb", ":GitBlameToggle<CR>")
 require("nvim-autopairs").setup({
 	disable_filetype = { "TelescopePrompt", "vim" },
 })
 require("surround").setup({ mappings_style = "sandwich" })
+
 
 require("kenji.telescope.setup")
 require("kenji.telescope.mappings")
