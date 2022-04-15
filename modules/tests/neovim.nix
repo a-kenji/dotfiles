@@ -64,6 +64,6 @@ in
       machine.succeed(
       su('${user}', 'cat ${checkfile}')
       )
-      #machine.succeed("cat ${home}/.config/nvim/init.lua")
+      machine.succeed("cat ${home}/.config/nvim/init.lua")
     '';
   }
