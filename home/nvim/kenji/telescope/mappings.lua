@@ -6,6 +6,12 @@ local sorters = require("telescope.sorters")
 
 vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
 
+-- LSP management
+vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { silent = true })
+vim.keymap.set("n", "<leader>li", ":LspInfo<CR>", { silent = true })
+vim.keymap.set("n", "<leader>ls", ":LspStart<CR>", { silent = true })
+vim.keymap.set("n", "<leader>lt", ":LspStop<CR>", { silent = true })
+
 -- Files
 vim.api.nvim_set_keymap("n", "<space>lf", ":lua require'telescope.builtin'.git_files()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>lg", ":lua require'telescope.builtin'.multi_rg()<CR>", { silent = false })
