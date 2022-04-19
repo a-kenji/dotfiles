@@ -16,6 +16,10 @@
     cmp_luasnip
     nvim-cmp
   ];
+  git = with pkgs.vimPlugins; [
+    diffview-nvim
+    git-blame-nvim
+  ];
   neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
@@ -46,9 +50,6 @@
         nvim-lightbulb
         luasnip
         nvim-autopairs
-        # git
-        diffview-nvim
-        git-blame-nvim
         # lsp
         nvim-lspconfig
         lsp_extensions-nvim
@@ -57,6 +58,7 @@
         nvim-ts-rainbow
         # nvim-treesitter-textobjects
       ]
+      ++ git
       ++ themes
       ++ completion;
   };
