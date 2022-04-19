@@ -19,8 +19,6 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
 vim.wo.colorcolumn = "80"
 
--- TODO: set - eol = '¬'
--- tab = '▸'
 vim.opt.listchars = {
 	space = "_",
 	tab = "▸\\",
@@ -28,6 +26,7 @@ vim.opt.listchars = {
 	precedes = "⟨",
 	trail = "·",
 	eol = "¬",
+	nbsp = "·",
 }
 
 -- Set completeopt
