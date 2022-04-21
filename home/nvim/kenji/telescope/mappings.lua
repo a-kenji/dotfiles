@@ -14,7 +14,7 @@ vim.keymap.set("n", "<leader>lt", ":LspStop<CR>", { silent = true })
 
 -- Files
 vim.api.nvim_set_keymap("n", "<space>lf", ":lua require'telescope.builtin'.git_files()<CR>", { silent = false })
-vim.api.nvim_set_keymap("n", "<space>lg", ":lua require'telescope.builtin'.multi_rg()<CR>", { silent = false })
+vim.api.nvim_set_keymap("n", "<space>lg", ":lua require'telescope.builtin'.live_grep()<CR>", { silent = false })
 -- Git
 vim.api.nvim_set_keymap("n", "<space>gs", ":lua require'telescope.builtin'.git_status()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>gc", ":lua require'telescope.builtin'.git_commits()<CR>", { silent = false })
