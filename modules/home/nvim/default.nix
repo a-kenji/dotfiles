@@ -22,7 +22,7 @@
   ];
   neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
