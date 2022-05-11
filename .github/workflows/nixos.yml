@@ -6,16 +6,23 @@ jobs:
   build-nixos:
     runs-on: ubuntu-latest
     name: "common-test"
+    environment: "cachix"
     steps:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v17
       with:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+    - uses: cachix/cachix-action@v10
+      with:
+        name: kenji
+        # If you chose API tokens for write access OR if you have a private cache
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix build .#nixosConfigurations.common-test.config.system.build.toplevel
   nixos-tests:
     runs-on: ubuntu-latest
     name: "nixos-test"
+    environment: "cachix"
     steps:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v17
@@ -23,10 +30,16 @@ jobs:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           system-features = nixos-test benchmark big-parallel kvm
+    - uses: cachix/cachix-action@v10
+      with:
+        name: kenji
+        # If you chose API tokens for write access OR if you have a private cache
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix build .#nixosModules.tests.minimal
   neovim-test:
     runs-on: ubuntu-latest
     name: "neovim-test"
+    environment: "cachix"
     steps:
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v17
@@ -35,4 +48,9 @@ jobs:
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           system-features = nixos-test benchmark big-parallel kvm
         nix_path: nixpkgs=channel:nixos-unstable
+    - uses: cachix/cachix-action@v10
+      with:
+        name: kenji
+        # If you chose API tokens for write access OR if you have a private cache
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix build .#nixosModules.tests.neovim
