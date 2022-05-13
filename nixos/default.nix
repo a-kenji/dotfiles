@@ -3,7 +3,7 @@
   self = inputs.self;
   nixosSystem = nixpkgs.lib.makeOverridable nixpkgs.lib.nixosSystem;
   defaultModules = [
-    # make flake inputs accessiable in NixOS
+    # make flake inputs accessible in NixOS
     {_module.args.inputs = inputs;}
     {
       imports = [
