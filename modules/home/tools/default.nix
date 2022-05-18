@@ -3,7 +3,7 @@
   configDir,
   ...
 }: let
-  git = [
+  git = with pkgs; [
     git
     gitAndTools.gh # github cli
     hub
