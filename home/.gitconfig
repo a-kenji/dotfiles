@@ -1,0 +1,41 @@
+[core]
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+[include]
+  path = ~/.gitconfig.local
+
+[color]
+  branch = true
+  diff = true
+  status = true
+
+[diff]
+  tool = vim -d
+  compactionHeuristic = true
+  renames = true
+  colorMoved = default
+[merge]
+  tool = vim -d
+  conflictstyle = zdiff3
+[alias]
+  uncommit = reset --soft HEAD^
+[push]
+  default = simple
+[rerere]
+  enabled = true
+[branch]
+  autosetuprebase = always
+[pull]
+  rebase = true
+  autostash = true
+  twohead = ort
+[rebase]
+  autoStash = true
+  autoSquash = true
+[help]
+  autocorrect = 1
+[mergetool]
+  prompt = false
+  path = nvim
+[github]
+  user = a-kenj
