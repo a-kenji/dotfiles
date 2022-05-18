@@ -1,7 +1,7 @@
 pull_request_rules:
   - name: automatic merge on CI success
     conditions:
-      - check-success=home-manager
+      - check-success=home-manager: common
       - check-success=nix
       - check-success=nixos
       - or:
