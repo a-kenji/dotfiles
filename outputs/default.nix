@@ -9,7 +9,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in rec {
     devShells = import ./devShells.nix {inherit pkgs;};
-    formatter = pkgs.alejandra;
+    formatter = import ./formatter.nix {inherit pkgs;};
   }
 ))
 // {
