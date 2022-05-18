@@ -3,7 +3,5 @@
   configDir,
   ...
 }: let
-
-in 
-  {
+in {
 }
