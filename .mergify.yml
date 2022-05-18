@@ -7,7 +7,8 @@ pull_request_rules:
       - check-success= nixos test minimal
       - check-success= nixos test common
       - check-success= nixos test neovim
-      - title= "flake.lock: Update"
+      - title= |
+          "flake.lock: Update"
       - or:
         - author=a-kenji
         - author=github-actions[bot]
