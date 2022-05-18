@@ -1,12 +1,12 @@
 pull_request_rules:
   - name: automatic merge on CI success
     conditions:
-      - check-success= common
-      - check-success= nix / fmt
-      - check-success= nix.check
-      - check-success= nix-flake-check
-      - check-success=nix
-      - check-success=nixos
+      - check-success= nix flake check
+      - check-success= nix fmt
+      - check-success= build home-manager common
+      - check-success= nixos test minimal
+      - check-success= nixos test common
+      - check-success= nixos test neovim
       - or:
         - author=a-kenji
         - author=github-actions[bot]
