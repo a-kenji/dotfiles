@@ -5,7 +5,7 @@ on:
 jobs:
   nix-flake-check:
     runs-on: ubuntu-latest
-    name: "check"
+    name: "nix flake check"
     environment: cachix
     steps:
     - uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
     - run: nix flake check
   nixfmt:
     runs-on: ubuntu-latest
-    name: "fmt"
+    name: "nix fmt"
     environment: cachix
     steps:
     - uses: actions/checkout@v3

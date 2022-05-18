@@ -5,7 +5,7 @@ on:
 jobs:
   build-nixos:
     runs-on: ubuntu-latest
-    name: "common-test"
+    name: "nixos test common"
     environment: "cachix"
     steps:
     - uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
     - run: nix build .#nixosConfigurations.common-test.config.system.build.toplevel
   nixos-tests:
     runs-on: ubuntu-latest
-    name: "nixos-test"
+    name: "nixos test minimal"
     environment: "cachix"
     steps:
     - uses: actions/checkout@v3
@@ -38,7 +38,7 @@ jobs:
     - run: nix build .#nixosModules.tests.minimal
   neovim-test:
     runs-on: ubuntu-latest
-    name: "neovim-test"
+    name: "nixos test neovim"
     environment: "cachix"
     steps:
     - uses: actions/checkout@v3

@@ -5,7 +5,7 @@ on:
 jobs:
   nix-build-home:
     runs-on: ubuntu-latest
-    name: "common"
+    name: "build home-manager common"
     environment: "cachix"
     steps:
     - uses: actions/checkout@v3
