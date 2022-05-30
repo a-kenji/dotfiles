@@ -43,6 +43,7 @@
         direnv-vim
         lightspeed-nvim
         lualine-nvim
+        vimtex
         plenary-nvim
         telescope-nvim
         surround-nvim
