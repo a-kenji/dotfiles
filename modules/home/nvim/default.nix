@@ -49,7 +49,10 @@
         surround-nvim
         comment-nvim
         nvim-lightbulb
+        # snippets
         luasnip
+        friendly-snippets
+        # end snippets
         nvim-autopairs
         # lsp
         nvim-lspconfig
