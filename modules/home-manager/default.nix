@@ -21,4 +21,5 @@
   });
 in {
   common = hmConfiguration {};
+  tools = hmConfiguration {extraModules = [self.outputs.nixosModules.home.tools];};
 }

@@ -3,7 +3,7 @@
   configDir,
   ...
 }: let
-  git = with pkgs; [
+  gitPkgs = with pkgs; [
     git
     gitAndTools.gh # github cli
     hub
@@ -15,5 +15,5 @@
     delta
   ];
 in {
-  home.packages = git;
+  home.packages = gitPkgs;
 }
