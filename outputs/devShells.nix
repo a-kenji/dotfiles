@@ -13,6 +13,7 @@
       pkgs.alejandra
       pkgs.shfmt
       pkgs.shellcheck
+      pkgs.actionlint
     ];
   };
 }
