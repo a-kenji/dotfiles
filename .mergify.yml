@@ -4,6 +4,7 @@ pull_request_rules:
       - check-success= nix flake check
       - check-success= nix fmt
       - check-success= build home-manager common
+      - check-success= build home-manager tools
       - check-success= nixos test minimal
       - check-success= nixos test common
       - check-success= nixos test neovim
