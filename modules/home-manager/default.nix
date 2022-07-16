@@ -16,7 +16,6 @@
     modules =
       modules
       ++ [
-        self.outputs.nixosModules.home.nvim
         {
           home = {
             inherit stateVersion homeDirectory username;
@@ -25,6 +24,13 @@
       ];
   });
 in {
-  common = hmConfiguration {};
+  minimal = hmConfiguration {};
+  neovim = hmConfiguration {modules = [self.outputs.nixosModules.home.nvim];};
   tools = hmConfiguration {modules = [self.outputs.nixosModules.home.tools];};
+  common = hmConfiguration {
+    modules = [
+      self.outputs.nixosModules.home.nvim
+      self.outputs.nixosModules.home.tools
+    ];
+  };
 }

@@ -3,8 +3,10 @@ pull_request_rules:
     conditions:
       - check-success= nix flake check
       - check-success= nix fmt
-      - check-success= build home-manager common
+      - check-success= build home-manager minimal
+      - check-success= build home-manager neovim
       - check-success= build home-manager tools
+      - check-success= build home-manager common
       - check-success= nixos test minimal
       - check-success= nixos test common
       - check-success= nixos test neovim
