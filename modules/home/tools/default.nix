@@ -20,9 +20,11 @@
     binutils
   ];
   extended = with pkgs; [
+    alacritty
     ark
     bat
     fd
+    foot
     fzf
     glow
     helix
@@ -31,6 +33,7 @@
     jq
     just
     lsd
+    mob
     ncdu
     pdd
     ripgrep
@@ -41,8 +44,6 @@
     tmux
     tokei
     vivid
-    foot
-    alacritty
   ];
 in {
   home.packages = gitPkgs ++ base ++ extended;
