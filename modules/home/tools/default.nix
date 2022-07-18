@@ -41,6 +41,8 @@
     tmux
     tokei
     vivid
+    foot
+    alacritty
   ];
 in {
   home.packages = gitPkgs ++ base ++ extended;
