@@ -68,6 +68,8 @@ require("lspconfig").rust_analyzer.setup({
 require("lspconfig").bashls.setup({})
 -- nix lsp
 require("lspconfig").rnix.setup({})
+-- python lsp
+require("lspconfig").pylsp.setup({})
 
 require("lspconfig").sumneko_lua.setup({
 	on_attach = on_attach,
