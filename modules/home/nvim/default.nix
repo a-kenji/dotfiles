@@ -33,17 +33,7 @@
     ];
     plugins = with pkgs.vimPlugins;
       [
-        # entrypoint for the configuration
-        # needs a package as a plugin
-        {
-          plugin = vim-nix;
-          # config = ''
-          # lua << EOF
-          #   require('init')
-          # EOF
-          # '';
-          #type = "vim";
-        }
+        vim-nix
         direnv-vim
         lightspeed-nvim
         lualine-nvim
