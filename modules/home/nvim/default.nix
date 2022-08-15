@@ -37,7 +37,9 @@
         # needs a package as a plugin
         {
           plugin = vim-nix;
-          config = "require('init')";
+          config = ''
+            require('init')
+          '';
           type = "lua";
         }
         direnv-vim
