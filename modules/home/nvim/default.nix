@@ -37,10 +37,12 @@
         # needs a package as a plugin
         {
           plugin = vim-nix;
-          config = ''
-            require('init')
-          '';
-          type = "lua";
+          # config = ''
+          # lua << EOF
+          #   require('init')
+          # EOF
+          # '';
+          #type = "vim";
         }
         direnv-vim
         lightspeed-nvim
@@ -79,7 +81,7 @@ in {
   xdg.configFile."nvim/parser/latex.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-latex}/parser";
   xdg.configFile."nvim/parser/nix.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-nix}/parser";
   xdg.configFile = {
-    "nvim/lua" = {
+    "nvim/" = {
       source = nvimDir;
       recursive = true;
     };
