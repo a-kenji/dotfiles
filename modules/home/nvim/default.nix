@@ -1,6 +1,7 @@
 {
   pkgs,
   configDir,
+  inputs,
   ...
 }: let
   nvimDir = configDir + "/nvim";
@@ -40,7 +41,14 @@
         vimtex
         plenary-nvim
         telescope-nvim
-        surround-nvim
+        #surround-nvim
+        (pkgs.vimUtils.buildVimPlugin
+          {
+            name = "nvim-surround";
+            src = inputs.nvim-surround;
+            buildInputs = [pkgs.zip pkgs.vim pkgs.cargo];
+            dontBuild = "true";
+          })
         comment-nvim
         nvim-lightbulb
         # snippets
