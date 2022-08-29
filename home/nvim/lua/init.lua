@@ -74,7 +74,8 @@ map("n", "<leader>gb", ":GitBlameToggle<CR>")
 require("nvim-autopairs").setup({
 	disable_filetype = { "TelescopePrompt", "vim" },
 })
-require("surround").setup({ mappings_style = "sandwich" })
+--require("surround").setup({ mappings_style = "sandwich" })
+require("nvim-surround").setup()
 
 vim.cmd([[
 let g:tex_flavor='latex'
@@ -139,3 +140,38 @@ require("kenji.lsp")
 require("kenji.snippets")
 require("kenji.completion")
 require("luasnip.loaders.from_vscode").lazy_load()
+-- require('gitsigns').setup()
+
+vim.cmd([[
+" Close location list or quickfix list if they are present,
+" see https://superuser.com/q/355325/736190
+nnoremap<silent> \x :<C-U>windo lclose <bar> cclose<CR>
+
+" Close a buffer and switching to another buffer, do not close the
+" window, see https://stackoverflow.com/q/4465095/6064933
+nnoremap <silent> \d :<C-U>bprevious <bar> bdelete #<CR>
+
+" Insert a blank line below or above current line (do not move the cursor),
+" see https://stackoverflow.com/a/16136133/6064933
+nnoremap <expr> <Space>o printf('m`%so<ESC>``', v:count1)
+nnoremap <expr> <Space>O printf('m`%sO<ESC>``', v:count1)
+
+" Insert a space after current character
+nnoremap <Space><Space> a<Space><ESC>h
+
+" Jump to matching pairs easily in normal mode
+nnoremap <Tab> %
+
+" Go to start or end of line easier
+nnoremap H ^
+xnoremap H ^
+nnoremap L g_
+xnoremap L g_
+
+" insert semicolon in the end
+inoremap <A-;> <ESC>miA;<ESC>`ii
+
+" Do not move my cursor when joining lines.
+nnoremap J mzJ`z
+nnoremap gJ mzgJ`z
+]])

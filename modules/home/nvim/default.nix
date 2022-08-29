@@ -20,6 +20,7 @@
   git = with pkgs.vimPlugins; [
     diffview-nvim
     git-blame-nvim
+    # gitsigns-nvim
   ];
   neovim = {
     enable = true;
@@ -38,6 +39,7 @@
         direnv-vim
         lightspeed-nvim
         lualine-nvim
+        # hop-nvim
         vimtex
         plenary-nvim
         telescope-nvim
@@ -59,9 +61,13 @@
         # lsp
         nvim-lspconfig
         lsp_extensions-nvim
+        null-ls-nvim
         # end lsp
+        # begin tree-sitter
         nvim-treesitter
         nvim-ts-rainbow
+        playground
+        # end tree-sitter
         # nvim-treesitter-textobjects
       ]
       ++ git
@@ -78,6 +84,21 @@ in {
   xdg.configFile."nvim/parser/bash.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-bash}/parser";
   xdg.configFile."nvim/parser/latex.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-latex}/parser";
   xdg.configFile."nvim/parser/nix.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-nix}/parser";
+  xdg.configFile."nvim/parser/query.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-query}/parser";
+  xdg.configFile."nvim/parser/json.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-json}/json";
+  xdg.configFile."nvim/parser/json5.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-json5}/json5";
+  xdg.configFile."nvim/parser/bibtex.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-bibtex}/bibtex";
+  xdg.configFile."nvim/parser/markdown.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-markdown}/markdown";
+  xdg.configFile."nvim/parser/markdown-inline.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-markdown-inline}/markdown-inline";
+  xdg.configFile."nvim/parser/yaml.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-yaml}/yaml";
+  xdg.configFile."nvim/parser/make.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-make}/make";
+  xdg.configFile."nvim/parser/go.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-go}/go";
+  xdg.configFile."nvim/parser/fish.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-fish}/fish";
+  xdg.configFile."nvim/parser/fluent.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-fluent}/fluent";
+  xdg.configFile."nvim/parser/rst.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-rst}/rst";
+  xdg.configFile."nvim/parser/regex.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-regex}/regex";
+  xdg.configFile."nvim/parser/sql.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-sql}/sql";
+  xdg.configFile."nvim/parser/toml.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-toml}/toml";
   xdg.configFile = {
     "nvim/" = {
       source = nvimDir;

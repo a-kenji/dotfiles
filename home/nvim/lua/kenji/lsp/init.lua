@@ -3,10 +3,13 @@ vim.api.nvim_set_keymap("n", "<space>vi", ":lua vim.lsp.buf.implementation()<CR>
 vim.api.nvim_set_keymap("n", "<space>vrr", ":lua vim.lsp.buf.references()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vsh", ":lua vim.lsp.buf.signature_help()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vrn", ":lua vim.lsp.buf.rename()<CR>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap("n", "<space>f", ":lua vim.lsp.buf.format()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vca", ":lua vim.lsp.buf.code_action()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>D", ":lua vim.lsp.buf.type_definition()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vsd", ":lua vim.diagnostic.open_float()<CR>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap("n", "g[", ":lua vim.diagnostic.goto_next()<CR>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap("n", "g]", ":lua vim.diagnostic.goto_prev()<CR>", { noremap = false, nowait = true })
 
 -- LSP management
 vim.api.nvim_set_keymap("n", "<leader>lr", ":LspRestart<CR>", { silent = true })
@@ -159,5 +162,64 @@ require("nvim-treesitter.configs").setup({
 			colors = {}, -- table of hex strings
 			termcolors = {}, -- table of colour name strings
 		},
+		query_linter = {
+			enable = true,
+			use_virtual_text = true,
+			lint_events = { "BufWrite", "CursorHold" },
+		},
+	},
+})
+
+
+require("null-ls").setup({
+	sources = {
+		-- require("null-ls").builtins.diagnostics.eslint,
+		require("null-ls").builtins.completion.spell,
+		require("null-ls").builtins.completion.luasnip,
+
+		-- require("null-ls").builtins.code_actions.gitsigns,
+		require("null-ls").builtins.code_actions.proselint,
+		require("null-ls").builtins.code_actions.shellcheck,
+		require("null-ls").builtins.code_actions.statix,
+
+		require("null-ls").builtins.diagnostics.actionlint,
+		require("null-ls").builtins.diagnostics.checkmake,
+		require("null-ls").builtins.diagnostics.chktex,
+		require("null-ls").builtins.diagnostics.codespell,
+		require("null-ls").builtins.diagnostics.deadnix,
+		require("null-ls").builtins.diagnostics.editorconfig_checker.with({
+			generator_opts = { command = "editorconfig-checker"},
+	}),
+		require("null-ls").builtins.diagnostics.fish,
+		require("null-ls").builtins.diagnostics.flake8,
+		require("null-ls").builtins.diagnostics.luacheck,
+		require("null-ls").builtins.diagnostics.markdownlint,
+		require("null-ls").builtins.diagnostics.mdl,
+		-- require("null-ls").builtins.diagnostics.misspell,
+		require("null-ls").builtins.diagnostics.mypy,
+		require("null-ls").builtins.diagnostics.proselint,
+		require("null-ls").builtins.diagnostics.protolint,
+
+		require("null-ls").builtins.formatting.alejandra,
+		require("null-ls").builtins.formatting.autopep8,
+		require("null-ls").builtins.formatting.bibclean,
+		require("null-ls").builtins.formatting.black,
+		require("null-ls").builtins.formatting.buf,
+		require("null-ls").builtins.formatting.codespell,
+		require("null-ls").builtins.formatting.fish_indent,
+		require("null-ls").builtins.formatting.just,
+		require("null-ls").builtins.formatting.latexindent,
+		require("null-ls").builtins.formatting.nixfmt,
+		require("null-ls").builtins.formatting.nixpkgs_fmt,
+		require("null-ls").builtins.formatting.ocdc,
+		require("null-ls").builtins.formatting.protolint,
+		require("null-ls").builtins.formatting.rustfmt,
+		require("null-ls").builtins.formatting.stylua,
+		require("null-ls").builtins.formatting.shellharden,
+		require("null-ls").builtins.formatting.shfmt,
+		-- require("null-ls").builtins.formatting.textlint,
+		require("null-ls").builtins.formatting.zigfmt,
+
+		require("null-ls").builtins.hover.dictionary,
 	},
 })

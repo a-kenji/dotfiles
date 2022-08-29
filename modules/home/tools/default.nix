@@ -19,6 +19,23 @@
     diffutils
     binutils
   ];
+  language-servers = with pkgs; [
+    rust-analyzer
+    rnix-lsp
+    python-language-server
+    sumneko-lua-language-server
+  ];
+  linters = with pkgs; [
+    proselint
+    statix
+    codespell
+    deadnix
+    editorconfig-checker
+    luaPackages.luacheck
+    cbfmt
+    shellharden
+    stylua
+  ];
   extended = with pkgs; [
     alacritty
     ark
@@ -44,7 +61,8 @@
     tmux
     tokei
     vivid
+    gcc
   ];
 in {
-  home.packages = gitPkgs ++ base ++ extended;
+  home.packages = gitPkgs ++ base ++ extended ++ language-servers ++ linters;
 }
