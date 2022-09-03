@@ -5,6 +5,10 @@ end
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local action_layout = require("telescope.actions.layout")
+local previewers = require("telescope.previewers")
+local pickers = require("telescope.pickers")
+local sorters = require("telescope.sorters")
+local finders = require("telescope.finders")
 
 local set_prompt_to_entry_value = function(prompt_bufnr)
 	local entry = action_state.get_selected_entry()
@@ -29,7 +33,7 @@ require("telescope").setup({
 			width = 0.95,
 			height = 0.85,
 			-- preview_cutoff = 120,
-			prompt_position = "top",
+			prompt_position = "bottom",
 
 			horizontal = {
 				preview_width = function(_, cols, _)
@@ -61,6 +65,7 @@ require("telescope").setup({
 
 		mappings = {
 			i = {
+				["<esc>"] = actions.close,
 				["<C-x>"] = false,
 				["<C-s>"] = actions.select_horizontal,
 				["<C-n>"] = "move_selection_next",
