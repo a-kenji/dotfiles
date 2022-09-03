@@ -174,4 +174,9 @@ inoremap <A-;> <ESC>miA;<ESC>`ii
 " Do not move my cursor when joining lines.
 nnoremap J mzJ`z
 nnoremap gJ mzgJ`z
+
+set splitright
+set splitbelow
+set laststatus=3
+highlight WinSeparator guibg=None
 ]])
