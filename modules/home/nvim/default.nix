@@ -21,6 +21,18 @@
     diffview-nvim
     git-blame-nvim
     # gitsigns-nvim
+    neogit
+  ];
+  tree-sitter = with pkgs.vimPlugins; [
+    nvim-treesitter
+    nvim-ts-rainbow
+    playground
+    # nvim-treesitter-textobjects
+  ];
+  lsp = with pkgs.vimPlugins; [
+    nvim-lspconfig
+    lsp_extensions-nvim
+    null-ls-nvim
   ];
   neovim = {
     enable = true;
@@ -58,20 +70,11 @@
         friendly-snippets
         # end snippets
         nvim-autopairs
-        # lsp
-        nvim-lspconfig
-        lsp_extensions-nvim
-        null-ls-nvim
-        # end lsp
-        # begin tree-sitter
-        nvim-treesitter
-        nvim-ts-rainbow
-        playground
-        # end tree-sitter
-        # nvim-treesitter-textobjects
       ]
       ++ git
       ++ themes
+      ++ lsp
+      ++ tree-sitter
       ++ completion;
   };
 in {
