@@ -139,6 +139,7 @@ require("kenji.theme")
 require("kenji.lsp")
 require("kenji.snippets")
 require("kenji.completion")
+require("kenji.filetypes")
 require("luasnip.loaders.from_vscode").lazy_load()
 -- require('gitsigns').setup()
 
