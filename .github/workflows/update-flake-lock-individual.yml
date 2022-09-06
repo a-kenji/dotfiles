@@ -27,6 +27,7 @@ jobs:
               nix
             inputs: flake-utils
             branch: update_input_action_flake_utils
+            pr-title: "flake.lock: update flake utils"
   input-lockfile-nixpkgs:
     runs-on: ubuntu-latest
     environment: "update"
@@ -47,6 +48,7 @@ jobs:
               nix
             inputs: nixpkgs
             branch: update_input_action_nixpkgs
+            pr-title: "flake.lock: update nixpkgs"
   input-lockfile-neovim-nightly-overlay:
     runs-on: ubuntu-latest
     environment: "update"
@@ -67,3 +69,25 @@ jobs:
               nix
             inputs: neovim-nightly-overlay
             branch: update_input_action_neovim_nightly_overlay
+            pr-title: "flake.lock: update neovim-nightly-overlay"
+  input-lockfile-home-manager:
+    runs-on: ubuntu-latest
+    environment: "update"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Nix
+        uses: cachix/install-nix-action@v17
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v13
+        with:
+            token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
+            pr-labels: |
+              dependencies
+              nix
+            inputs: home-manager
+            branch: update_input_action_home_manager
+            pr-title: "flake.lock: update home-manager"
