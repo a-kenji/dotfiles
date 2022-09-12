@@ -22,4 +22,3 @@ jobs:
             pr-labels: |
               dependencies
               nix
-              pr-run-test
