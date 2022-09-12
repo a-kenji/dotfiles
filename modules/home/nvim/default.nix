@@ -55,6 +55,7 @@
         vimtex
         plenary-nvim
         telescope-nvim
+        harpoon
         #surround-nvim
         (pkgs.vimUtils.buildVimPlugin
           {
