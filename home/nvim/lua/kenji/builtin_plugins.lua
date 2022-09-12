@@ -16,12 +16,3 @@ vim.g.loaded_getscriptPlugin = 1
 vim.g.loaded_vimball = 1
 vim.g.loaded_vimballPlugin = 1
 vim.g.loaded_2html_plugin = 1
-
-vim.g.loaded_matchit = 1
-vim.g.loaded_matchparen = 1
-vim.g.loaded_logiPat = 1
-vim.g.loaded_rrhelper = 1
-
-vim.g.loaded_netrw = 0
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrwSettings = 0
