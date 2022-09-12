@@ -10,12 +10,32 @@ vim.api.nvim_set_keymap("n", "<space>D", ":lua vim.lsp.buf.type_definition()<CR>
 vim.api.nvim_set_keymap("n", "<space>vsd", ":lua vim.diagnostic.open_float()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "g[", ":lua vim.diagnostic.goto_next()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "g]", ":lua vim.diagnostic.goto_prev()<CR>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<space>ca",
+	":lua vim.lsp.buf.code_action({apply=true})<CR>",
+	{ noremap = false, nowait = true }
+)
+vim.api.nvim_set_keymap(
+	"v",
+	"<leader>ca",
+	":lua code_action_range({apply=true})<CR>",
+	{ noremap = false, silent = true }
+)
 
 -- LSP management
 vim.api.nvim_set_keymap("n", "<leader>lr", ":LspRestart<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>li", ":LspInfo<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>ls", ":LspStart<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>lt", ":LspStop<CR>", { silent = true })
+-- vim.lsp.diagnostic.clear(0)
+
+-- Tree Sitter management
+vim.api.nvim_set_keymap("n", "<leader>tsp", ":TSPlaygroundToggle<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tsn", ":TSNodeUnderCursor<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tsm", ":TSModuleInfo<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tsc", ":TSHighlightCapturesUnderCursor<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tst", ":TSToggle<CR>", { silent = true })
 
 --nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 --nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
@@ -74,6 +94,18 @@ require("lspconfig").rnix.setup({})
 -- python lsp
 require("lspconfig").pylsp.setup({})
 
+-- nil lsp
+-- local caps = vim.lsp.protocol.make_client_capabilities()
+-- caps = require("cmp_nvim_lsp").update_capabilities(caps)
+-- -- local lsp_path = vim.env.NIL_PATH or "target/debug/nil" or vim.env.HOME .. "/.nix-profile/bin/nil"
+-- local lsp_path = vim.env.NIL_PATH or vim.env.HOME .. "/.nix-profile/bin/nil"
+require("lspconfig").nil_ls.setup({
+	-- autostart = true,
+	-- capabilities = caps,
+	-- cmd = { lsp_path },
+})
+-- end nil lsp
+
 require("lspconfig").sumneko_lua.setup({
 	on_attach = on_attach,
 	handlers = handlers,
@@ -103,123 +135,35 @@ require("lspconfig").sumneko_lua.setup({
 	},
 })
 
--- Treesitter configuration
--- Parsers must be installed manually via :TSInstall
-require("nvim-treesitter.configs").setup({
-	highlight = {
-		enable = true, -- false will disable the whole extension
-		disable = { "org", "latex" }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-		additional_vim_regex_highlighting = { "org", "latex" }, -- Required since TS highlighter doesn't support all syntax features (conceal)
-	},
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "gnn",
-			node_incremental = "grn",
-			scope_incremental = "grc",
-			node_decremental = "grm",
-		},
-	},
-	indent = {
-		enable = true,
-	},
-	textobjects = {
-		select = {
-			enable = true,
-			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-			keymaps = {
-				-- You can use the capture groups defined in textobjects.scm
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
-		},
-		move = {
-			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				["]m"] = "@function.outer",
-				["]]"] = "@class.outer",
-			},
-			goto_next_end = {
-				["]M"] = "@function.outer",
-				["]["] = "@class.outer",
-			},
-			goto_previous_start = {
-				["[m"] = "@function.outer",
-				["[["] = "@class.outer",
-			},
-			goto_previous_end = {
-				["[M"] = "@function.outer",
-				["[]"] = "@class.outer",
-			},
-		},
-		rainbow = {
-			enable = true,
-			extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-			max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
-			colors = {}, -- table of hex strings
-			termcolors = {}, -- table of colour name strings
-		},
-		query_linter = {
-			enable = true,
-			use_virtual_text = true,
-			lint_events = { "BufWrite", "CursorHold" },
-		},
-	},
-})
+function code_action_range()
+	-- Adapted from https://stackoverflow.com/a/6271254, for how to get visual styled
+	-- selection. Not sure this is the best way but it seems to work.
+	local cursor = vim.api.nvim_win_get_cursor(0)
 
+	local cnum_start, lnum_start = unpack(vim.fn.getpos("'<"))
+	local cnum_end, lnum_end = unpack(vim.fn.getpos("'>"))
+	local lines = vim.api.nvim_buf_get_lines(0, lnum_start - 1, lnum_end, true)
+	for line in ipairs(lines) do
+		vim.api.nvim_win_set_cursor(0, { line + lnum_start - 1, 0 })
+		vim.lsp.buf.code_action({
+			-- context = {
+			-- 	only = { "quickfix" },
+			-- },
+			apply = true,
+		})
+		vim.wait(20)
+	end
+	vim.api.nvim_win_set_cursor(0, cursor)
+end
 
-require("null-ls").setup({
-	sources = {
-		-- require("null-ls").builtins.diagnostics.eslint,
-		require("null-ls").builtins.completion.spell,
-		require("null-ls").builtins.completion.luasnip,
+local diagnostics_active = true
+local toggle_diagnostics = function()
+	diagnostics_active = not diagnostivs_active
+	if diagnostics_active then
+		vim.diagnostic.show()
+	else
+		vim.diagnostic.hide()
+	end
+end
 
-		-- require("null-ls").builtins.code_actions.gitsigns,
-		require("null-ls").builtins.code_actions.proselint,
-		require("null-ls").builtins.code_actions.shellcheck,
-		require("null-ls").builtins.code_actions.statix,
-
-		require("null-ls").builtins.diagnostics.actionlint,
-		require("null-ls").builtins.diagnostics.checkmake,
-		require("null-ls").builtins.diagnostics.chktex,
-		require("null-ls").builtins.diagnostics.codespell,
-		require("null-ls").builtins.diagnostics.deadnix,
-		require("null-ls").builtins.diagnostics.editorconfig_checker.with({
-			generator_opts = { command = "editorconfig-checker"},
-	}),
-		require("null-ls").builtins.diagnostics.fish,
-		require("null-ls").builtins.diagnostics.flake8,
-		require("null-ls").builtins.diagnostics.luacheck,
-		require("null-ls").builtins.diagnostics.markdownlint,
-		require("null-ls").builtins.diagnostics.mdl,
-		-- require("null-ls").builtins.diagnostics.misspell,
-		require("null-ls").builtins.diagnostics.mypy,
-		require("null-ls").builtins.diagnostics.proselint,
-		require("null-ls").builtins.diagnostics.protolint,
-
-		require("null-ls").builtins.formatting.alejandra,
-		require("null-ls").builtins.formatting.autopep8,
-		require("null-ls").builtins.formatting.bibclean,
-		require("null-ls").builtins.formatting.black,
-		require("null-ls").builtins.formatting.buf,
-		require("null-ls").builtins.formatting.codespell,
-		require("null-ls").builtins.formatting.fish_indent,
-		require("null-ls").builtins.formatting.just,
-		require("null-ls").builtins.formatting.latexindent,
-		require("null-ls").builtins.formatting.nixfmt,
-		require("null-ls").builtins.formatting.nixpkgs_fmt,
-		require("null-ls").builtins.formatting.ocdc,
-		require("null-ls").builtins.formatting.protolint,
-		require("null-ls").builtins.formatting.rustfmt,
-		require("null-ls").builtins.formatting.stylua,
-		require("null-ls").builtins.formatting.shellharden,
-		require("null-ls").builtins.formatting.shfmt,
-		-- require("null-ls").builtins.formatting.textlint,
-		require("null-ls").builtins.formatting.zigfmt,
-
-		require("null-ls").builtins.hover.dictionary,
-	},
-})
+vim.api.nvim_set_keymap("n", "<leader>d", "toggle_diagnostics", { silent = true })

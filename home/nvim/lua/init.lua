@@ -82,11 +82,16 @@ require("kenji.telescope.setup")
 require("kenji.telescope.mappings")
 require("kenji.theme")
 require("kenji.lsp")
+require("kenji.lsp.null-ls")
 require("kenji.snippets")
 require("kenji.completion")
+require("kenji.terminal")
 require("kenji.filetypes")
+require("kenji.harpoon")
 require("kenji.trouble")
 require("luasnip.loaders.from_vscode").lazy_load()
+require("kenji.tree-sitter")
+require("kenji.quickfix")
 -- require('gitsigns').setup()
 
 vim.cmd([[
@@ -107,7 +112,7 @@ nnoremap <expr> <Space>O printf('m`%sO<ESC>``', v:count1)
 nnoremap <Space><Space> a<Space><ESC>h
 
 " Jump to matching pairs easily in normal mode
-nnoremap <Tab> %
+"nnoremap <Tab> %
 
 " Go to start or end of line easier
 nnoremap H ^
@@ -126,4 +131,14 @@ set splitright
 set splitbelow
 set laststatus=3
 highlight WinSeparator guibg=None
+"set winbar=%f
+" use jj to escape insert mode.
+let g:better_escape_shortcut = 'fd'
 ]])
+
+--- this needs to be run late in the initialization process
+vim.cmd([[
+autocmd VimEnter * TSToggle rainbow
+]])
+-- autocmd FileType python colorscheme edge
+-- autocmd FileType bash colorscheme edge
