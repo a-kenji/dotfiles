@@ -81,8 +81,8 @@ require("telescope").setup({
 
 				-- ["<M-m>"] = actions.master_stack,
 
-				-- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-				-- ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+				["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 
 				-- This is nicer when used with smart-history plugin.
 				["<C-k>"] = actions.cycle_history_next,
@@ -118,7 +118,7 @@ require("telescope").setup({
 
 		history = {
 			path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
-			limit = 100,
+			limit = 10000,
 		},
 	},
 
@@ -141,6 +141,12 @@ require("telescope").setup({
 	},
 
 	extensions = {
+		fzf = {
+			fuzzy = true, -- false will only do exact matching
+			override_generic_sorter = true, -- override the generic sorter
+			override_file_sorter = true, -- override the file sorter
+			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+		},
 		fzy_native = {
 			override_generic_sorter = true,
 			override_file_sorter = true,
@@ -184,3 +190,7 @@ if vim.fn.executable("gh") == 1 then
 	pcall(require("telescope").load_extension, "gh")
 	pcall(require("telescope").load_extension, "octo")
 end
+
+require("telescope").load_extension("fzf")
+-- require("telescope").load_extension("smart_history")
+require("telescope").load_extension("frecency")

@@ -3,6 +3,8 @@ if not pcall(require, "telescope") then
 end
 
 local sorters = require("telescope.sorters")
+local custom = require("kenji.telescope.custom")
+vim.keymap.set("n", "<leader>lj", '<cmd>lua require("kenji.telescope.custom").just()<CR>', { silent = true })
 
 vim.api.nvim_set_keymap("c", "<c-r><c-r>", "<Plug>(TelescopeFuzzyCommandSearch)", { noremap = false, nowait = true })
 
@@ -14,9 +16,12 @@ vim.keymap.set("n", "<leader>lt", ":LspStop<CR>", { silent = true })
 
 -- Files
 vim.api.nvim_set_keymap("n", "<space>lf", ":lua require'telescope.builtin'.git_files()<CR>", { silent = false })
-vim.api.nvim_set_keymap("n", "<space>la", ":lua require'telescope.builtin'.find_files()<CR>", { silent = false })
+-- vim.api.nvim_set_keymap("n", "<space>la", ":lua require'telescope.builtin'.find_files()<CR>", { silent = false })
+vim.api.nvim_set_keymap("n", "<space>la", ":Telescope frecency <CR>", { silent = false })
+vim.api.nvim_set_keymap("n", "<C-p>", ":lua require'telescope.builtin'.find_files()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>lg", ":lua require'telescope.builtin'.live_grep()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>lb", ":lua require'telescope.builtin'.buffers()<CR>", { silent = false })
+vim.api.nvim_set_keymap("n", "<space>b", ":lua require'telescope.builtin'.buffers()<CR>", { silent = false })
 -- Git
 vim.api.nvim_set_keymap("n", "<space>gs", ":lua require'telescope.builtin'.git_status()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>gc", ":lua require'telescope.builtin'.git_commits()<CR>", { silent = false })
@@ -30,3 +35,6 @@ vim.api.nvim_set_keymap("n", "<space>cs", ":lua require'telescope.builtin'.color
 vim.api.nvim_set_keymap("n", "<space>ch", ":lua require'telescope.builtin'.command_history()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>ld", ":lua require'telescope.builtin'.diagnostics()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>lk", ":lua require'telescope.builtin'.keymaps()<CR>", { silent = false })
+
+-- require('telescope.builtin').live_grep({grep_open_files=true})
+-- require("telescope.builtin").live_grep({search_dirs={vim.fn.expand("%:p")}})
