@@ -2,6 +2,8 @@ name: "nixos"
 on:
   pull_request:
   push:
+  # Called by pull-request when specifically requested
+  workflow_call:
 jobs:
   build-nixos:
     runs-on: ubuntu-latest

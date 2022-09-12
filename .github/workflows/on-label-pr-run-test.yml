@@ -1,0 +1,17 @@
+name: on-label-pr-run-test
+
+on:
+  # Called by pull-request when specifically requested
+  workflow_call:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  nixos:
+    uses: ./.github/workflows/nixos.yml
+  home-manager:
+    uses: ./.github/workflows/home.yml
+  nix:
+    uses: ./.github/workflows/nix.yml

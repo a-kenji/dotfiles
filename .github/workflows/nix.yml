@@ -2,6 +2,8 @@ name: "nix"
 on:
   pull_request:
   push:
+  # Called by pull-request when specifically requested
+  workflow_call:
 jobs:
   nix-flake-check:
     runs-on: ubuntu-latest
