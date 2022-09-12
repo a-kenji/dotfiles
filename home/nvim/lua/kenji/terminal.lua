@@ -67,8 +67,8 @@ vim.api.nvim_set_keymap(
 --
 -- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 --
-local Terminal = require('toggleterm.terminal').Terminal
-local lazygit  = Terminal:new({
+local Terminal = require("toggleterm.terminal").Terminal
+local lazygit = Terminal:new({
 	cmd = "lazygit",
 	dir = "git_dir",
 	direction = "float",
