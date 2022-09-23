@@ -68,7 +68,7 @@ require("lspconfig").rust_analyzer.setup({
 		["rust-analyzer"] = {
 			assist = {
 				importGranularity = "module",
-				importMergeBehavior = "last",
+				importMergeBehavior = "module",
 				importPrefix = "by_self",
 			},
 			diagnostics = {
@@ -167,3 +167,30 @@ local toggle_diagnostics = function()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>d", "toggle_diagnostics", { silent = true })
+
+-- lspconfig nala
+-- https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
+local caps = vim.lsp.protocol.make_client_capabilities()
+caps = require("cmp_nvim_lsp").update_capabilities(caps)
+local lsp_path = vim.env.NALA_PATH or "nala"
+require("lspconfig").nala.setup({
+	autostart = true,
+	capabilities = caps,
+	cmd = { lsp_path },
+})
+
+
+require("lsp-inlayhints").setup()
+vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = "LspAttach_inlayhints",
+  callback = function(args)
+    if not (args.data and args.data.client_id) then
+      return
+    end
+
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    require("lsp-inlayhints").on_attach(client, bufnr)
+  end,
+})
