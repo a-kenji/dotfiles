@@ -35,21 +35,7 @@
     # nvim-lspconfig
     lsp_extensions-nvim
     null-ls-nvim
-    # lsp-inlayhints-nvim
-    (pkgs.vimUtils.buildVimPlugin
-      {
-        name = "lsp-inlayhints-nvim";
-        src = inputs.lsp-inlayhints-nvim;
-        buildInputs = [pkgs.zip pkgs.vim pkgs.cargo];
-        dontBuild = "true";
-      })
-    # (pkgs.vimUtils.buildVimPlugin
-    #   {
-    #     name = "null-ls-nvim";
-    #     src = inputs.null-ls-nvim;
-    #     buildInputs = [ pkgs.zip pkgs.vim pkgs.cargo ];
-    #     dontBuild = "true";
-    #   })
+    lsp-inlayhints-nvim
   ];
   neovim = {
     enable = true;
@@ -84,14 +70,14 @@
           '';
         }
         telescope-nvim
-        (pkgs.vimUtils.buildVimPlugin
-          {
-            name = "telescope-smart-history-nvim";
-            src = inputs.telescope-smart-history;
-            buildInputs = [pkgs.zip pkgs.vim pkgs.sqlite];
-            nativeBuildInputs = [pkgs.sqlite];
-            dontBuild = "true";
-          })
+        # (pkgs.vimUtils.buildVimPlugin
+        #   {
+        #     name = "telescope-smart-history-nvim";
+        #     src = inputs.telescope-smart-history;
+        #     buildInputs = [pkgs.zip pkgs.vim pkgs.sqlite];
+        #     nativeBuildInputs = [pkgs.sqlite];
+        #     dontBuild = "true";
+        #   })
         nvim-web-devicons
         better-escape-nvim
         vim-floaterm
