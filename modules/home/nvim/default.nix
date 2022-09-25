@@ -32,7 +32,7 @@
     # nvim-treesitter-textobjects
   ];
   lsp = with pkgs.vimPlugins; [
-    # nvim-lspconfig
+    nvim-lspconfig
     lsp_extensions-nvim
     null-ls-nvim
     lsp-inlayhints-nvim
