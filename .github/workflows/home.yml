@@ -20,7 +20,7 @@ jobs:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build .#nixosModules.home-manager.minimal.activationPackage
+    - run: nix build -L .#nixosModules.home-manager.minimal.activationPackage
 
   nix-build-neovim:
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build .#nixosModules.home-manager.neovim.activationPackage
+    - run: nix build -L .#nixosModules.home-manager.neovim.activationPackage
 
   nix-build-tools:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build .#nixosModules.home-manager.tools.activationPackage
+    - run: nix build -L .#nixosModules.home-manager.tools.activationPackage
 
   nix-build-common:
     runs-on: ubuntu-latest
@@ -71,4 +71,4 @@ jobs:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build .#nixosModules.home-manager.common.activationPackage
+    - run: nix build -L .#nixosModules.home-manager.common.activationPackage
