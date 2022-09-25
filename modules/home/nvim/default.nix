@@ -9,13 +9,14 @@
     edge
     sonokai
     everforest
+    awesome-vim-colorschemes
   ];
   completion = with pkgs.vimPlugins; [
-    cmp-nvim-lsp
     cmp-path
     cmp-buffer
-    cmp_luasnip
     nvim-cmp
+    cmp_luasnip
+    cmp-nvim-lsp
   ];
   git = with pkgs.vimPlugins; [
     diffview-nvim
@@ -26,13 +27,30 @@
   tree-sitter = with pkgs.vimPlugins; [
     nvim-treesitter
     nvim-ts-rainbow
+    nvim-treesitter-context
     playground
     # nvim-treesitter-textobjects
   ];
   lsp = with pkgs.vimPlugins; [
-    nvim-lspconfig
+    inputs.nala.packages.x86_64-linux.nvim-lspconfig
+    # nvim-lspconfig
     lsp_extensions-nvim
     null-ls-nvim
+    # lsp-inlayhints-nvim
+    (pkgs.vimUtils.buildVimPlugin
+      {
+        name = "lsp-inlayhints-nvim";
+        src = inputs.lsp-inlayhints-nvim;
+        buildInputs = [pkgs.zip pkgs.vim pkgs.cargo];
+        dontBuild = "true";
+      })
+    # (pkgs.vimUtils.buildVimPlugin
+    #   {
+    #     name = "null-ls-nvim";
+    #     src = inputs.null-ls-nvim;
+    #     buildInputs = [ pkgs.zip pkgs.vim pkgs.cargo ];
+    #     dontBuild = "true";
+    #   })
   ];
   neovim = {
     enable = true;
@@ -41,7 +59,7 @@
     vimAlias = true;
     vimdiffAlias = true;
     withRuby = false;
-    withPython3 = false;
+    withPython3 = true;
     withNodeJs = true;
     extraPackages = [
     ];
@@ -51,10 +69,36 @@
         direnv-vim
         lightspeed-nvim
         lualine-nvim
+        zen-mode-nvim
         # hop-nvim
+        trouble-nvim
         vimtex
         plenary-nvim
+        # sqlite-lua
+        {
+          plugin = sqlite-lua;
+          config = ''
+            lua << EOF
+            require("init")
+            EOF
+            let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
+          '';
+        }
         telescope-nvim
+        (pkgs.vimUtils.buildVimPlugin
+          {
+            name = "telescope-smart-history-nvim";
+            src = inputs.telescope-smart-history;
+            buildInputs = [pkgs.zip pkgs.vim pkgs.sqlite];
+            nativeBuildInputs = [pkgs.sqlite];
+            dontBuild = "true";
+          })
+        nvim-web-devicons
+        better-escape-nvim
+        vim-floaterm
+        toggleterm-nvim
+        telescope-fzf-native-nvim
+        telescope-frecency-nvim
         harpoon
         #surround-nvim
         (pkgs.vimUtils.buildVimPlugin
@@ -103,6 +147,8 @@ in {
   xdg.configFile."nvim/parser/regex.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-regex}/regex";
   xdg.configFile."nvim/parser/sql.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-sql}/sql";
   xdg.configFile."nvim/parser/toml.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-toml}/toml";
+  xdg.configFile."nvim/parser/scheme.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-scheme}/scheme";
+  xdg.configFile."nvim/parser/comment.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-comment}/comment";
   xdg.configFile = {
     "nvim/" = {
       source = nvimDir;
