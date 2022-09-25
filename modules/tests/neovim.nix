@@ -65,7 +65,9 @@ in
       su('${user}', 'cat ${checkfile}')
       )
       machine.execute("cat ${home}/.config/nvim/init.vim")
-      machine.execute("cat ${home}/.config/nvim/init.vim")
+      machine.execute("cat ${home}/.config/nvim/init.lua")
+      machine.execute("ls ${home}/.config/nvim/parser")
+      machine.execute("ls ${home}/.config/nvim/queries")
       machine.succeed("cat ${home}/.config/nvim/lua/init.lua")
     '';
   }
