@@ -32,7 +32,6 @@
     # nvim-treesitter-textobjects
   ];
   lsp = with pkgs.vimPlugins; [
-    inputs.nala.packages.x86_64-linux.nvim-lspconfig
     # nvim-lspconfig
     lsp_extensions-nvim
     null-ls-nvim
