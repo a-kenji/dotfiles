@@ -27,7 +27,7 @@ jobs:
               nix
             inputs: flake-utils
             branch: update_input_action_flake_utils
-            pr-title: "flake.lock: update flake utils"
+            pr-title: "flake.lock: update flake-utils"
   input-lockfile-nixpkgs:
     runs-on: ubuntu-latest
     environment: "update"
