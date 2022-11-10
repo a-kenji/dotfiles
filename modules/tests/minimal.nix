@@ -5,6 +5,7 @@
   system = "x86_64-linux";
 in
   pkgs.nixosTest {
+    name = "minimal";
     nodes.machine = {
       config,
       pkgs,
