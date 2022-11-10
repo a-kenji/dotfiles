@@ -12,6 +12,7 @@ pull_request_rules:
       - check-success= nixos test neovim
       - or:
         - author=a-kenji
+        - author=a-kenji-buildbot
         - author=github-actions[bot]
       - or:
         - "title=flake.lock: Update"
