@@ -64,10 +64,10 @@ in
       machine.succeed(
       su('${user}', 'cat ${checkfile}')
       )
-      machine.execute("cat ${home}/.config/nvim/init.vim")
-      machine.execute("cat ${home}/.config/nvim/init.lua")
-      machine.execute("ls ${home}/.config/nvim/parser")
-      machine.execute("ls ${home}/.config/nvim/queries")
-      machine.wait_until_succeeds("cat ${home}/.config/nvim/lua/init.lua")
+      # machine.execute("cat ${home}/.config/nvim/init.vim")
+      # machine.execute("cat ${home}/.config/nvim/init.lua")
+      # machine.execute("ls ${home}/.config/nvim/parser")
+      # machine.execute("ls ${home}/.config/nvim/queries")
+      # machine.wait_until_succeeds("cat ${home}/.config/nvim/lua/init.lua")
     '';
   }
