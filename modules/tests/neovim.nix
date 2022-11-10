@@ -10,6 +10,7 @@
   user = "alice";
 in
   pkgs.nixosTest {
+    name = "neovim-configuration";
     nodes.machine = {
       config,
       pkgs,
