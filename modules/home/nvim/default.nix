@@ -127,7 +127,6 @@ in {
   xdg.configFile."nvim/parser/make.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-make}/make";
   xdg.configFile."nvim/parser/go.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-go}/go";
   xdg.configFile."nvim/parser/fish.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-fish}/fish";
-  xdg.configFile."nvim/parser/fluent.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-fluent}/fluent";
   xdg.configFile."nvim/parser/rst.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-rst}/rst";
   xdg.configFile."nvim/parser/regex.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-regex}/regex";
   xdg.configFile."nvim/parser/sql.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-sql}/sql";
