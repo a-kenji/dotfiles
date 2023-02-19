@@ -106,7 +106,7 @@ require("lspconfig").nil_ls.setup({
 })
 -- end nil lsp
 
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
 	on_attach = on_attach,
 	handlers = handlers,
 	settings = {
