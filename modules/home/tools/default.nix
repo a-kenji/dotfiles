@@ -22,7 +22,7 @@
   language-servers = with pkgs; [
     rust-analyzer
     rnix-lsp
-    python-language-server
+    python311Packages.python-lsp-server
     sumneko-lua-language-server
   ];
   linters = with pkgs; [
