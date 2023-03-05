@@ -1,8 +1,8 @@
-{
-  pkgs,
-  configDir,
-  ...
-}: let
+{ pkgs
+, configDir
+, ...
+}:
+let
   gitPkgs = with pkgs; [
     git
     gitAndTools.gh # github cli
@@ -22,7 +22,7 @@
   language-servers = with pkgs; [
     rust-analyzer
     rnix-lsp
-    python-language-server
+    python311.python-lsp
     sumneko-lua-language-server
   ];
   linters = with pkgs; [
@@ -63,6 +63,7 @@
     vivid
     gcc
   ];
-in {
+in
+{
   home.packages = gitPkgs ++ base ++ extended ++ language-servers ++ linters;
 }
