@@ -6,6 +6,7 @@
   gitPkgs = with pkgs; [
     git
     gitAndTools.gh # github cli
+    gh-dash
     hub
     gitui
     tig
