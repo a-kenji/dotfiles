@@ -1,8 +1,4 @@
-{
-  pkgs,
-  configDir,
-  ...
-}: let
+{pkgs, ...}: let
   gitPkgs = with pkgs; [
     git
     gitAndTools.gh # github cli
@@ -25,6 +21,7 @@
     rnix-lsp
     python311Packages.python-lsp-server
     sumneko-lua-language-server
+    haskell-language-server
   ];
   linters = with pkgs; [
     proselint
