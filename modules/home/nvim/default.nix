@@ -17,6 +17,10 @@
     nvim-cmp
     cmp_luasnip
     cmp-nvim-lsp
+    cmp-latex-symbols
+    cmp-nvim-lsp-document-symbol
+    cmp-cmdline-history
+    cmp-rg
   ];
   git = with pkgs.vimPlugins; [
     diffview-nvim
@@ -28,6 +32,7 @@
     nvim-treesitter
     nvim-ts-rainbow
     nvim-treesitter-context
+    nvim-ts-context-commentstring
     playground
     # nvim-treesitter-textobjects
   ];
@@ -36,6 +41,9 @@
     lsp_extensions-nvim
     null-ls-nvim
     lsp-inlayhints-nvim
+  ];
+  ui = with pkgs.vimPlugins; [
+    nvim-notify
   ];
   neovim = {
     enable = true;
@@ -55,6 +63,17 @@
         lightspeed-nvim
         lualine-nvim
         zen-mode-nvim
+        zoxide-vim
+        vim-test
+        aerial-nvim
+        vim-nixhash
+        nix-develop-nvim
+        vim-projectionist
+        git-messenger-vim
+        todo-comments-nvim
+        # stickybuf # https://github.com/neovim/neovim/issues/12517
+        # crates-nvim
+        auto-session
         # hop-nvim
         trouble-nvim
         vimtex
@@ -70,6 +89,11 @@
           '';
         }
         telescope-nvim
+        telescope-manix
+        telescope-project-nvim
+        neogen
+        glance-nvim
+        glow-nvim
         # (pkgs.vimUtils.buildVimPlugin
         #   {
         #     name = "telescope-smart-history-nvim";
@@ -105,7 +129,8 @@
       ++ themes
       ++ lsp
       ++ tree-sitter
-      ++ completion;
+      ++ completion
+      ++ ui;
   };
 in {
   programs.neovim = neovim;

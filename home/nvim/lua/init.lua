@@ -67,7 +67,9 @@ vim.api.nvim_create_autocmd(
 )
 
 require("diffview").setup({})
-require("Comment").setup({})
+require("Comment").setup({
+	pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+})
 vim.g.gitblame_enabled = 0
 vim.g.direnv_silent_load = 1
 map("n", "<leader>gb", ":GitBlameToggle<CR>")
@@ -134,6 +136,9 @@ highlight WinSeparator guibg=None
 "set winbar=%f
 " use jj to escape insert mode.
 let g:better_escape_shortcut = 'fd'
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
 ]])
 
 --- this needs to be run late in the initialization process
@@ -142,3 +147,29 @@ autocmd VimEnter * TSToggle rainbow
 ]])
 -- autocmd FileType python colorscheme edge
 -- autocmd FileType bash colorscheme edge
+require("aerial").setup({
+	-- optionally use on_attach to set keymaps when aerial has attached to a buffer
+	on_attach = function(bufnr)
+		-- Jump forwards/backwards with '{' and '}'
+		vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+		vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+	end,
+})
+-- You probably also want to set a keymap to toggle aerial
+vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+
+require("todo-comments").setup({})
+require("glance").setup({})
+vim.keymap.set("n", "gD", "<CMD>Glance definitions<CR>")
+vim.keymap.set("n", "gR", "<CMD>Glance references<CR>")
+vim.keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>")
+vim.keymap.set("n", "gM", "<CMD>Glance implementations<CR>")
+
+vim.keymap.set("n", "]t", function()
+	require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+	require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+require("glow").setup()

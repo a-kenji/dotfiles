@@ -121,7 +121,6 @@ require("telescope").setup({
 			limit = 10000,
 		},
 	},
-
 	pickers = {
 		fd = {
 			mappings = {
@@ -139,7 +138,6 @@ require("telescope").setup({
 			},
 		},
 	},
-
 	extensions = {
 		fzf = {
 			fuzzy = true, -- false will only do exact matching
@@ -194,3 +192,4 @@ end
 require("telescope").load_extension("fzf")
 -- require("telescope").load_extension("smart_history")
 require("telescope").load_extension("frecency")
+require("telescope").load_extension("project")

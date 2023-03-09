@@ -17,6 +17,9 @@ vim.keymap.set("n", "<leader>lt", ":LspStop<CR>", { silent = true })
 -- Files
 vim.api.nvim_set_keymap("n", "<space>lf", ":lua require'telescope.builtin'.git_files()<CR>", { silent = false })
 -- vim.api.nvim_set_keymap("n", "<space>la", ":lua require'telescope.builtin'.find_files()<CR>", { silent = false })
+-- Todo Comments
+vim.api.nvim_set_keymap("n", "<space>lt", ":TodoTelescope<CR>", { silent = false })
+vim.api.nvim_set_keymap("n", "<space>lT", ":TodoTrouble<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>la", ":Telescope frecency <CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<C-p>", ":lua require'telescope.builtin'.find_files()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>lg", ":lua require'telescope.builtin'.live_grep()<CR>", { silent = false })
