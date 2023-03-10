@@ -25,6 +25,7 @@
   git = with pkgs.vimPlugins; [
     diffview-nvim
     git-blame-nvim
+    git-messenger-vim
     # gitsigns-nvim
     neogit
   ];
