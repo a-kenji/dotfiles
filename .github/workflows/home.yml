@@ -1,7 +1,8 @@
 name: "home-manager"
 on:
-  pull_request:
   push:
+    branches: [main]
+  pull_request:
   # Called by pull-request when specifically requested
   workflow_call:
 jobs:
