@@ -28,6 +28,8 @@
     git-messenger-vim
     # gitsigns-nvim
     neogit
+    git-messenger-vim
+    committia
   ];
   tree-sitter = with pkgs.vimPlugins; [
     nvim-treesitter
@@ -70,7 +72,7 @@
         vim-nixhash
         nix-develop-nvim
         vim-projectionist
-        git-messenger-vim
+        nvim-spectre
         todo-comments-nvim
         # stickybuf # https://github.com/neovim/neovim/issues/12517
         # crates-nvim
