@@ -1,9 +1,9 @@
-{
-  pkgs,
-  configDir,
-  inputs,
-  ...
-}: let
+{ pkgs
+, configDir
+, inputs
+, ...
+}:
+let
   nvimDir = configDir + "/nvim";
   themes = with pkgs.vimPlugins; [
     edge
@@ -23,7 +23,7 @@
     cmp-rg
   ];
   git = with pkgs.vimPlugins; [
-    diffview-nvim
+    # diffview-nvim
     git-blame-nvim
     git-messenger-vim
     # gitsigns-nvim
@@ -117,7 +117,7 @@
           {
             name = "nvim-surround";
             src = inputs.nvim-surround;
-            buildInputs = [pkgs.zip pkgs.vim pkgs.cargo];
+            buildInputs = [ pkgs.zip pkgs.vim pkgs.cargo ];
             dontBuild = "true";
           })
         comment-nvim
@@ -135,7 +135,8 @@
       ++ completion
       ++ ui;
   };
-in {
+in
+{
   programs.neovim = neovim;
 
   xdg.configFile."nvim/parser/c.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-c}/parser";
@@ -168,9 +169,9 @@ in {
     };
   };
 
-  programs.bash.shellAliases = {vimdiff = "nvim -d";};
-  programs.fish.shellAliases = {vimdiff = "nvim -d";};
-  programs.fish.shellAliases = {vim = "nvim";};
-  programs.fish.shellAliases = {vi = "nvim";};
-  programs.zsh.shellAliases = {vimdiff = "nvim -d";};
+  programs.bash.shellAliases = { vimdiff = "nvim -d"; };
+  programs.fish.shellAliases = { vimdiff = "nvim -d"; };
+  programs.fish.shellAliases = { vim = "nvim"; };
+  programs.fish.shellAliases = { vi = "nvim"; };
+  programs.zsh.shellAliases = { vimdiff = "nvim -d"; };
 }
