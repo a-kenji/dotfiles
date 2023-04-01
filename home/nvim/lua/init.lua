@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd(
 	{ command = "setlocal spell", group = "Spellcheck", pattern = { "gitcommit", "markdown" } }
 )
 
-require("diffview").setup({})
+-- require("diffview").setup({})
 require("Comment").setup({
 	pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 })
@@ -156,7 +156,7 @@ require("aerial").setup({
 	end,
 })
 -- You probably also want to set a keymap to toggle aerial
-vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+vim.keymap.set("n", "<leader>la", "<cmd>AerialToggle!<CR>")
 
 require("todo-comments").setup({})
 require("glance").setup({})
