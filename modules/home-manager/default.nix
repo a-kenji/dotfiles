@@ -26,6 +26,7 @@
 in {
   minimal = hmConfiguration {};
   neovim = hmConfiguration {modules = [self.outputs.nixosModules.home.nvim];};
+  helix = hmConfiguration {modules = [self.outputs.nixosModules.home.editor.helix];};
   tools = hmConfiguration {modules = [self.outputs.nixosModules.home.tools];};
   nushell = hmConfiguration {modules = [self.outputs.nixosModules.home.shell.nu];};
   common = hmConfiguration {
@@ -33,6 +34,7 @@ in {
       self.outputs.nixosModules.home.nvim
       self.outputs.nixosModules.home.tools
       self.outputs.nixosModules.home.shell.nu
+      self.outputs.nixosModules.home.editor.helix
     ];
   };
 }
