@@ -3,7 +3,7 @@
   configDir,
   inputs,
 }: let
-  helixDir = configDir + "helix";
+  helixDir = configDir + "/helix";
 in {
   home.packages = [pkgs.helix];
   xdg.configFile = {
