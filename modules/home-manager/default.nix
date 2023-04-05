@@ -27,10 +27,12 @@ in {
   minimal = hmConfiguration {};
   neovim = hmConfiguration {modules = [self.outputs.nixosModules.home.nvim];};
   tools = hmConfiguration {modules = [self.outputs.nixosModules.home.tools];};
+  nushell = hmConfiguration {modules = [self.outputs.nixosModules.home.shell.nu];};
   common = hmConfiguration {
     modules = [
       self.outputs.nixosModules.home.nvim
       self.outputs.nixosModules.home.tools
+      self.outputs.nixosModules.home.shell.nu
     ];
   };
 }

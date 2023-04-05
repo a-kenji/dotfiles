@@ -1,0 +1,4 @@
+[[language]]
+name = "nix"
+auto-format = false
+language.server.command = "nil"
