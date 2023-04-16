@@ -6,5 +6,15 @@ line-number = "relative"
 bufferline  = "multiple"
 true-color  = true
 
+[editor.lsp]
+display-messages = false
+display-inlay-hints = false
+
+[editor.whitespace.render]
+nsbp = "all"
+
+[editor.soft-wrap]
+enable = true
+
 [keys.normal]
 esc         = ["collapse_selection", "keep_primary_selection"]
