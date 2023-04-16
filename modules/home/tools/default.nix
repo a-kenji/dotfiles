@@ -22,6 +22,8 @@
     python311Packages.python-lsp-server
     sumneko-lua-language-server
     haskell-language-server
+    marksman
+    texlab
   ];
   linters = with pkgs; [
     proselint
