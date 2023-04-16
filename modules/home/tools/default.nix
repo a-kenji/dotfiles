@@ -60,6 +60,7 @@
     tokei
     vivid
     gcc
+    typst
   ];
 in {
   home.packages = gitPkgs ++ base ++ extended ++ language-servers ++ linters;
