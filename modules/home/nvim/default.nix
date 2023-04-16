@@ -26,7 +26,7 @@
     diffview-nvim
     git-blame-nvim
     git-messenger-vim
-    # gitsigns-nvim
+    gitsigns-nvim
     neogit
     git-messenger-vim
     committia

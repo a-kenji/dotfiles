@@ -94,7 +94,7 @@ require("kenji.trouble")
 require("luasnip.loaders.from_vscode").lazy_load()
 require("kenji.tree-sitter")
 require("kenji.quickfix")
--- require('gitsigns').setup()
+require('gitsigns').setup()
 
 vim.cmd([[
 " Close location list or quickfix list if they are present,
