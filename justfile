@@ -15,3 +15,5 @@ update-flake-lock:
 
 build: 
      nix build .#nixosModules.home-manager.neovim.activationPackage
+build-common: 
+     nix build .#nixosModules.home-manager.common.activationPackage
