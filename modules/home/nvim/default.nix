@@ -23,7 +23,7 @@
     cmp-rg
   ];
   git = with pkgs.vimPlugins; [
-    # diffview-nvim
+    diffview-nvim
     git-blame-nvim
     git-messenger-vim
     # gitsigns-nvim
