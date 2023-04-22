@@ -1,5 +1,5 @@
 -- parsing lastModified value from the flake.lock file
-local query = vim.treesitter.parse_query(
+local query = vim.treesitter.query.parse(
 	"json",
 	[[
 (pair
