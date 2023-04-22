@@ -21,7 +21,7 @@
     rnix-lsp
     python311Packages.python-lsp-server
     sumneko-lua-language-server
-    haskell-language-server
+    # haskell-language-server
     marksman
     texlab
   ];
