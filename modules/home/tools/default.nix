@@ -18,12 +18,13 @@
   ];
   language-servers = with pkgs; [
     rust-analyzer
-    rnix-lsp
+    nil
     python311Packages.python-lsp-server
     sumneko-lua-language-server
     # haskell-language-server
     marksman
     texlab
+    typst-lsp
   ];
   linters = with pkgs; [
     proselint
