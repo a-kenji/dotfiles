@@ -2,6 +2,7 @@
   gitPkgs = with pkgs; [
     git
     gitAndTools.gh # github cli
+    glab
     gh-dash
     hub
     gitui
