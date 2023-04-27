@@ -52,7 +52,7 @@
     jq
     just
     lsd
-    mob
+    # mob
     ncdu
     pdd
     ripgrep
