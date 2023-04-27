@@ -90,7 +90,7 @@ require("lspconfig").rust_analyzer.setup({
 -- bash lsp
 require("lspconfig").bashls.setup({})
 -- nix lsp
-require("lspconfig").rnix.setup({})
+-- require("lspconfig").rnix.setup({})
 -- python lsp
 require("lspconfig").pylsp.setup({})
 
