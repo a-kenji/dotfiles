@@ -177,7 +177,7 @@ require("glow").setup()
 require("copilot").setup({
 	require("copilot").setup({
 		panel = {
-			enabled = true,
+			enabled = false,
 			auto_refresh = false,
 			keymap = {
 				jump_prev = "[[",
@@ -192,9 +192,9 @@ require("copilot").setup({
 			},
 		},
 		suggestion = {
-			enabled = true,
-			auto_trigger = false,
-			debounce = 75,
+			enabled = false,
+			auto_trigger = true,
+			debounce = 150,
 			keymap = {
 				accept = "<M-l>",
 				accept_word = false,
