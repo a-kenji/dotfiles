@@ -112,14 +112,7 @@
         telescope-fzf-native-nvim
         telescope-frecency-nvim
         harpoon
-        #surround-nvim
-        (pkgs.vimUtils.buildVimPlugin
-          {
-            name = "nvim-surround";
-            src = inputs.nvim-surround;
-            buildInputs = [pkgs.zip pkgs.vim pkgs.cargo];
-            dontBuild = "true";
-          })
+        nvim-surround
         comment-nvim
         nvim-lightbulb
         # snippets

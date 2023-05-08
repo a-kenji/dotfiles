@@ -8,8 +8,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    nvim-surround.url = "github:kylechui/nvim-surround";
-    nvim-surround.flake = false;
   };
   outputs = {...} @ args: import ./outputs args;
 }

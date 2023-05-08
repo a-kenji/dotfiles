@@ -382,22 +382,6 @@
         "type": "github"
       }
     },
-    "nvim-surround": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1682819600,
-        "narHash": "sha256-SdceJIczF8sUOoc1Zyk9HNeUHdbyq4xnh5XF6BKrsSs=",
-        "owner": "kylechui",
-        "repo": "nvim-surround",
-        "rev": "219bd66585aa467b1c90fd01b54a2a423aaed4ab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kylechui",
-        "repo": "nvim-surround",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -430,8 +414,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nixpkgs": "nixpkgs_2",
-        "nvim-surround": "nvim-surround"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "systems": {
