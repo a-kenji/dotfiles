@@ -97,14 +97,6 @@
         neogen
         glance-nvim
         glow-nvim
-        # (pkgs.vimUtils.buildVimPlugin
-        #   {
-        #     name = "telescope-smart-history-nvim";
-        #     src = inputs.telescope-smart-history;
-        #     buildInputs = [pkgs.zip pkgs.vim pkgs.sqlite];
-        #     nativeBuildInputs = [pkgs.sqlite];
-        #     dontBuild = "true";
-        #   })
         nvim-web-devicons
         better-escape-nvim
         vim-floaterm
