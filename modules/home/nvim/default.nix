@@ -54,6 +54,10 @@
     nix-develop-nvim
     direnv-vim
   ];
+  snippets = with pkgs.vimPlugins; [
+    luasnip
+    friendly-snippets
+  ];
   neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
@@ -108,10 +112,6 @@
         nvim-surround
         comment-nvim
         nvim-lightbulb
-        # snippets
-        luasnip
-        friendly-snippets
-        # end snippets
         nvim-autopairs
         ron-vim
       ]
@@ -120,6 +120,7 @@
       ++ lsp
       ++ tree-sitter
       ++ completion
+      ++ snippets
       ++ nix
       ++ ui;
   };
