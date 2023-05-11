@@ -49,10 +49,10 @@
     nvim-notify
   ];
   nix = with pkgs.vimPlugins; [
-        vim-nix
-        vim-nixhash
-        nix-develop-nvim
-        direnv-vim
+    vim-nix
+    vim-nixhash
+    nix-develop-nvim
+    direnv-vim
   ];
   neovim = {
     enable = true;
