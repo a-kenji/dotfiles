@@ -36,8 +36,8 @@
     nvim-ts-rainbow
     nvim-treesitter-context
     nvim-ts-context-commentstring
+    nvim-treesitter-textobjects
     playground
-    # nvim-treesitter-textobjects
   ];
   lsp = with pkgs.vimPlugins; [
     nvim-lspconfig
@@ -47,6 +47,12 @@
   ];
   ui = with pkgs.vimPlugins; [
     nvim-notify
+  ];
+  nix = with pkgs.vimPlugins; [
+        vim-nix
+        vim-nixhash
+        nix-develop-nvim
+        direnv-vim
   ];
   neovim = {
     enable = true;
@@ -61,23 +67,18 @@
     ];
     plugins = with pkgs.vimPlugins;
       [
-        vim-nix
-        direnv-vim
         lightspeed-nvim
         lualine-nvim
         zen-mode-nvim
         zoxide-vim
         vim-test
         aerial-nvim
-        vim-nixhash
-        nix-develop-nvim
         vim-projectionist
         nvim-spectre
         todo-comments-nvim
         # stickybuf # https://github.com/neovim/neovim/issues/12517
         # crates-nvim
         auto-session
-        # hop-nvim
         trouble-nvim
         vimtex
         plenary-nvim
@@ -119,6 +120,7 @@
       ++ lsp
       ++ tree-sitter
       ++ completion
+      ++ nix
       ++ ui;
   };
 in {
