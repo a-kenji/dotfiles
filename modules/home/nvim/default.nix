@@ -83,6 +83,7 @@
         # stickybuf # https://github.com/neovim/neovim/issues/12517
         # crates-nvim
         auto-session
+        leap-nvim
         trouble-nvim
         vimtex
         plenary-nvim
