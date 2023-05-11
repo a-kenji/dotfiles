@@ -40,10 +40,11 @@
     playground
   ];
   lsp = with pkgs.vimPlugins; [
-    nvim-lspconfig
-    lsp_extensions-nvim
-    null-ls-nvim
     lsp-inlayhints-nvim
+    lsp_extensions-nvim
+    lspkind-nvim
+    null-ls-nvim
+    nvim-lspconfig
   ];
   ui = with pkgs.vimPlugins; [
     nvim-notify
