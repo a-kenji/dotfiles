@@ -120,6 +120,7 @@
         friendly-snippets
         # end snippets
         nvim-autopairs
+        ron-vim
       ]
       ++ git
       ++ themes
