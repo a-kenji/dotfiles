@@ -45,7 +45,8 @@ vim.api.nvim_set_keymap("n", "<leader>tst", ":TSToggle<CR>", { silent = true })
 --nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 ---- Add nvim-lspconfig plugin
 local lspconfig = require("lspconfig")
-local on_attach = function(client, bufnr) end
+local on_attach = function(client, bufnr)
+end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -93,6 +94,7 @@ require("lspconfig").bashls.setup({})
 -- require("lspconfig").rnix.setup({})
 -- python lsp
 require("lspconfig").pylsp.setup({})
+require("lspconfig").pylyzer.setup({})
 
 -- nil lsp
 -- local caps = vim.lsp.protocol.make_client_capabilities()

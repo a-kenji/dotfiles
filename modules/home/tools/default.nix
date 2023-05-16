@@ -21,6 +21,7 @@
     rust-analyzer
     nil
     python311Packages.python-lsp-server
+    pylyzer
     sumneko-lua-language-server
     # haskell-language-server
     marksman
