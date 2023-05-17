@@ -63,6 +63,12 @@
     luasnip
     friendly-snippets
   ];
+  nix = with pkgs.vimPlugins; [
+        vim-nix
+        vim-nixhash
+        nix-develop-nvim
+        direnv-vim
+  ];
   neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
@@ -88,7 +94,7 @@
         # stickybuf # https://github.com/neovim/neovim/issues/12517
         # crates-nvim
         auto-session
-        leap-nvim
+        # hop-nvim
         trouble-nvim
         vimtex
         plenary-nvim
