@@ -73,10 +73,6 @@
     luasnip
     friendly-snippets
   ];
-    pilot = with pkgs.vimPlugins; [
-    copilot-cmp
-    copilot-lua
-  ];
   neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
