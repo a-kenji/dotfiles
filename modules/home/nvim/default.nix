@@ -69,6 +69,10 @@
     nix-develop-nvim
     direnv-vim
   ];
+  snippets = with pkgs.vimPlugins; [
+    luasnip
+    friendly-snippets
+  ];
   neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
