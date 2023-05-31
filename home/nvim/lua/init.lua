@@ -173,3 +173,33 @@ vim.keymap.set("n", "[t", function()
 	require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 require("glow").setup()
+
+require("vim.treesitter.query").set(
+	"nix",
+	"injections",
+	[[(
+binding
+attrpath: (attrpath attr: (identifier) @_test )
+expression: (indented_string_expression) @python
+(#eq? @_test "testScript")
+)
+]]
+)
+
+require("vim.treesitter.query").set(
+	"lua",
+	"injections",
+	[[(
+ function_call
+ name: (dot_index_expression
+	table: (function_call)
+	field: (identifier) @_test
+	)
+ arguments: ((arguments
+	(string)
+	(string)
+	(string
+	  content: (string_content) @scheme)))
+ (#eq? @_test "set")
+)]]
+)
