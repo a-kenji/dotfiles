@@ -1,7 +1,7 @@
 {
   pkgs,
   configDir,
-  inputs,
+  # inputs,
   ...
 }: let
   nvimDir = configDir + "/nvim";
@@ -63,15 +63,9 @@
     luasnip
     friendly-snippets
   ];
-  nix = with pkgs.vimPlugins; [
-    vim-nix
-    vim-nixhash
-    nix-develop-nvim
-    direnv-vim
-  ];
-  snippets = with pkgs.vimPlugins; [
-    luasnip
-    friendly-snippets
+  pilot = with pkgs.vimPlugins; [
+    copilot-cmp
+    copilot-lua
   ];
   neovim = {
     enable = true;
