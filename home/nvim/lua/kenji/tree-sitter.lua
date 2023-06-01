@@ -108,7 +108,7 @@ require("vim.treesitter.query").set(
 )
 
 require("vim.treesitter.query").set(
-	"lua",
+	"nix",
 	"injections",
 	[[(
 apply_expression
@@ -122,7 +122,7 @@ argument: (indented_string_expression) @bash
 )
 
 require("vim.treesitter.query").set(
-	"lua",
+	"nix",
 	"injections",
 	[[(
 binding
@@ -141,56 +141,9 @@ expression: (indented_string_expression) @bash
 )]]
 )
 
-require("vim.treesitter.query").set(
-	"lua",
-	"injections",
-	[[(
-(
-binding
-attrpath:
-(attrpath attr: (identifier) @_test)
-expression: (binary_expression) @bash
-(#any-of? @_test
-"unpackPhase" "preUnpack" "postUnpack"
-"patchPhase" "prePatch" "postPatch"
-"configurePhase" "preConfigure" "postConfigure"
-"buildPhase" "preBuild" "postBuild"
-"checkPhase" "preCheck" "postCheck"
-"installPhase" "preInstall" "postInstall"
-"fixupPhase" "preFixup" "postFixup"
-"installCheckPhase" "preInstallCheck" "postInstallCheck"
-"distPhase" "preDist" "postDist"
-)
-)]]
-)
-
-require("vim.treesitter.query").set(
-	"lua",
-	"injections",
-	[[(
-(
-binding
-attrpath: (attrpath attr: (identifier) @_test)
-expression: (apply_expression
-function: (apply_expression)
-argument: (indented_string_expression) @bash)
-(#any-of? @_test
-"unpackPhase" "preUnpack" "postUnpack"
-"patchPhase" "prePatch" "postPatch"
-"configurePhase" "preConfigure" "postConfigure"
-"buildPhase" "preBuild" "postBuild"
-"checkPhase" "preCheck" "postCheck"
-"installPhase" "preInstall" "postInstall"
-"fixupPhase" "preFixup" "postFixup"
-"installCheckPhase" "preInstallCheck" "postInstallCheck"
-"distPhase" "preDist" "postDist"
-)
-)]]
-)
-
 -- markdown
 require("vim.treesitter.query").set(
-	"lua",
+	"markdown",
 	"injections",
 	[[(
 (fenced_code_block
@@ -199,7 +152,7 @@ require("vim.treesitter.query").set(
 )]]
 )
 require("vim.treesitter.query").set(
-	"lua",
+	"markdown",
 	"injections",
 	[[(
 (fenced_code_block
