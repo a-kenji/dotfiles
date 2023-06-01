@@ -103,7 +103,6 @@
         telescope-project-nvim
         neogen
         glance-nvim
-        glow-nvim
         nvim-web-devicons
         better-escape-nvim
         vim-floaterm
