@@ -80,9 +80,9 @@ require("nvim-autopairs").setup({
 require("nvim-surround").setup()
 
 require("kenji.vimtex")
+require("kenji.theme")
 require("kenji.telescope.setup")
 require("kenji.telescope.mappings")
-require("kenji.theme")
 require("kenji.lsp")
 require("kenji.lsp.null-ls")
 require("kenji.snippets")
