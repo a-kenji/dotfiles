@@ -112,21 +112,21 @@ set background=light
 colorscheme everforest
 ]]
 
-function enter(prompt_bufnr)
+local function enter(prompt_bufnr)
 	local selected = action_state.get_selected_entry()
 	local cmd = theme_cmd[selected[1]]
 	vim.cmd(cmd)
 	actions.close(prompt_bufnr)
 end
 
-function next_colo(prompt_bufnr)
+local function next_colo(prompt_bufnr)
 	actions.move_selection_next(prompt_bufnr)
 	local selected = action_state.get_selected_entry()
 	local cmd = theme_cmd[selected[1]]
 	vim.cmd(cmd)
 end
 
-function previous_colo(prompt_bufnr)
+local function previous_colo(prompt_bufnr)
 	actions.move_selection_previous(prompt_bufnr)
 	local selected = action_state.get_selected_entry()
 	local cmd = theme_cmd[selected[1]]
