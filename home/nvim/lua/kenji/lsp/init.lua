@@ -95,7 +95,13 @@ require("lspconfig").bashls.setup({})
 require("lspconfig").pylsp.setup({})
 require("lspconfig").pylyzer.setup({})
 
-require("lspconfig").clangd.setup({})
+-- configure clangd
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local clangd_capabilities = cmp_capabilities
+clangd_capabilities.offsetEncoding = "utf-8"
+require("lspconfig").clangd.setup({
+	capabilities = clangd_capabilities,
+})
 require("lspconfig").marksman.setup({})
 
 -- nil lsp
