@@ -18,13 +18,14 @@
     binutils
   ];
   language-servers = with pkgs; [
-    rust-analyzer
-    nil
-    python311Packages.python-lsp-server
-    pylyzer
-    sumneko-lua-language-server
     # haskell-language-server
+    clang-tools
     marksman
+    nil
+    pylyzer
+    python311Packages.python-lsp-server
+    rust-analyzer
+    sumneko-lua-language-server
     texlab
     typst-lsp
   ];
