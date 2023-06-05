@@ -1,6 +1,5 @@
 {inputs, ...}: let
-  nixpkgs = inputs.nixpkgs;
-  self = inputs.self;
+  inherit (inputs) nixpkgs;
   nixosSystem = nixpkgs.lib.makeOverridable nixpkgs.lib.nixosSystem;
   defaultModules = [
     # make flake inputs accessible in NixOS
