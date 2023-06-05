@@ -106,6 +106,7 @@ require("lspconfig").nil_ls.setup({
 	-- cmd = { lsp_path },
 })
 -- end nil lsp
+require("lspconfig").typst_lsp.setup({})
 
 require("lspconfig").lua_ls.setup({
 	on_attach = on_attach,
