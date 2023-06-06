@@ -48,7 +48,6 @@
     foot
     fzf
     glow
-    helix
     hexyl
     htop
     jq

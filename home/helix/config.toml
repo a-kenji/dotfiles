@@ -7,8 +7,8 @@ bufferline  = "multiple"
 true-color  = true
 
 [editor.lsp]
-display-messages = false
-display-inlay-hints = false
+display-messages = true
+display-inlay-hints = true
 
 [editor.whitespace.render]
 nsbp = "all"
