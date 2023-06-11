@@ -70,6 +70,10 @@
     friendly-snippets
     luasnip
   ];
+  pilot = with pkgs.vimPlugins; [
+    copilot-cmp
+    copilot-lua
+  ];
   neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
@@ -122,6 +126,7 @@
       ++ telescope
       ++ themes
       ++ tree-sitter
+      ++ pilot
       ++ ui;
   };
 in {
