@@ -127,6 +127,7 @@ require("lspconfig").nil_ls.setup({
 	-- capabilities = caps,
 	-- cmd = { lsp_path },
 })
+require("lspconfig").nixd.setup({})
 -- end nil lsp
 require("lspconfig").typst_lsp.setup({})
 
