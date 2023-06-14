@@ -6,7 +6,7 @@
   helixDir = configDir + "/helix";
 in {
   home.packages = [
-    (pkgs.helix.overrideAttrs (o: {
+    (inputs.helix.overrideAttrs (o: {
       patches =
         (o.patches or [])
         ++ [

@@ -127,6 +127,7 @@ require("lspconfig").nil_ls.setup({
 	-- capabilities = caps,
 	-- cmd = { lsp_path },
 })
+require("lspconfig").nixd.setup({})
 -- end nil lsp
 require("lspconfig").typst_lsp.setup({})
 
@@ -182,7 +183,7 @@ end
 
 local diagnostics_active = true
 local toggle_diagnostics = function()
-	diagnostics_active = not diagnostivs_active
+	diagnostics_active = not diagnostics_active
 	if diagnostics_active then
 		vim.diagnostic.show()
 	else
