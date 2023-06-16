@@ -11,7 +11,6 @@
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    neovim-nightly-overlay.inputs.hercules-ci-effects.follows = "";
     neovim-nightly-overlay.inputs.flake-parts.follows = "flake-parts";
 
     helix-nightly.url = "github:helix-editor/helix";

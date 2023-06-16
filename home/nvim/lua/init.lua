@@ -78,6 +78,11 @@ require("nvim-autopairs").setup({
 })
 --require("surround").setup({ mappings_style = "sandwich" })
 require("nvim-surround").setup()
+-- TODO: remove once fixed: https://github.com/neovim/neovim/issues/23291
+require("vim.lsp._watchfiles")._watchfunc = function(_, _, _)
+	return true
+end
+-- TODO: remove once fixed: https://github.com/neovim/neovim/issues/23291
 
 require("kenji.vimtex")
 require("kenji.theme")
