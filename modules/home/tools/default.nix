@@ -66,6 +66,7 @@
     vivid
     gcc
     typst
+    repgrep
   ];
 in {
   home.packages = gitPkgs ++ base ++ extended ++ language-servers ++ linters;
