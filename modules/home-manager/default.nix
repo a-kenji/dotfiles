@@ -35,6 +35,7 @@ in {
       self.outputs.nixosModules.home.tools
       self.outputs.nixosModules.home.shell.nu
       self.outputs.nixosModules.home.editor.helix
+      self.outputs.nixosModules.home.onagre
     ];
   };
 }
