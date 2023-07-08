@@ -16,6 +16,10 @@
     helix-nightly.url = "github:helix-editor/helix";
     helix-nightly.inputs.nixpkgs.follows = "nixpkgs";
     helix-nightly.inputs.parts.follows = "flake-parts";
+
+    crane.url = "github:ipetkov/crane";
+    onagre.url = "github:oknozor/onagre";
+    onagre.flake = false;
   };
   outputs = {...} @ args: import ./outputs args;
 }
