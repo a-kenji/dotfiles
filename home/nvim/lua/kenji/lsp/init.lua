@@ -95,6 +95,28 @@ require("lspconfig").bashls.setup({})
 require("lspconfig").pylsp.setup({})
 require("lspconfig").pylyzer.setup({})
 
+-- configure clangd
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local clangd_capabilities = cmp_capabilities
+clangd_capabilities.offsetEncoding = { "utf-8", "utf-16" }
+require("lspconfig").clangd.setup({
+	capabilities = clangd_capabilities,
+	-- cmd = {
+	-- 	"clangd",
+	-- 	"--offset-encoding=utf-16",
+	-- },
+})
+-- temporary ignore:
+local notify = vim.notify
+vim.notify = function(msg, ...)
+	if msg:match("multiple different client offset_encodings detected for buffer, this is not supported yet") then
+		return
+	end
+
+	notify(msg, ...)
+end
+require("lspconfig").marksman.setup({})
+
 -- nil lsp
 -- local caps = vim.lsp.protocol.make_client_capabilities()
 -- caps = require("cmp_nvim_lsp").update_capabilities(caps)
@@ -105,7 +127,9 @@ require("lspconfig").nil_ls.setup({
 	-- capabilities = caps,
 	-- cmd = { lsp_path },
 })
+require("lspconfig").nixd.setup({})
 -- end nil lsp
+require("lspconfig").typst_lsp.setup({})
 
 require("lspconfig").lua_ls.setup({
 	on_attach = on_attach,
@@ -159,7 +183,7 @@ end
 
 local diagnostics_active = true
 local toggle_diagnostics = function()
-	diagnostics_active = not diagnostivs_active
+	diagnostics_active = not diagnostics_active
 	if diagnostics_active then
 		vim.diagnostic.show()
 	else

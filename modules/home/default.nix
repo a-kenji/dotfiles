@@ -8,4 +8,8 @@
   editor = import ./editor {inherit pkgs configDir inputs;};
   shell = import ./shell {inherit pkgs configDir inputs;};
   tools = import ./tools {inherit pkgs configDir;};
+  onagre = pkgs.callPackage ./onagre {
+    inherit (inputs) onagre crane;
+    inherit pkgs;
+  };
 }

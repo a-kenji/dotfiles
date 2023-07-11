@@ -1,0 +1,14 @@
+diff --git a/helix-lsp/src/lib.rs b/helix-lsp/src/lib.rs
+index 31ee1d75..a346245e 100644
+--- a/helix-lsp/src/lib.rs
++++ b/helix-lsp/src/lib.rs
+@@ -190,7 +190,8 @@ pub fn lsp_pos_to_pos(
+             .start
+             .checked_add(pos.character as usize)
+             .unwrap_or(line.end)
+-            .min(line.end);
++            // Always insert inlayints at the end
++            .max(line.end);
+ 
+         match offset_encoding {
+             OffsetEncoding::Utf8 => doc.try_byte_to_char(pos).ok(),

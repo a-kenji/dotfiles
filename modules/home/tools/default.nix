@@ -18,13 +18,14 @@
     binutils
   ];
   language-servers = with pkgs; [
-    rust-analyzer
-    nil
-    python311Packages.python-lsp-server
-    pylyzer
-    sumneko-lua-language-server
     # haskell-language-server
+    clang-tools
     marksman
+    nil
+    pylyzer
+    python311Packages.python-lsp-server
+    rust-analyzer
+    sumneko-lua-language-server
     texlab
     typst-lsp
   ];
@@ -47,7 +48,6 @@
     foot
     fzf
     glow
-    helix
     hexyl
     htop
     jq
@@ -66,6 +66,7 @@
     vivid
     gcc
     typst
+    repgrep
   ];
 in {
   home.packages = gitPkgs ++ base ++ extended ++ language-servers ++ linters;

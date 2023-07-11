@@ -6,38 +6,44 @@
 }: let
   nvimDir = configDir + "/nvim";
   themes = with pkgs.vimPlugins; [
-    edge
-    sonokai
-    everforest
     awesome-vim-colorschemes
+    edge
+    everforest
+    sonokai
   ];
   completion = with pkgs.vimPlugins; [
-    cmp-path
     cmp-buffer
-    nvim-cmp
-    cmp_luasnip
-    cmp-nvim-lsp
-    cmp-latex-symbols
-    cmp-nvim-lsp-document-symbol
     cmp-cmdline-history
+    cmp-latex-symbols
+    cmp-nvim-lsp
+    cmp-nvim-lsp-document-symbol
+    cmp-path
     cmp-rg
+    cmp_luasnip
+    nvim-cmp
   ];
   git = with pkgs.vimPlugins; [
+    committia
     diffview-nvim
     git-blame-nvim
     git-messenger-vim
+    git-messenger-vim
     gitsigns-nvim
     neogit
-    git-messenger-vim
-    committia
   ];
   tree-sitter = with pkgs.vimPlugins; [
-    nvim-treesitter.withAllGrammars
-    nvim-ts-rainbow
     nvim-treesitter-context
-    nvim-ts-context-commentstring
     nvim-treesitter-textobjects
+    nvim-treesitter.withAllGrammars
+    nvim-ts-context-commentstring
+    nvim-ts-rainbow
     playground
+  ];
+  telescope = with pkgs.vimPlugins; [
+    telescope-frecency-nvim
+    telescope-fzf-native-nvim
+    telescope-nvim
+    telescope-project-nvim
   ];
   lsp = with pkgs.vimPlugins; [
     nvim-lspconfig
@@ -51,17 +57,22 @@
     nvim-lspconfig
   ];
   ui = with pkgs.vimPlugins; [
+    nvim-lightbulb
+    nvim-web-devicons
+    trouble-nvim
+    zen-mode-nvim
+    lualine-nvim
     nvim-notify
   ];
   nix = with pkgs.vimPlugins; [
+    direnv-vim
+    nix-develop-nvim
     vim-nix
     vim-nixhash
-    nix-develop-nvim
-    direnv-vim
   ];
   snippets = with pkgs.vimPlugins; [
-    luasnip
     friendly-snippets
+    luasnip
   ];
   pilot = with pkgs.vimPlugins; [
     copilot-cmp
@@ -80,23 +91,20 @@
     ];
     plugins = with pkgs.vimPlugins;
       [
-        lightspeed-nvim
-        lualine-nvim
-        zen-mode-nvim
-        zoxide-vim
-        vim-test
         aerial-nvim
-        vim-projectionist
-        nvim-spectre
-        todo-comments-nvim
-        # stickybuf # https://github.com/neovim/neovim/issues/12517
-        # crates-nvim
         auto-session
         # hop-nvim
         trouble-nvim
         vimtex
         plenary-nvim
-        # sqlite-lua
+        ron-vim
+        todo-comments-nvim
+        toggleterm-nvim
+        vim-floaterm
+        vim-projectionist
+        vim-test
+        vimtex
+        zoxide-vim
         {
           plugin = sqlite-lua;
           config = ''
@@ -106,30 +114,10 @@
             let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
           '';
         }
-        telescope-nvim
-        telescope-manix
-        telescope-project-nvim
-        neogen
-        glance-nvim
-        nvim-web-devicons
-        better-escape-nvim
-        vim-floaterm
-        toggleterm-nvim
-        telescope-fzf-native-nvim
-        telescope-frecency-nvim
-        harpoon
-        nvim-surround
-        comment-nvim
-        nvim-lightbulb
-        nvim-autopairs
-        ron-vim
       ]
-      ++ git
-      ++ themes
-      ++ lsp
-      ++ tree-sitter
       ++ completion
-      ++ snippets
+      ++ git
+      ++ lsp
       ++ nix
       ++ pilot
       ++ ui;
