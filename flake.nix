@@ -18,7 +18,7 @@
     helix-nightly.inputs.parts.follows = "flake-parts";
 
     crane.url = "github:ipetkov/crane";
-    onagre.url = "github:oknozor/onagre";
+    onagre.url = "github:friedow/onagre/fix/row-theming";
     onagre.flake = false;
   };
   outputs = {...} @ args: import ./outputs args;

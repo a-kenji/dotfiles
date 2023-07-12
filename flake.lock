@@ -621,15 +621,16 @@
     "onagre": {
       "flake": false,
       "locked": {
-        "lastModified": 1688396517,
-        "narHash": "sha256-7vsIM5cbSvOLWyfZSmP2IBlH09z6uBCxhyourug4/kY=",
-        "owner": "oknozor",
+        "lastModified": 1688897236,
+        "narHash": "sha256-oMWGI3VPUuElRqCUriXfzLggIxYSP4OZ/omPCPDZFxs=",
+        "owner": "friedow",
         "repo": "onagre",
-        "rev": "c044ccf42d4d5048cd9abb49cf8b64229eb84a93",
+        "rev": "c92d3fb30309584be8a37577c96fc40b35a1bc9c",
         "type": "github"
       },
       "original": {
-        "owner": "oknozor",
+        "owner": "friedow",
+        "ref": "fix/row-theming",
         "repo": "onagre",
         "type": "github"
       }
