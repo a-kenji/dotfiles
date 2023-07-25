@@ -5,6 +5,7 @@
     glab
     gh-dash
     hub
+    tea
     gitui
     tig
     lazygit
