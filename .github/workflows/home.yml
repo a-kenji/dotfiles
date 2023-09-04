@@ -11,7 +11,7 @@ jobs:
     name: "build home-manager minimal"
     environment: "cachix"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v22
       with:
         extra_nix_config: |
@@ -29,7 +29,7 @@ jobs:
     name: "build home-manager neovim"
     environment: "cachix"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v22
       with:
         extra_nix_config: |
@@ -47,7 +47,7 @@ jobs:
     name: "build home-manager tools"
     environment: "cachix"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v22
       with:
         extra_nix_config: |
@@ -65,7 +65,7 @@ jobs:
     name: "build home-manager common"
     environment: "cachix"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v22
       with:
         extra_nix_config: |
