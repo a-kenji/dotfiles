@@ -55,6 +55,7 @@
     just
     lsd
     # mob
+    page
     ncdu
     pdd
     ripgrep
