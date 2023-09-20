@@ -16,9 +16,7 @@ in
         {
           home-manager.users = {
             ${user} = {
-              imports = [
-                self.outputs.nixosModules.home.nvim
-              ];
+              imports = [self.outputs.nixosModules.home.nvim];
               programs.home-manager.enable = true;
               home.username = user;
               home.stateVersion = "22.05";

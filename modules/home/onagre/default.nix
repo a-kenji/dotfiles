@@ -28,8 +28,18 @@
     else pkgs.stdenv;
 in
   craneLib.buildPackage {
-    inherit version name pname stdenv src;
-    nativeBuildInputs = [cmake pkgconf makeWrapper];
+    inherit
+      version
+      name
+      pname
+      stdenv
+      src
+      ;
+    nativeBuildInputs = [
+      cmake
+      pkgconf
+      makeWrapper
+    ];
     buildInputs =
       [
         freetype
@@ -39,20 +49,27 @@ in
         fontconfig
         libxkbcommon
       ]
-      ++ (with xorg; [
-        libX11
-        libXcursor
-        libXi
-        libXrandr
-        libxcb
-      ]);
+      ++ (
+        with xorg; [
+          libX11
+          libXcursor
+          libXi
+          libXrandr
+          libxcb
+        ]
+      );
 
     doCheck = false;
 
     postInstall = ''
       wrapProgram "$out/bin/${pname}" \
         --prefix PATH : "${lib.makeBinPath [pop-launcher]}" \
-        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [vulkan-loader libGL]} \
+        --prefix LD_LIBRARY_PATH : ${
+        lib.makeLibraryPath [
+          vulkan-loader
+          libGL
+        ]
+      } \
         --suffix XDG_DATA_DIRS : "${papirus-icon-theme}/share"
     '';
   }

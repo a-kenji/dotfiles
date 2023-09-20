@@ -6,13 +6,15 @@
     {_module.args.inputs = inputs;}
     {
       imports = [
-        ({pkgs, ...}: {
-          nix.nixPath = [
-            "nixpkgs=${pkgs.path}"
-            "home-manager=${inputs.home-manager}"
-          ];
-          documentation.info.enable = false;
-        })
+        (
+          {pkgs, ...}: {
+            nix.nixPath = [
+              "nixpkgs=${pkgs.path}"
+              "home-manager=${inputs.home-manager}"
+            ];
+            documentation.info.enable = false;
+          }
+        )
       ];
     }
   ];
@@ -26,9 +28,7 @@ in {
         {
           # don't use this configuration, this is a test
           boot.loader.grub.enable = true;
-          boot.loader.grub.devices = [
-            "/dev/sda"
-          ];
+          boot.loader.grub.devices = ["/dev/sda"];
           fileSystems."/" = {
             device = "/dev/disk/by-uuid/f2e641f6-d919-494f-84d3-94659d03d3f6";
             fsType = "ext4";

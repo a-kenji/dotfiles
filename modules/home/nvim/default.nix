@@ -79,8 +79,7 @@
     withRuby = false;
     withPython3 = true;
     withNodeJs = true;
-    extraPackages = [
-    ];
+    extraPackages = [];
     plugins = with pkgs.vimPlugins;
       [
         aerial-nvim
@@ -134,9 +133,19 @@ in {
     };
   };
 
-  programs.bash.shellAliases = {vimdiff = "nvim -d";};
-  programs.fish.shellAliases = {vimdiff = "nvim -d";};
-  programs.fish.shellAliases = {vim = "nvim";};
-  programs.fish.shellAliases = {vi = "nvim";};
-  programs.zsh.shellAliases = {vimdiff = "nvim -d";};
+  programs.bash.shellAliases = {
+    vimdiff = "nvim -d";
+  };
+  programs.fish.shellAliases = {
+    vimdiff = "nvim -d";
+  };
+  programs.fish.shellAliases = {
+    vim = "nvim";
+  };
+  programs.fish.shellAliases = {
+    vi = "nvim";
+  };
+  programs.zsh.shellAliases = {
+    vimdiff = "nvim -d";
+  };
 }
