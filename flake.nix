@@ -16,6 +16,9 @@
     helix-nightly.url = "github:helix-editor/helix";
     helix-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixd.url = "github:nix-community/nixd";
+    nixd.inputs.nixpkgs.follows = "nixpkgs";
+
     crane.url = "github:ipetkov/crane";
     onagre.url = "github:friedow/onagre/fix/row-theming";
     onagre.flake = false;
