@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   gitPkgs = with pkgs; [
     git
     gitAndTools.gh # github cli
@@ -23,6 +27,7 @@
     clang-tools
     marksman
     nil
+    inputs.nixd
     pylyzer
     python311Packages.python-lsp-server
     rust-analyzer
