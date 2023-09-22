@@ -33,11 +33,30 @@ in {
   nushell = hmConfiguration {
     modules = [self.outputs.nixosModules.home.shell.nu];
   };
+  fish = hmConfiguration {
+    modules = [self.outputs.nixosModules.home.shell.fish];
+  };
+  default = hmConfiguration {
+    modules = [
+      self.outputs.nixosModules.home.nvim
+      self.outputs.nixosModules.home.tools
+      self.outputs.nixosModules.home.shell.fish
+    ];
+  };
   common = hmConfiguration {
     modules = [
       self.outputs.nixosModules.home.nvim
       self.outputs.nixosModules.home.tools
       self.outputs.nixosModules.home.shell.nu
+      self.outputs.nixosModules.home.editor.helix
+    ];
+  };
+  full = hmConfiguration {
+    modules = [
+      self.outputs.nixosModules.home.nvim
+      self.outputs.nixosModules.home.tools
+      self.outputs.nixosModules.home.shell.nu
+      self.outputs.nixosModules.home.shell.fish
       self.outputs.nixosModules.home.editor.helix
     ];
   };
