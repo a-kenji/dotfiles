@@ -15,9 +15,6 @@
 
     helix-nightly.url = "github:helix-editor/helix";
     helix-nightly.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixd.url = "github:nix-community/nixd";
-    nixd.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = {...} @ args: import ./outputs args;
 }
