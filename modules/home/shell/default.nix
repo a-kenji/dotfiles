@@ -1,17 +1,16 @@
-{
-  pkgs,
-  configDir,
-  inputs,
-}: {
+_: {
   nu = {
-    programs.nushell.enable = true;
-    programs.nushell.extraConfig = ''
-      let-env config = {
-        show_banner: false,
-      }
-    '';
-    programs.nushell.extraEnv = ''
-      # not empty
-    '';
+    imports = [
+      ./nu.nix
+      ./alias.nix
+      ./plugins
+    ];
+  };
+  fish = {
+    imports = [
+      ./fish.nix
+      ./alias.nix
+      ./plugins
+    ];
   };
 }
