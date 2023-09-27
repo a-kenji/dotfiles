@@ -9,5 +9,6 @@ _: {
     ./starship.nix
     ./navi.nix
     ./yazi.nix
+    ./zoxide.nix
   ];
 }
