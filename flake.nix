@@ -17,8 +17,8 @@
     helix-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
     crane.url = "github:ipetkov/crane";
-    onagre.url = "github:friedow/onagre/fix/row-theming";
+    onagre.url = "github:oknozor/onagre";
     onagre.flake = false;
   };
-  outputs = {...} @ args: import ./outputs args;
+  outputs = { ... }@args: import ./outputs args;
 }
