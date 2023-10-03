@@ -44,6 +44,7 @@
     telescope-fzf-native-nvim
     telescope-nvim
     telescope-project-nvim
+    telescope-sg
   ];
   lsp = with pkgs.vimPlugins; [
     lsp-inlayhints-nvim
