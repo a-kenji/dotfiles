@@ -88,6 +88,17 @@ expression: (indented_string_expression) @python
 )
 ]]
 )
+require("vim.treesitter.query").set(
+	"nix",
+	"injections",
+	[[(
+(binding
+  (attrpath (identifier) @id)
+  (indented_string_expression (string_fragment) @python)
+) (#eq? @id "testScript")
+)
+]]
+)
 
 require("vim.treesitter.query").set(
 	"lua",

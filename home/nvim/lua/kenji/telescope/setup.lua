@@ -154,6 +154,14 @@ require("telescope").setup({
 			use_highlighter = false,
 			minimum_grep_characters = 6,
 		},
+		ast_grep = {
+			command = {
+				"sg",
+				"--json=stream",
+			}, -- must have --json=stream
+			grep_open_files = false, -- search in opened files
+			lang = nil, -- string value, specify language for ast-grep `nil` for default
+		},
 
 		hop = {
 			-- keys define your hop keys in order; defaults to roughly lower- and uppercased home row

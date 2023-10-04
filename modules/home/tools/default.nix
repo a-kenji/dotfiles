@@ -69,6 +69,7 @@
     gcc
     typst
     repgrep
+    ast-grep
   ];
 in {
   home.packages = gitPkgs ++ base ++ extended ++ language-servers ++ linters;
