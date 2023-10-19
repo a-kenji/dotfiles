@@ -3,7 +3,7 @@ _: {
     ./atuin.nix
     ./broot.nix
     ./skim.nix
-    # ./carapace.nix
+    ./carapace.nix
     ./direnv.nix
     ./mcfly.nix
     ./starship.nix

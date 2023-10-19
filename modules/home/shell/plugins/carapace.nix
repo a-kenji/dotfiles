@@ -1,7 +1,7 @@
-_: {
+{lib, ...}: {
   programs = {
     carapace = {
-      enable = true;
+      enable = lib.mkDefault false;
       enableFishIntegration = true;
       enableNushellIntegration = true;
     };
