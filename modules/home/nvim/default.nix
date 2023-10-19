@@ -17,16 +17,20 @@
     cmp-latex-symbols
     cmp-nvim-lsp
     cmp-nvim-lsp-document-symbol
+    cmp-nvim-lsp-signature-help
     cmp-path
+    # cmp-git ??
+    cmp-treesitter
     cmp-rg
     cmp_luasnip
     nvim-cmp
+    cmp-fish
+    cmp-zsh
   ];
   git = with pkgs.vimPlugins; [
     committia
     diffview-nvim
     git-blame-nvim
-    git-messenger-vim
     git-messenger-vim
     gitsigns-nvim
     neogit
@@ -45,6 +49,8 @@
     telescope-nvim
     telescope-project-nvim
     telescope-sg
+    telescope-symbols-nvim
+    telescope-undo-nvim
   ];
   lsp = with pkgs.vimPlugins; [
     lsp-inlayhints-nvim
@@ -54,12 +60,16 @@
     nvim-lspconfig
   ];
   ui = with pkgs.vimPlugins; [
+    aerial-nvim
     nvim-lightbulb
     nvim-web-devicons
     trouble-nvim
     zen-mode-nvim
+    true-zen-nvim
     lualine-nvim
     nvim-notify
+    nvim-scrollbar
+    nvim-code-action-menu
   ];
   nix = with pkgs.vimPlugins; [
     direnv-vim
@@ -70,6 +80,15 @@
   snippets = with pkgs.vimPlugins; [
     friendly-snippets
     luasnip
+  ];
+  testing = with pkgs.vimPlugins; [
+    nvim-coverage
+    neotest
+    neotest-rust
+    nvim-dap
+    nvim-dap-ui
+    nvim-dap-virtual-text
+    vim-test
   ];
   neovim = {
     enable = true;
@@ -83,25 +102,30 @@
     extraPackages = [];
     plugins = with pkgs.vimPlugins;
       [
-        aerial-nvim
         auto-session
         better-escape-nvim
+        ccc-nvim
         comment-nvim
         glance-nvim
+        goto-preview
         harpoon
         leap-nvim
         lightspeed-nvim
         neogen
+        neoscroll-nvim
         nvim-autopairs
+        nvim-neoclip-lua
         nvim-spectre
+        ssr-nvim
         nvim-surround
         plenary-nvim
+        rainbow-delimiters-nvim
         ron-vim
         todo-comments-nvim
         toggleterm-nvim
+        undotree
         vim-floaterm
         vim-projectionist
-        vim-test
         vimtex
         zoxide-vim
         {
@@ -120,6 +144,7 @@
       ++ nix
       ++ snippets
       ++ telescope
+      ++ testing
       ++ themes
       ++ tree-sitter
       ++ ui;
@@ -136,17 +161,21 @@ in {
 
   programs.bash.shellAliases = {
     vimdiff = "nvim -d";
-  };
-  programs.fish.shellAliases = {
-    vimdiff = "nvim -d";
-  };
-  programs.fish.shellAliases = {
     vim = "nvim";
-  };
-  programs.fish.shellAliases = {
     vi = "nvim";
   };
+
+  programs.fish = {
+    shellAliases = {
+      vimdiff = "nvim -d";
+      vim = "nvim";
+      vi = "nvim";
+    };
+  };
+
   programs.zsh.shellAliases = {
     vimdiff = "nvim -d";
+    vim = "nvim";
+    vi = "nvim";
   };
 }

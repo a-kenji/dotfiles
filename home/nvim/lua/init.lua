@@ -177,3 +177,13 @@ end, { desc = "Next todo comment" })
 vim.keymap.set("n", "[t", function()
 	require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
+
+require("nvim-lightbulb").setup({
+	autocmd = { enabled = true },
+})
+
+require("neotest").setup({
+	adapters = {
+		require("neotest-rust"),
+	},
+})

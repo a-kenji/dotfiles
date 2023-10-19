@@ -171,3 +171,5 @@ require("vim.treesitter.query").set(
   (code_fence_content) @javascript)
 )]]
 )
+
+vim.api.nvim_set_keymap("n", "<space>lc", "<CMD> TSContextToggle <CR>", { silent = false })

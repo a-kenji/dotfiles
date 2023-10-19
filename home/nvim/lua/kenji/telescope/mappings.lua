@@ -41,6 +41,7 @@ vim.api.nvim_set_keymap("n", "<space>lk", ":lua require'telescope.builtin'.keyma
 vim.api.nvim_set_keymap("n", "<space>lh", ":lua require'telescope.builtin'.highlights()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>lr", ":lua require'telescope.builtin'.resume()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>ka", ":Telescope ast_grep <CR>", { silent = false })
+vim.api.nvim_set_keymap("n", "<space>le", ":Telescope symbols <CR>", { silent = false })
 
 -- require('telescope.builtin').live_grep({grep_open_files=true})
 -- require("telescope.builtin").live_grep({search_dirs={vim.fn.expand("%:p")}})
