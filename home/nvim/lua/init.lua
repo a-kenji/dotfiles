@@ -181,6 +181,7 @@ end, { desc = "Previous todo comment" })
 require("nvim-lightbulb").setup({
 	autocmd = { enabled = true },
 })
+require("leap").add_default_mappings()
 
 require("neotest").setup({
 	adapters = {

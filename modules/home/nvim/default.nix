@@ -110,7 +110,6 @@
         goto-preview
         harpoon
         leap-nvim
-        lightspeed-nvim
         neogen
         neoscroll-nvim
         nvim-autopairs
