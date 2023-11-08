@@ -40,7 +40,7 @@
     nvim-treesitter-textobjects
     nvim-treesitter.withAllGrammars
     nvim-ts-context-commentstring
-    nvim-ts-rainbow
+    rainbow-delimiters-nvim
     playground
   ];
   telescope = with pkgs.vimPlugins; [
@@ -102,29 +102,26 @@
     extraPackages = [];
     plugins = with pkgs.vimPlugins;
       [
-        auto-session
+        # auto-session
         better-escape-nvim
         ccc-nvim
         comment-nvim
+        todo-comments-nvim
         glance-nvim
         goto-preview
         harpoon
         leap-nvim
+        nvim-spectre
         neogen
         neoscroll-nvim
         nvim-autopairs
-        nvim-neoclip-lua
-        nvim-spectre
-        ssr-nvim
         nvim-surround
+        ssr-nvim
         plenary-nvim
-        rainbow-delimiters-nvim
         ron-vim
-        todo-comments-nvim
         toggleterm-nvim
         undotree
         vim-floaterm
-        vim-projectionist
         vimtex
         zoxide-vim
         {
