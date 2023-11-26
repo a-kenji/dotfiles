@@ -144,6 +144,7 @@ let g:better_escape_shortcut = 'fd'
 
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
+set cmdheight=0
 ]])
 
 --- this needs to be run late in the initialization process
@@ -183,8 +184,8 @@ require("nvim-lightbulb").setup({
 })
 require("leap").add_default_mappings()
 
-require("neotest").setup({
-	adapters = {
-		require("neotest-rust"),
-	},
-})
+-- require("neotest").setup({
+-- 	adapters = {
+-- 		require("neotest-rust"),
+-- 	},
+-- })

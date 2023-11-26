@@ -60,6 +60,9 @@ cmp.setup({
 		},
 		-- { name = "crates" },
 	}),
+	completion = {
+		completeopt = "menu,menuopt,noinsert",
+	},
 })
 
 -- Set configuration for specific filetype.

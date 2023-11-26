@@ -6,7 +6,7 @@
 }: let
   nvimDir = configDir + "/nvim";
   themes = with pkgs.vimPlugins; [
-    awesome-vim-colorschemes
+    # awesome-vim-colorschemes
     edge
     everforest
     sonokai
@@ -139,7 +139,7 @@
       ++ nix
       ++ snippets
       ++ telescope
-      ++ testing
+      # ++ testing
       ++ themes
       ++ tree-sitter
       ++ ui;
