@@ -1,9 +1,9 @@
 {inputs}: let
   pkgs = import inputs.nixpkgs {
     system = "x86_64-linux";
-    overlays = [(import inputs.neovim-nightly-overlay)];
+    overlays = [];
   };
-  self = inputs.self;
+  inherit (inputs) self;
   configDir = self + "/home";
 in {
   home = import ./home {inherit pkgs configDir inputs;};

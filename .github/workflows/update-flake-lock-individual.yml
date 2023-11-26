@@ -49,27 +49,27 @@ jobs:
             inputs: nixpkgs
             branch: update_input_action_nixpkgs
             pr-title: "flake.lock: update nixpkgs"
-  input-lockfile-neovim-nightly-overlay:
-    runs-on: ubuntu-latest
-    environment: "update"
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Install Nix
-        uses: cachix/install-nix-action@v23
-        with:
-          extra_nix_config: |
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-      - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@v20
-        with:
-            token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
-            pr-labels: |
-              dependencies
-              nix
-            inputs: neovim-nightly-overlay
-            branch: update_input_action_neovim_nightly_overlay
-            pr-title: "flake.lock: update neovim-nightly-overlay"
+  # input-lockfile-neovim-nightly-overlay:
+  #   runs-on: ubuntu-latest
+  #   environment: "update"
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #     - name: Install Nix
+  #       uses: cachix/install-nix-action@v23
+  #       with:
+  #         extra_nix_config: |
+  #           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+  #     - name: Update flake.lock
+  #       uses: DeterminateSystems/update-flake-lock@v20
+  #       with:
+  #           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
+  #           pr-labels: |
+  #             dependencies
+  #             nix
+  #           inputs: neovim-nightly-overlay
+  #           branch: update_input_action_neovim_nightly_overlay
+  #           pr-title: "flake.lock: update neovim-nightly-overlay"
   input-lockfile-home-manager:
     runs-on: ubuntu-latest
     environment: "update"
