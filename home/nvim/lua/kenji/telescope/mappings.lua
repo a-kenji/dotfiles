@@ -40,6 +40,7 @@ vim.api.nvim_set_keymap("n", "<space>ld", ":lua require'telescope.builtin'.diagn
 vim.api.nvim_set_keymap("n", "<space>lk", ":lua require'telescope.builtin'.keymaps()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>lh", ":lua require'telescope.builtin'.highlights()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>lr", ":lua require'telescope.builtin'.resume()<CR>", { silent = false })
+vim.api.nvim_set_keymap("n", "<space>lm", ":lua require'telescope.builtin'.marks()<CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>ka", ":Telescope ast_grep <CR>", { silent = false })
 vim.api.nvim_set_keymap("n", "<space>le", ":Telescope symbols <CR>", { silent = false })
 
