@@ -1,7 +1,6 @@
 {
   pkgs,
   configDir,
-  inputs,
 }: let
   helixDir = configDir + "/helix";
 in {

@@ -7,7 +7,7 @@
 (flake-utils.lib.eachDefaultSystem (
   system: let
     pkgs = nixpkgs.legacyPackages.${system};
-  in rec {
+  in {
     devShells = import ./devShells.nix {inherit pkgs;};
     formatter = import ./formatter.nix {inherit pkgs;};
   }
