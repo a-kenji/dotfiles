@@ -19,21 +19,23 @@
     }
   ];
 in {
-  common-test = nixosSystem {
-    system = "x86_64-linux";
-    modules =
-      defaultModules
-      ++ [
-        inputs.home-manager.nixosModules.home-manager
-        {
-          # don't use this configuration, this is a test
-          boot.loader.grub.enable = true;
-          boot.loader.grub.devices = ["/dev/sda"];
-          fileSystems."/" = {
-            device = "/dev/disk/by-uuid/f2e641f6-d919-494f-84d3-94659d03d3f6";
-            fsType = "ext4";
-          };
-        }
-      ];
+  flake.nixosConfigurations = {
+    common-test = nixosSystem {
+      system = "x86_64-linux";
+      modules =
+        defaultModules
+        ++ [
+          inputs.home-manager.nixosModules.home-manager
+          {
+            # don't use this configuration, this is a test
+            boot.loader.grub.enable = true;
+            boot.loader.grub.devices = ["/dev/sda"];
+            fileSystems."/" = {
+              device = "/dev/disk/by-uuid/f2e641f6-d919-494f-84d3-94659d03d3f6";
+              fsType = "ext4";
+            };
+          }
+        ];
+    };
   };
 }

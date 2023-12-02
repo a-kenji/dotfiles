@@ -1,63 +1,68 @@
 {
   self,
-  nixpkgs,
-  home-manager,
+  self',
+  lib,
+  pkgs,
   ...
 }: let
   hmConfiguration = {
     modules ? [],
-    system ? "x86_64-linux",
-    stateVersion ? "21.11",
-    homeDirectory ? "/home/kenji",
-    username ? "kenji",
-    pkgs ? nixpkgs.legacyPackages.${system},
-  }: (home-manager.lib.homeManagerConfiguration {
+    stateVersion ? "23.11",
+  }: (self.inputs.home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
     modules =
       modules
       ++ [
         {
+          _module.args.self = self;
+          _module.args.inputs = self.inputs;
+
           home = {
-            inherit stateVersion homeDirectory username;
+            inherit stateVersion;
+            username = lib.mkDefault "kenji";
+            homeDirectory = lib.mkDefault "/home/kenji";
+            enableNixpkgsReleaseCheck = false;
+          };
+
+          manual = {
+            html.enable = false;
+            manpages.enable = false;
+            json.enable = false;
           };
         }
       ];
   });
 in {
   minimal = hmConfiguration {};
-  neovim = hmConfiguration {modules = [self.outputs.nixosModules.home.nvim];};
+  neovim = hmConfiguration {modules = [self'.legacyPackages.home.nvim];};
   helix = hmConfiguration {
-    modules = [self.outputs.nixosModules.home.editor.helix];
+    modules = [self'.legacyPackages.home.editor.helix];
   };
-  tools = hmConfiguration {modules = [self.outputs.nixosModules.home.tools];};
-  nushell = hmConfiguration {
-    modules = [self.outputs.nixosModules.home.shell.nu];
-  };
-  fish = hmConfiguration {
-    modules = [self.outputs.nixosModules.home.shell.fish];
-  };
+  tools = hmConfiguration {modules = [self'.legacyPackages.home.tools];};
+  nushell = hmConfiguration {modules = [self'.legacyPackages.home.shell.nu];};
+  fish = hmConfiguration {modules = [self'.legacyPackages.home.shell.fish];};
   default = hmConfiguration {
     modules = [
-      self.outputs.nixosModules.home.nvim
-      self.outputs.nixosModules.home.tools
-      self.outputs.nixosModules.home.shell.fish
+      self'.legacyPackages.home.nvim
+      self'.legacyPackages.home.tools
+      self'.legacyPackages.home.shell.fish
     ];
   };
   common = hmConfiguration {
     modules = [
-      self.outputs.nixosModules.home.nvim
-      self.outputs.nixosModules.home.tools
-      self.outputs.nixosModules.home.shell.nu
-      self.outputs.nixosModules.home.editor.helix
+      self'.legacyPackages.home.nvim
+      self'.legacyPackages.home.tools
+      self'.legacyPackages.home.shell.nu
+      self'.legacyPackages.home.editor.helix
     ];
   };
   full = hmConfiguration {
     modules = [
-      self.outputs.nixosModules.home.nvim
-      self.outputs.nixosModules.home.tools
-      self.outputs.nixosModules.home.shell.nu
-      self.outputs.nixosModules.home.shell.fish
-      self.outputs.nixosModules.home.editor.helix
+      self'.legacyPackages.home.nvim
+      self'.legacyPackages.home.tools
+      self'.legacyPackages.home.shell.nu
+      self'.legacyPackages.home.shell.fish
+      self'.legacyPackages.home.editor.helix
     ];
   };
 }

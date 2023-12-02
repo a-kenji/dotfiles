@@ -39,7 +39,7 @@ jobs:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build -L .#nixosModules.tests.minimal
+    - run: nix build -Lv .#legacyPackages.x86_64-linux.tests.minimal
   neovim-test:
     runs-on: ubuntu-latest
     name: "nixos test neovim"
@@ -57,4 +57,4 @@ jobs:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build -L .#nixosModules.tests.neovim
+    - run: nix build -Lv .#legacyPackages.x86_64-linux.tests.neovim

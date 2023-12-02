@@ -1,14 +1,29 @@
-{inputs}: let
-  pkgs = import inputs.nixpkgs {
-    system = "x86_64-linux";
-    overlays = [];
+{
+  self,
+  inputs,
+  ...
+}: {
+  perSystem = {
+    config,
+    pkgs,
+    lib,
+    self',
+    ...
+  }: let
+    configDir = self + "/home";
+  in {
+    legacyPackages = {
+      home-manager = import ./home-manager {
+        inherit
+          self
+          self'
+          config
+          pkgs
+          lib
+          ;
+      };
+      home = import ./home {inherit pkgs configDir inputs;};
+      tests = import ./tests {inherit pkgs self self';};
+    };
   };
-  inherit (inputs) self;
-  configDir = self + "/home";
-in {
-  home = import ./home {inherit pkgs configDir inputs;};
-
-  home-manager = import ./home-manager inputs;
-
-  tests = import ./tests {inherit pkgs self;};
 }

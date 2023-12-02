@@ -1,18 +1,15 @@
-{
-  self,
-  flake-utils,
-  nixpkgs,
-  ...
-} @ inputs:
-(flake-utils.lib.eachDefaultSystem (
-  system: let
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    devShells = import ./devShells.nix {inherit pkgs;};
-    formatter = import ./formatter.nix {inherit pkgs;};
-  }
-))
-// {
-  nixosModules = import (self + "/modules") {inherit inputs;};
-  nixosConfigurations = import (self + "/nixos") {inherit inputs;};
+{flake-parts, ...} @ inputs:
+flake-parts.lib.mkFlake {inherit inputs;} {
+  systems = [
+    "x86_64-linux"
+    "aarch64-linux"
+    "aarch64-darwin"
+    "x86_64-darwin"
+  ];
+  imports = [
+    ./devShells.nix
+    ./formatter.nix
+    ../modules
+    ../nixos
+  ];
 }

@@ -6,7 +6,6 @@
 }: let
   nvimDir = configDir + "/nvim";
   themes = with pkgs.vimPlugins; [
-    # awesome-vim-colorschemes
     edge
     everforest
     sonokai
@@ -19,7 +18,6 @@
     cmp-nvim-lsp-document-symbol
     cmp-nvim-lsp-signature-help
     cmp-path
-    # cmp-git ??
     cmp-treesitter
     cmp-rg
     cmp_luasnip
@@ -101,7 +99,6 @@
     extraPackages = [];
     plugins = with pkgs.vimPlugins;
       [
-        # auto-session
         better-escape-nvim
         ccc-nvim
         comment-nvim

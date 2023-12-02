@@ -1,6 +1,7 @@
 {
   pkgs,
   self,
+  self',
 }: let
   home = "/home/${user}";
   servername = "${home}/nvim-socket";
@@ -25,7 +26,7 @@ in
               ];
               programs.home-manager.enable = true;
               home.username = user;
-              home.stateVersion = "22.05";
+              home.stateVersion = "23.11";
             };
           };
         }

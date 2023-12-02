@@ -1,13 +1,16 @@
-{pkgs}: let
-  runtimeInputs = [
-    pkgs.treefmt
-    pkgs.alejandra
-  ];
-in
-  pkgs.writeShellApplication {
-    name = "formatter";
-    text = ''
-      treefmt
-    '';
-    inherit runtimeInputs;
-  }
+_: {
+  perSystem = {pkgs, ...}: let
+    runtimeInputs = [
+      pkgs.treefmt
+      pkgs.alejandra
+    ];
+  in {
+    formatter = pkgs.writeShellApplication {
+      name = "formatter";
+      text = ''
+        treefmt
+      '';
+      inherit runtimeInputs;
+    };
+  };
+}

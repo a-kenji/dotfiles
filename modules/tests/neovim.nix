@@ -1,6 +1,7 @@
 {
   pkgs,
   self,
+  self',
 }: let
   home = "/home/${user}";
   servername = "${home}/nvim-socket";
@@ -16,10 +17,10 @@ in
         {
           home-manager.users = {
             ${user} = {
-              imports = [self.outputs.nixosModules.home.nvim];
+              imports = [self'.legacyPackages.home.nvim];
               programs.home-manager.enable = true;
               home.username = user;
-              home.stateVersion = "22.05";
+              home.stateVersion = "23.11";
             };
           };
         }
