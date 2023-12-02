@@ -5,7 +5,6 @@ _: {
     enableFishIntegration = true;
     enableZshIntegration = true;
     enableNushellIntegration = true;
-    enableTransience = true;
     settings = {
       format = "$all";
       add_newline = false;

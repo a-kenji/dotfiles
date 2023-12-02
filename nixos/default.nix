@@ -34,6 +34,13 @@ in {
               device = "/dev/disk/by-uuid/f2e641f6-d919-494f-84d3-94659d03d3f6";
               fsType = "ext4";
             };
+            users.users.alice = {
+              home = "/home/alice";
+              createHome = true;
+              isNormalUser = true;
+              initialPassword = "alice";
+            };
+            programs.sway.enable = true;
           }
         ];
     };

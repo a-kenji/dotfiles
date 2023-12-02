@@ -144,7 +144,8 @@ let g:better_escape_shortcut = 'fd'
 
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
-set cmdheight=0
+"TODO: revisit once it is less experimental
+"set cmdheight=0
 ]])
 
 --- this needs to be run late in the initialization process

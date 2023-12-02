@@ -11,5 +11,10 @@ flake-parts.lib.mkFlake {inherit inputs;} {
     ./formatter.nix
     ../modules
     ../nixos
+    ../tools/tmux.nix
+    ../tools/alacritty.nix
+    ../tools/fish.nix
+    ../tools/dev.nix
+    ../tools/fonts.nix
   ];
 }
