@@ -23,7 +23,9 @@
     };
   };
 in {
-  programs = {
+  programs = let
+    flakePath = "/home/kenji/.config/nixdotfiles";
+  in {
     fish = {
       enable = true;
       functions = {
@@ -38,12 +40,29 @@ in {
             popd
           '';
         };
-        n = {
-          body = "\n          nix run nixpkgs#$argv[1] -- $argv[2..]\n          ";
-        };
-        frg = {
-          body = "\n          rg --ignore-case --color=always --line-number --no-heading \"$argv\" |\n              fzf --ansi \n                --color 'hl:-1:underline,hl+:-1:underline:reverse' \n                --delimiter ':' \n                --preview \"bat --color=always {1} --theme='Solarized (light)' --highlight-line {2}\" \n                --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \n                --bind \"enter:become($EDITOR +{2} {1})\"\n          ";
-        };
+        n.body = "nix run nixpkgs#$argv[1] -- $argv[2..]";
+        # Those are basically aliases, but are sourced more efficiently as functions
+        v.body = "nvim";
+        gr.body = "";
+        gs.body = "git status";
+        j.body = "just";
+        jl.body = "just -l";
+        ls.body = "lsd";
+        nd.body = "nix develop";
+        nr.body = "nix run";
+        nds.body = "nix develop --command $SHELL";
+        tmux.body = "direnv exec / tmux";
+        zl.body = "lazygit";
+        nxb.body = ''
+          if command -v nom > /dev/null
+            echo "Your program exists."
+          else
+            sudo -i nixos-rebuild build --flake ${flakePath}
+          end
+        '';
+        nxs.body = "sudo -i nixos-rebuild switch --flake ${flakePath}";
+        nxu.body = "nix flake update ${flakePath}";
+        nxuc.body = "nix flake update --commit-lock-file ${flakePath}";
       };
       plugins = [
         {

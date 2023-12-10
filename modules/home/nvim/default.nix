@@ -105,7 +105,7 @@
         todo-comments-nvim
         glance-nvim
         goto-preview
-        harpoon
+        # harpoon
         leap-nvim
         nvim-spectre
         neogen
