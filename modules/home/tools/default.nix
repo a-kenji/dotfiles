@@ -26,6 +26,8 @@
     # haskell-language-server
     clang-tools
     marksman
+    ruff-lsp
+    ruff
     nil
     inputs.nixd
     pylyzer
@@ -33,7 +35,7 @@
     rust-analyzer
     sumneko-lua-language-server
     texlab
-    typst-lsp
+    # typst-lsp
   ];
   linters = with pkgs; [
     proselint

@@ -69,3 +69,32 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		add_lastModified_date()
 	end,
 })
+
+-- Install necessary parsers using your plugin manager
+-- For example, using Vim-Plug:
+-- Plug 'nvim-treesitter/nvim-treesitter'
+-- Plug 'nvim-treesitter/playground'
+
+local M = {}
+
+-- Function to inject a specified language into the current node
+function inject_language(lang)
+	local node = vim.treesitter.get_node_at_cursor()
+	if node then
+		local bufnr = vim.api.nvim_get_current_buf()
+
+		-- Create a new buffer for the injected code
+		local injected_bufnr = vim.api.nvim_create_buf(false, true)
+		vim.api.nvim_buf_set_option(injected_bufnr, "filetype", lang)
+
+		-- Insert the injected code into the new buffer
+		vim.api.nvim_buf_set_lines(injected_bufnr, 0, -1, true, { "/* " .. lang .. " code */" })
+
+		-- Use ts_utils to set the injected language for the current node
+		require("nvim-treesitter.ts_utils").update_injected(bufnr, injected_bufnr, node)
+	else
+		print("No tree-sitter node found at the cursor position.")
+	end
+end
+
+return M
