@@ -88,13 +88,15 @@ require("lspconfig").rust_analyzer.setup({
 	},
 })
 
+require("lspconfig").ruff_lsp.setup({})
+
 -- bash lsp
 require("lspconfig").bashls.setup({})
 -- nix lsp
 -- require("lspconfig").rnix.setup({})
 -- python lsp
 require("lspconfig").pylsp.setup({})
-require("lspconfig").pylyzer.setup({})
+-- require("lspconfig").pylyzer.setup({})
 
 -- configure clangd
 local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)

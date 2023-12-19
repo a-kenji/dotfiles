@@ -34,26 +34,37 @@ require("nvim-treesitter.configs").setup({
 				["ic"] = "@class.inner",
 			},
 		},
-		move = {
+		swap = {
 			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				["]m"] = "@function.outer",
-				["]]"] = "@class.outer",
+			swap_next = {
+				["<leader>na"] = "@parameter.inner", -- swap parameters/argument with next
+				["<leader>nm"] = "@function.outer", -- swap function with next
 			},
-			goto_next_end = {
-				["]M"] = "@function.outer",
-				["]["] = "@class.outer",
-			},
-			goto_previous_start = {
-				["[m"] = "@function.outer",
-				["[["] = "@class.outer",
-			},
-			goto_previous_end = {
-				["[M"] = "@function.outer",
-				["[]"] = "@class.outer",
+			swap_previous = {
+				["<leader>pa"] = "@parameter.inner", -- swap parameters/argument with prev
+				["<leader>pm"] = "@function.outer", -- swap function with previous
 			},
 		},
+		-- move = {
+		-- 	enable = true,
+		-- 	set_jumps = true, -- whether to set jumps in the jumplist
+		-- 	goto_next_start = {
+		-- 		["]m"] = "@function.outer",
+		-- 		["]]"] = "@class.outer",
+		-- 	},
+		-- 	goto_next_end = {
+		-- 		["]M"] = "@function.outer",
+		-- 		["]["] = "@class.outer",
+		-- 	},
+		-- 	goto_previous_start = {
+		-- 		["[m"] = "@function.outer",
+		-- 		["[["] = "@class.outer",
+		-- 	},
+		-- 	goto_previous_end = {
+		-- 		["[M"] = "@function.outer",
+		-- 		["[]"] = "@class.outer",
+		-- 	},
+		-- },
 		rainbow = {
 			enable = true,
 			extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
@@ -173,3 +184,33 @@ require("vim.treesitter.query").set(
 )
 
 vim.api.nvim_set_keymap("n", "<space>lc", "<CMD> TSContextToggle <CR>", { silent = false })
+
+-- Install necessary parsers using your plugin manager
+-- For example, using Vim-Plug:
+-- Plug 'nvim-treesitter/nvim-treesitter'
+-- Plug 'nvim-treesitter/playground'
+
+local M = {}
+
+-- Function to inject a specified language into the current node
+function inject_language(lang)
+	local node = vim.treesitter.get_node()
+	if node then
+		local bufnr = vim.api.nvim_get_current_buf()
+
+		-- Create a new buffer for the injected code
+		local injected_bufnr = vim.api.nvim_create_buf(false, true)
+		vim.api.nvim_buf_set_option(injected_bufnr, "filetype", lang)
+
+		-- Insert the injected code into the new buffer
+		vim.api.nvim_buf_set_lines(injected_bufnr, 0, -1, true, { "/* " .. lang .. " code */" })
+
+		-- Use ts_utils to set the injected language for the current node
+		-- require("nvim-treesitter.ts_utils").update_injected(bufnr, injected_bufnr, node)
+		node.set("injections", "python")
+	else
+		print("No tree-sitter node found at the cursor position.")
+	end
+end
+
+return M
