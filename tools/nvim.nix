@@ -1,106 +1,110 @@
 _: {
-  perSystem = {
-    pkgs,
-    lib,
-    ...
-  }: let
-    config-fish = ''
-      # source once
-      set -q __fish__tools_sourced; and exit
-      set -g __fish__tools_sourced 1
+  perSystem =
+    { pkgs, lib, ... }:
+    let
+      vim_appname = "kenjinvim";
+      deps = [
+        pkgs.nil
+        pkgs.nixpkgs-fmt
+        pkgs.taplo-lsp
+        pkgs.ripgrep
+        pkgs.fd
+      ];
+      # nvim_config = pkgs.runCommand "nvim_config" { } "\n      echo test > $out";
+      nvim_config = pkgs.writeText "nvim_config" ''
+        -- # vim.opt.runtimepath = '${pkgs.neovim}/share'
+        -- # vim.api.nvim_command('set runtimepath^=~/.vim')
+        -- vim.api.nvim_command('set runtimepath=$HOME/.config/nvim')
+        vim.api.nvim_command('set runtimepath=${pkgs.neovim-unwrapped}/share/nvim/runtime')
+        vim.api.nvim_command('set runtimepath^=${plugins}')
+        vim.api.nvim_command('set packpath=${plugins}')
+        vim.api.nvim_command('set packpath^=${pkgs.vimPlugins.plenary-nvim}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.plenary-nvim}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.telescope-nvim}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.nvim-lspconfig}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.nvim-treesitter.withAllGrammars}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.nvim-treesitter-context}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.nvim-treesitter-textobjects}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.gitsigns-nvim}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.edge}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.leap-nvim}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.lualine-nvim}')
+        -- vim.api.nvim_command('let &packpath=${plugins}')
+        -- vim.api.nvim_command('let packpath^= ${plugins}')
+        vim.o.termguicolors = true
 
-      set fish_greeting
-      set fish_vi_key_bindings
+        vim.cmd [[
+        set background=dark
+        let g:edge_style = 'neon'
+        colorscheme edge
+        ]]
+        require("lualine").setup()
+        vim.g.edge_enable_italic = 1
+        --vim.g:edge_disable_italic_comment = 1
+        vim.g.lightline_theme = "edge"
 
-      # export XDG_CONFIG_HOME=$XDG_CONFIG_HOME_SAVE
 
-      if test "TERM" != dumb
-        export STARSHIP_NUM_THREADS=8
-        export STARSHIP_CONFIG=${starship-config}
-        source ${starship-init-fish}
-      end
 
-      source ${atuin-init-fish}
-      source ${direnv-init-fish}
-      source ${fish_variables}
-      # https://fishshell.com/docs/current/language.html#envvar-fish_function_path
-      # https://fishshell.com/docs/current/language.html#envvar-fish_history
-    '';
+        require("lspconfig").nixd.setup({})
+        require("lspconfig").rust_analyzer.setup({})
+        require("lspconfig").ruff_lsp.setup({})
 
-    atuin-init-fish = pkgs.runCommand "atuin-fish" {} ''
-      ${lib.getExe pkgs.atuin} init fish > $out
-    '';
-    direnv-init-fish = pkgs.runCommand "direnv-fish" {} ''
-      ${lib.getExe pkgs.direnv} hook fish > $out
-    '';
-    starship-init-fish = pkgs.runCommand "starship-init-fish" {} ''
-      ${lib.getExe pkgs.starship} init fish > $out
-    '';
-    starship-config = (pkgs.formats.toml {}).generate "starship-config" {
-      format = "$all";
-      add_newline = false;
-      scan_timeout = 1;
-      battery = {
-        display = [
-          {
-            threshold = 33;
-            style = "red bold";
+        require("leap").add_default_mappings()
+
+
+         require('plenary')
+         require('telescope').setup{}
+         vim.g.leader = "<Space>"
+         vim.g.mapleader = " "
+         vim.g.maplocalleader = " "
+         vim.o.relativenumber = true
+         vim.o.number = true
+         vim.wo.signcolumn = "yes"
+         vim.wo.colorcolumn = "80"
+         local builtin = require('telescope.builtin')
+         vim.keymap.set('n', '<leader>lf', builtin.git_files, {})
+         vim.keymap.set('n', '<C-P>', builtin.find_files, {})
+         vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
+         vim.keymap.set('n', ';', ':', {noremap = true})
+      '';
+      plugins = pkgs.linkFarm "plugins" {
+        lspconfig = pkgs.vimPlugins.nvim-lspconfig;
+        plenary = pkgs.vimPlugins.plenary-nvim;
+        telescope = pkgs.vimPlugins.telescope-nvim;
+      };
+      nvim_dir = pkgs.linkFarm "plugins" {
+        # lspconfig = pkgs.vimPlugins.nvim-lspconfig;
+        # plenary = pkgs.vimPlugins.plenary-nvim;
+        # telescope = pkgs.vimPlugins.telescope-nvim;
+        "init.lua" = nvim_config;
+      };
+    in
+    {
+      packages.v = pkgs.writeScriptBin "v" ''
+        set -efux
+        unset VIMINIT
+        export PATH=$PATH:${
+          pkgs.buildEnv {
+            name = "deps";
+            paths = deps;
           }
-        ];
-      };
-      package.disabled = true;
-      rust.disabled = true;
-      nix_shell = {
-        symbol = "❄️";
-        impure_msg = "";
-      };
+        }/bin
+        # export NVIM_APPNAME=${vim_appname}
+        echo ${plugins}
+        HOME=$(mktemp -d)
+        mkdir -p $HOME/.config $HOME/.local/share/
+        # ln -sfT ${plugins} "$HOME"/.config/${vim_appname}
+        ln -sfT ${nvim_dir} "$HOME"/.config/nvim
+        if [[ -d $HOME/.local/share/lassvim/lazy/telescope-fzf-native.nvim ]]; then
+          # mkdir -p "$HOME/.local/share/${vim_appname}/lazy/telescope-fzf-native.nvim/build"
+          mkdir -p "$HOME/.local/share/nvim/lazy/telescope-fzf-native.nvim/build"
+          # ln -sf "${pkgs.vimPlugins.telescope-fzf-native-nvim}/build/libfzf.so" "$HOME/.local/share/${vim_appname}/lazy/telescope-fzf-native.nvim/build/libfzf.so"
+          ln -sf "${pkgs.vimPlugins.telescope-fzf-native-nvim}/build/libfzf.so" "$HOME/.local/share/nvim/lazy/telescope-fzf-native.nvim/build/libfzf.so"
+        fi
+        nvim --headless -c 'quitall'
+        # export VIMINIT="$HOME"/.config/nvim/init.lua
+        export XDG_CONFIG_HOME=$HOME/.config
+        exec ${pkgs.neovim}/bin/nvim "$@"
+      '';
     };
-    # fish-cruft = pkgs.runCommand "fish-cruft" { } ''
-    #   set -x
-    #   XDG_CONFIG_HOME=
-    #   ${lib.getExe pkgs.fish} --command exit
-    #   cp fish/fish_variables $out
-    # '';
-    fish_variables = pkgs.writeText "fish_variables" ''
-      # This file contains fish universal variable definitions.
-      # VERSION: 3.0
-      # set -u __fish_initialized:3400
-      # set -u fish_color_autosuggestion:555\x1ebrblack
-      # set -g fish_color_cancel:\x2dr
-      # set -g fish_color_command:blue
-      # set -g fish_color_comment:red
-      # set -g fish_color_cwd:green
-      # set -g fish_color_cwd_root:red
-      # set -g fish_color_end:green
-      # set -g fish_color_error:brred
-      # set -g fish_color_escape:brcyan
-      # set -g fish_color_history_current:\x2d\x2dbold
-      # set -g fish_color_host:normal
-      # set -g fish_color_host_remote:yellow
-      # set -g fish_color_normal:normal
-      # set -g fish_color_operator:brcyan
-      # set -g fish_color_param:cyan
-      # set -g fish_color_quote:yellow
-      # set -g fish_color_redirection:cyan\x1e\x2d\x2dbold
-      # set -g fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
-      # set -g fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
-      # set -g fish_color_status:red
-      # set -g fish_color_user:brgreen
-      # set -g fish_color_valid_path:\x2d\x2dunderline
-      # set -g fish_key_bindings:fish_default_key_bindings
-      # set -g fish_pager_color_completion:normal
-      # set -g fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di
-      # set -g fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
-      # set -g fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-      # set -g fish_pager_color_selected_background:\x2dr
-    '';
-  in {
-    packages.fish = pkgs.writeScriptBin "fish" ''
-      export XDG_CONFIG_HOME_SAVE=$XDG_CONFIG_HOME
-      # export XDG_CONFIG_HOME=${pkgs.writeTextDir "fish/config.fish" config-fish}
-      exec ${lib.getExe pkgs.fish} \
-            --init-command 'source ${pkgs.writeScript "fish-config" config-fish}' \
-            --no-config "$@"
-    '';
-  };
 }

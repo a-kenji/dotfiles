@@ -1,5 +1,5 @@
-{flake-parts, ...} @ inputs:
-flake-parts.lib.mkFlake {inherit inputs;} {
+{ flake-parts, ... }@inputs:
+flake-parts.lib.mkFlake { inherit inputs; } {
   systems = [
     "x86_64-linux"
     "aarch64-linux"
@@ -16,5 +16,6 @@ flake-parts.lib.mkFlake {inherit inputs;} {
     ../tools/fish.nix
     ../tools/dev.nix
     ../tools/fonts.nix
+    ../tools/nvim.nix
   ];
 }
