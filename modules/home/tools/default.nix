@@ -25,7 +25,7 @@
   language-servers = with pkgs; [
     # haskell-language-server
     clang-tools
-    marksman
+    # marksman
     ruff-lsp
     ruff
     nil

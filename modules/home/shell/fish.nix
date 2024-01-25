@@ -53,14 +53,28 @@ in {
         nds.body = "nix develop --command $SHELL";
         tmux.body = "direnv exec / tmux";
         zl.body = "lazygit";
-        nxb.body = ''
+        nxbb = ''
           if command -v nom > /dev/null
-            echo "Your program exists."
+             sudo -i nixos-rebuild build --flake ${flakePath} --log-format internal-json --keep-going &| nom --json
           else
             sudo -i nixos-rebuild build --flake ${flakePath}
           end
         '';
-        nxs.body = "sudo -i nixos-rebuild switch --flake ${flakePath}";
+        nxb = ''
+          if command -v nom > /dev/null
+            sudo -i nixos-rebuild boot --flake ${flakePath} --log-format internal-json --keep-going &| nom --json
+          else
+            sudo -i nixos-rebuild boot --flake ${flakePath}
+          end
+        '';
+        nxs = ''
+          if command -v nom > /dev/null
+            sudo -i nixos-rebuild switch --flake ${flakePath} --log-format internal-json --keep-going &| nom --json
+          else
+            sudo -i nixos-rebuild switch --flake ${flakePath}
+          end
+        '';
+
         nxu.body = "nix flake update ${flakePath}";
         nxuc.body = "nix flake update --commit-lock-file ${flakePath}";
       };
