@@ -24,6 +24,7 @@ _: {
       vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.plenary-nvim}')
       vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.telescope-nvim}')
       vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.nvim-lspconfig}')
+      vim.api.nvim_command('set packpath^=${pkgs.vimPlugins.nvim-treesitter.withAllGrammars}')
       vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.nvim-treesitter.withAllGrammars}')
       vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.nvim-treesitter-context}')
       vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.nvim-treesitter-textobjects}')
@@ -56,6 +57,8 @@ _: {
 
        require('plenary')
        require('telescope').setup{}
+       require("gitsigns").setup{}
+
        vim.g.leader = "<Space>"
        vim.g.mapleader = " "
        vim.g.maplocalleader = " "
@@ -102,7 +105,8 @@ _: {
         # ln -sf "${pkgs.vimPlugins.telescope-fzf-native-nvim}/build/libfzf.so" "$HOME/.local/share/${vim_appname}/lazy/telescope-fzf-native.nvim/build/libfzf.so"
         ln -sf "${pkgs.vimPlugins.telescope-fzf-native-nvim}/build/libfzf.so" "$HOME/.local/share/nvim/lazy/telescope-fzf-native.nvim/build/libfzf.so"
       fi
-      ${pkgs.neovim}/bin/nvim --headless -c 'quitall'
+      # TODO: Is this really needed?
+      # ${pkgs.neovim}/bin/nvim --headless -c 'quitall'
       # export VIMINIT="$HOME"/.config/nvim/init.lua
       export XDG_CONFIG_HOME=$HOME/.config
       exec ${pkgs.neovim}/bin/nvim "$@"
