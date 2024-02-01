@@ -102,7 +102,7 @@ _: {
         # ln -sf "${pkgs.vimPlugins.telescope-fzf-native-nvim}/build/libfzf.so" "$HOME/.local/share/${vim_appname}/lazy/telescope-fzf-native.nvim/build/libfzf.so"
         ln -sf "${pkgs.vimPlugins.telescope-fzf-native-nvim}/build/libfzf.so" "$HOME/.local/share/nvim/lazy/telescope-fzf-native.nvim/build/libfzf.so"
       fi
-      nvim --headless -c 'quitall'
+      ${pkgs.neovim}/bin/nvim --headless -c 'quitall'
       # export VIMINIT="$HOME"/.config/nvim/init.lua
       export XDG_CONFIG_HOME=$HOME/.config
       exec ${pkgs.neovim}/bin/nvim "$@"
