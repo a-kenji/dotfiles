@@ -12,7 +12,6 @@ _: {
       pkgs.ripgrep
       pkgs.fd
     ];
-    # nvim_config = pkgs.runCommand "nvim_config" { } "\n      echo test > $out";
     nvim_config = pkgs.writeText "nvim_config" ''
       -- # vim.opt.runtimepath = '${pkgs.neovim}/share'
       -- # vim.api.nvim_command('set runtimepath^=~/.vim')
