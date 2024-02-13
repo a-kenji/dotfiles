@@ -1,7 +1,7 @@
 require("toggleterm").setup()
 
 vim.cmd([[
-autocmd TermOpen * setlocal nonumber
+"autocmd TermOpen * setlocal nonumber
 "autocmd TermOpen * setlocal nonumber norelativenumber
 autocmd VimEnter * FloatermNew --silent
 "tnoremap <Esc> <C-\><C-n>
