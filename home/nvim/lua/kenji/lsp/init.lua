@@ -89,6 +89,8 @@ require("lspconfig").rust_analyzer.setup({
 })
 
 require("lspconfig").ruff_lsp.setup({})
+require("lspconfig").gopls.setup({})
+require("lspconfig").mutt_ls.setup({})
 
 -- bash lsp
 require("lspconfig").bashls.setup({})
@@ -130,9 +132,11 @@ require("lspconfig").nil_ls.setup({
 	-- capabilities = caps,
 	-- cmd = { lsp_path },
 })
-require("lspconfig").nixd.setup({})
 -- end nil lsp
+require("lspconfig").nixd.setup({})
+require("lspconfig").nushell.setup({})
 require("lspconfig").typst_lsp.setup({})
+require("lspconfig").typos_lsp.setup({})
 require("lspconfig").ocamllsp.setup({})
 
 require("lspconfig").lua_ls.setup({

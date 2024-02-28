@@ -1,4 +1,8 @@
-require("lualine").setup()
+require("lualine").setup({
+	sections = {
+		lualine_x = { "copilot", "encoding", "fileformat", "filetype" },
+	},
+})
 vim.g.edge_style = "default"
 vim.g.everforest_style = "medium"
 vim.g.edge_enable_italic = 1

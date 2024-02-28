@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "copilot-lualine": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706624198,
+        "narHash": "sha256-Ma0wpY2Tg0Kr6Epu3QyGesXRjOcugyJ2NTuOUPSLvLk=",
+        "owner": "AndreM222",
+        "repo": "copilot-lualine",
+        "rev": "9e226cf8f4653e13ec282f5878d66aa435899c8c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AndreM222",
+        "repo": "copilot-lualine",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -115,6 +131,7 @@
     },
     "root": {
       "inputs": {
+        "copilot-lualine": "copilot-lualine",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",

@@ -5,6 +5,11 @@
   ...
 }: let
   nvimDir = configDir + "/nvim";
+  copilot-lualine = pkgs.vimUtils.buildVimPlugin {
+    name = "copilot-lualine";
+    src = inputs.copilot-lualine;
+  };
+
   themes = with pkgs.vimPlugins; [
     edge
     everforest
@@ -24,6 +29,8 @@
     nvim-cmp
     cmp-fish
     cmp-zsh
+    copilot-cmp
+    copilot-lua
   ];
   git = with pkgs.vimPlugins; [
     committia
@@ -56,18 +63,20 @@
     lspkind-nvim
     null-ls-nvim
     nvim-lspconfig
+    pkgs.nodejs
   ];
   ui = with pkgs.vimPlugins; [
     aerial-nvim
-    nvim-lightbulb
-    nvim-web-devicons
-    trouble-nvim
-    zen-mode-nvim
-    true-zen-nvim
+    copilot-lualine
     lualine-nvim
+    nvim-code-action-menu
+    nvim-lightbulb
     nvim-notify
     nvim-scrollbar
-    nvim-code-action-menu
+    nvim-web-devicons
+    trouble-nvim
+    true-zen-nvim
+    zen-mode-nvim
   ];
   nix = with pkgs.vimPlugins; [
     direnv-vim
@@ -93,7 +102,7 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    withRuby = false;
+    withRuby = true;
     withPython3 = true;
     withNodeJs = true;
     extraPackages = [];

@@ -46,11 +46,9 @@ cmp.setup({
 		end, { "i", "s" }),
 	},
 	sources = cmp.config.sources({
+		{ name = "copilot", group_index = 2 },
 		{ name = "nvim_lsp" },
-		-- { name = 'vsnip' }, -- For vsnip users.
 		{ name = "luasnip" }, -- For luasnip users.
-		-- { name = 'ultisnips' }, -- For ultisnips users.
-		-- { name = 'snippy' }, -- For snippy users.
 		{ name = "nvim_lsp_signature_help" },
 	}, {
 		{ name = "buffer" },
@@ -90,3 +88,41 @@ cmp.setup.filetype("gitcommit", {
 -- { name = 'cmdline' }
 -- })
 --})
+--
+--
+
+local copilot = require("copilot")
+copilot.setup({
+	suggestion = {
+		enabled = false,
+		auto_trigger = true,
+		debounce = 75,
+	},
+	panel = {
+		enabled = false,
+		auto_refresh = true,
+		keymap = {
+			jump_prev = "[[",
+			jump_next = "]]",
+			accept = "<CR>",
+			refresh = "gr",
+			open = "<M-CR>",
+		},
+		layout = {
+			position = "right", -- | top | left | right
+			ratio = 0.3,
+		},
+	},
+	copilot_node_command = "node", -- Node.js version must be > 18.x
+	server_opts_overrides = {},
+})
+local copilot_cmp = require("copilot_cmp")
+copilot_cmp.setup()
+
+vim.api.nvim_set_keymap("n", "<space>ce", "<CMD>:Copilot toggle<CR>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<space>ct",
+	"<cmd>:lua require('copilot.suggestion').toggle_auto_trigger()<cr>",
+	{ noremap = false, nowait = true }
+)
