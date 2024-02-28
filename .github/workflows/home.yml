@@ -17,7 +17,7 @@ jobs:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           "system-features = nixos-test benchmark big-parallel kvm"
-    - uses: cachix/cachix-action@v13
+    - uses: cachix/cachix-action@v14
       with:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
@@ -35,7 +35,7 @@ jobs:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           "system-features = nixos-test benchmark big-parallel kvm"
-    - uses: cachix/cachix-action@v13
+    - uses: cachix/cachix-action@v14
       with:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
@@ -53,7 +53,7 @@ jobs:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           "system-features = nixos-test benchmark big-parallel kvm"
-    - uses: cachix/cachix-action@v13
+    - uses: cachix/cachix-action@v14
       with:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
@@ -71,7 +71,7 @@ jobs:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           "system-features = nixos-test benchmark big-parallel kvm"
-    - uses: cachix/cachix-action@v13
+    - uses: cachix/cachix-action@v14
       with:
         name: kenji
         # If you chose API tokens for write access OR if you have a private cache
