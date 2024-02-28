@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   gitPkgs = with pkgs; [
     git
     gitAndTools.gh # github cli
@@ -13,11 +14,7 @@
     difftastic
     delta
   ];
-  base = with pkgs; [
-    coreutils
-    diffutils
-    binutils
-  ];
+  base = with pkgs; [ coreutils diffutils binutils ];
   language-servers = with pkgs; [
     clang-tools
     marksman

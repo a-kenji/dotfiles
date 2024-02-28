@@ -1,19 +1,14 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
-  starship-config = (pkgs.formats.toml {}).generate "starship-config" {
+{ pkgs, lib, ... }:
+let
+  starship-config = (pkgs.formats.toml { }).generate "starship-config" {
     format = "$all";
     add_newline = false;
     scan_timeout = 1;
     battery = {
-      display = [
-        {
-          threshold = 33;
-          style = "red bold";
-        }
-      ];
+      display = [{
+        threshold = 33;
+        style = "red bold";
+      }];
     };
     package.disabled = true;
     rust.disabled = true;
@@ -23,8 +18,7 @@
     };
   };
 in {
-  programs = let
-    flakePath = "/home/kenji/.config/nixdotfiles";
+  programs = let flakePath = "/home/kenji/.config/nixdotfiles";
   in {
     fish = {
       enable = true;
@@ -98,7 +92,8 @@ in {
         bind \co yazi
 
         source ${
-          pkgs.runCommand "zoxide-fish" {} "${lib.getExe pkgs.zoxide} init fish > $out"
+          pkgs.runCommand "zoxide-fish" { }
+          "${lib.getExe pkgs.zoxide} init fish > $out"
         }
       '';
       interactiveShellInit = ''
@@ -106,10 +101,10 @@ in {
           export STARSHIP_NUM_THREADS=8
           export STARSHIP_CONFIG=${starship-config}
           source ${
-          pkgs.runCommand "starship-init-fish" {} ''
-            ${lib.getExe pkgs.starship} init fish > $out
-          ''
-        };
+            pkgs.runCommand "starship-init-fish" { } ''
+              ${lib.getExe pkgs.starship} init fish > $out
+            ''
+          };
         end
 
         export ATUIN_CONFIG_DIR=${
@@ -120,10 +115,12 @@ in {
           ''
         };
         source ${
-          pkgs.runCommand "atuin-fish" {} "${lib.getExe pkgs.atuin} init fish > $out"
+          pkgs.runCommand "atuin-fish" { }
+          "${lib.getExe pkgs.atuin} init fish > $out"
         }
         source ${
-          pkgs.runCommand "navi-fish" {} "${lib.getExe pkgs.navi} widget fish > $out"
+          pkgs.runCommand "navi-fish" { }
+          "${lib.getExe pkgs.navi} widget fish > $out"
         }
       '';
     };

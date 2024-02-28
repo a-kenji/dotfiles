@@ -3,7 +3,7 @@ _: {
     atuin = {
       enable = true;
       enableNushellIntegration = true;
-      flags = ["--disable-ctrl-r"];
+      flags = [ "--disable-ctrl-r" ];
     };
   };
 }

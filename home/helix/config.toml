@@ -2,8 +2,8 @@ theme = "everforest_dark"
 
 [editor]
 line-number = "relative"
-bufferline  = "multiple"
-true-color  = true
+bufferline = "multiple"
+true-color = true
 scrolloff = 5
 scroll-lines = 5
 auto-pairs = true
@@ -19,6 +19,6 @@ nsbp = "all"
 enable = true
 
 [keys.normal]
-esc         = ["collapse_selection", "keep_primary_selection"]
+esc = ["collapse_selection", "keep_primary_selection"]
 [keys.insert]
-"C-space"   = ["completion"]
+"C-space" = ["completion"]

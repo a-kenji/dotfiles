@@ -1,12 +1,7 @@
 _: {
-  perSystem = {pkgs, ...}: {
+  perSystem = { pkgs, ... }: {
     devShells = {
-      default = pkgs.mkShell {
-        nativeBuildInputs = [
-          pkgs.git
-          pkgs.just
-        ];
-      };
+      default = pkgs.mkShell { nativeBuildInputs = [ pkgs.git pkgs.just ]; };
       fmtShell = pkgs.mkShell {
         name = "fmt-shell";
         nativeBuildInputs = [

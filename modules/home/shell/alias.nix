@@ -1,6 +1,4 @@
-_: let
-  flakePath = "/home/kenji/.config/nixdotfiles";
-in {
+_: {
   # only portable aliases
   home = {
     # shellAliases = {
