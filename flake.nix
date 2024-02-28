@@ -10,10 +10,6 @@
 
     flake-utils.url = "github:numtide/flake-utils";
     flake-parts.url = "github:hercules-ci/flake-parts";
-
-    nixd.url = "github:nix-community/nixd";
-    nixd.inputs.nixpkgs.follows = "nixpkgs";
-    nixd.inputs.flake-parts.follows = "flake-parts";
   };
   outputs = {...} @ args: import ./outputs args;
 }
