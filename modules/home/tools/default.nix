@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: let
+{pkgs, ...}: let
   gitPkgs = with pkgs; [
     git
     gitAndTools.gh # github cli
@@ -23,13 +19,12 @@
     binutils
   ];
   language-servers = with pkgs; [
-    # haskell-language-server
     clang-tools
-    # marksman
+    marksman
     ruff-lsp
     ruff
     nil
-    inputs.nixd
+    nixd
     pylyzer
     python311Packages.python-lsp-server
     rust-analyzer
