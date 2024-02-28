@@ -4,6 +4,6 @@ _: {
     nix-direnv.enable = true;
     enableZshIntegration = true;
     enableNushellIntegration = true;
-    config = {};
+    config = { };
   };
 }

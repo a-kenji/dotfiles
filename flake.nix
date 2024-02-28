@@ -10,6 +10,9 @@
 
     flake-utils.url = "github:numtide/flake-utils";
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix/";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = {...} @ args: import ./outputs args;
+  outputs = args: import ./outputs args;
 }

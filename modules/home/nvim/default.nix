@@ -1,20 +1,12 @@
-{
-  pkgs,
-  configDir,
-  inputs,
-  ...
-}: let
+{ pkgs, configDir, inputs, ... }:
+let
   nvimDir = configDir + "/nvim";
   copilot-lualine = pkgs.vimUtils.buildVimPlugin {
     name = "copilot-lualine";
     src = inputs.copilot-lualine;
   };
 
-  themes = with pkgs.vimPlugins; [
-    edge
-    everforest
-    sonokai
-  ];
+  themes = with pkgs.vimPlugins; [ edge everforest sonokai ];
   completion = with pkgs.vimPlugins; [
     cmp-buffer
     cmp-cmdline-history
@@ -84,19 +76,7 @@
     vim-nix
     vim-nixhash
   ];
-  snippets = with pkgs.vimPlugins; [
-    friendly-snippets
-    luasnip
-  ];
-  testing = with pkgs.vimPlugins; [
-    nvim-coverage
-    neotest
-    neotest-rust
-    nvim-dap
-    nvim-dap-ui
-    nvim-dap-virtual-text
-    vim-test
-  ];
+  snippets = with pkgs.vimPlugins; [ friendly-snippets luasnip ];
   neovim = {
     enable = true;
     viAlias = true;
@@ -105,7 +85,7 @@
     withRuby = true;
     withPython3 = true;
     withNodeJs = true;
-    extraPackages = [];
+    extraPackages = [ ];
     plugins = with pkgs.vimPlugins;
       [
         better-escape-nvim
@@ -138,17 +118,9 @@
             let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
           '';
         }
-      ]
-      ++ completion
-      ++ git
-      ++ lsp
-      ++ nix
-      ++ snippets
-      ++ telescope
+      ] ++ completion ++ git ++ lsp ++ nix ++ snippets ++ telescope
       # ++ testing
-      ++ themes
-      ++ tree-sitter
-      ++ ui;
+      ++ themes ++ tree-sitter ++ ui;
   };
 in {
   programs.neovim = neovim;
