@@ -45,7 +45,22 @@ in {
         nd.body = "nix develop";
         nr.body = "nix run";
         nds.body = "nix develop --command $SHELL";
+        dat.body = "bat --decorations=always $argv";
         tmux.body = "direnv exec / tmux";
+        clone.body = ''
+          if test (count $argv) -eq 0
+          echo "clone <GIT_CLONE_URL>"
+          return 1
+          end
+
+          set -l temp_dir (mktemp -d)
+          if not test -d $temp_dir
+              return 1
+          end
+
+          cd $temp_dir
+          git clone --depth=1 $argv[1]
+        '';
         zl.body = "lazygit";
         nxbb = ''
           if command -v nom > /dev/null
