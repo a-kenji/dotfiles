@@ -127,6 +127,9 @@ in {
             update_check = false
             show_preview = true
             style = "compact"
+            show_help = false
+            enter_accept = false
+            show_tabs = false
           ''
         };
         source ${
