@@ -126,3 +126,38 @@ vim.api.nvim_set_keymap(
 	"<cmd>:lua require('copilot.suggestion').toggle_auto_trigger()<cr>",
 	{ noremap = false, nowait = true }
 )
+
+require("CopilotChat").setup({
+	debug = true, -- Enable debugging
+	-- See Configuration section for rest
+})
+
+-- local chat = require("CopilotChat")
+-- local select = require("CopilotChat.select")
+-- -- Use unnamed register for the selection
+-- opts.selection = select.unnamed
+--
+-- -- Inline chat with Copilot
+-- vim.api.nvim_create_user_command("CopilotChatInline", function(args)
+-- 	chat.ask(args.args, {
+-- 		selection = select.visual,
+-- 		window = {
+-- 			layout = "float",
+-- 			relative = "cursor",
+-- 			width = 1,
+-- 			height = 0.4,
+-- 			row = 1,
+-- 		},
+-- 	})
+-- end, { nargs = "*", range = true })
+--
+
+-- vim.api.nvim_create_user_command("CopilotChatTelescopePromptActions", function(args)
+-- 	local actions = require("CopilotChat.actions")
+-- 	require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+-- end, { nargs = "*", range = true })
+--
+-- vim.api.nvim_create_user_command("CopilotChatTelescopeHelpActions", function(args)
+-- 	local actions = require("CopilotChat.actions")
+-- 	require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+-- end, { nargs = "*", range = true })

@@ -5,6 +5,10 @@ let
     name = "copilot-lualine";
     src = inputs.copilot-lualine;
   };
+  copilot-chat-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "CopilotChat";
+    src = inputs.copilot-chat-nvim;
+  };
 
   themes = with pkgs.vimPlugins; [ edge everforest sonokai ];
   completion = with pkgs.vimPlugins; [
@@ -86,8 +90,12 @@ let
     withPython3 = true;
     withNodeJs = true;
     extraPackages = [ ];
+    extraLuaPackages = ps: [ 
+      (ps.callPackage ./tiktoken-lua.nix {})
+    ];
     plugins = with pkgs.vimPlugins;
       [
+        copilot-chat-nvim
         better-escape-nvim
         ccc-nvim
         comment-nvim
