@@ -37,8 +37,7 @@ in {
         n.body = "nix run nixpkgs#$argv[1] -- $argv[2..]";
         # Those are basically aliases, but are sourced more efficiently as functions
         v.body = "nvim";
-        gr.body = "";
-        gs.body = "git status";
+        vf.body = "nvim (fzf)";
         j.body = "just";
         jl.body = "just -l";
         ls.body = "lsd";
@@ -47,6 +46,9 @@ in {
         nds.body = "nix develop --command $SHELL";
         dat.body = "bat --decorations=always $argv";
         tmux.body = "direnv exec / tmux";
+        tm.body = "tmux";
+        tml.body = "tmux list-sessions";
+        tmk.body = "tmux kill-session $argv";
         clone.body = ''
           if test (count $argv) -eq 0
           echo "clone <GIT_CLONE_URL>"
