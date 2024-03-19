@@ -2,7 +2,7 @@
   description = "Dotfiles";
 
   inputs = {
-    copilot-chat-nvim.url = "github:CopilotC-Nvim/CopilotChat.nvim?branch=canary";
+    copilot-chat-nvim.url = "github:CopilotC-Nvim/CopilotChat.nvim/canary";
     copilot-chat-nvim.flake = false;
     copilot-lualine.url = "github:AndreM222/copilot-lualine";
     copilot-lualine.flake = false;

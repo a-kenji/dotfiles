@@ -135,10 +135,6 @@ in {
           ''
         };
         source ${
-          pkgs.runCommand "atuin-fish" { }
-          "${lib.getExe pkgs.atuin} init fish > $out"
-        }
-        source ${
           pkgs.runCommand "navi-fish" { }
           "${lib.getExe pkgs.navi} widget fish > $out"
         }

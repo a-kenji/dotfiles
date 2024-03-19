@@ -26,6 +26,7 @@ let
     cmp-fish
     cmp-zsh
     copilot-cmp
+    # copilot-vim
     copilot-lua
   ];
   git = with pkgs.vimPlugins; [
@@ -102,8 +103,9 @@ let
         todo-comments-nvim
         glance-nvim
         goto-preview
-        # harpoon
+        harpoon2
         leap-nvim
+        neo-tree-nvim
         nvim-spectre
         neogen
         neoscroll-nvim
