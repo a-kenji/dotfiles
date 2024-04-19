@@ -91,9 +91,7 @@ let
     withPython3 = true;
     withNodeJs = true;
     extraPackages = [ ];
-    extraLuaPackages = ps: [ 
-      (ps.callPackage ./tiktoken-lua.nix {})
-    ];
+    extraLuaPackages = ps: [ (ps.callPackage ./tiktoken-lua.nix { }) ];
     plugins = with pkgs.vimPlugins;
       [
         copilot-chat-nvim
