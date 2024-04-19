@@ -135,8 +135,11 @@ in {
           ''
         };
         source ${
-          pkgs.runCommand "atuin-fish" { }
-          "${lib.getExe pkgs.atuin} init fish > $out"
+          pkgs.runCommand "atuin-fish" { } ''
+            # a hacky way to fix broken atuin
+            export HOME=$(mktemp -d)
+            ${lib.getExe pkgs.atuin} init fish > $out
+          ''
         }
         source ${
           pkgs.runCommand "navi-fish" { }

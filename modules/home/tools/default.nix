@@ -21,8 +21,8 @@ let
     ruff-lsp
     ruff
     nil
-    nixd
-    pylyzer
+    # nixd
+    # pylyzer
     python311Packages.python-lsp-server
     rust-analyzer
     sumneko-lua-language-server

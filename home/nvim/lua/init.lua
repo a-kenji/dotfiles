@@ -66,13 +66,10 @@ vim.api.nvim_create_autocmd(
 	{ command = "setlocal spell", group = "Spellcheck", pattern = { "gitcommit", "markdown" } }
 )
 
--- require("diffview").setup({})
 require("Comment").setup({
 	pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 })
-vim.g.gitblame_enabled = 0
 vim.g.direnv_silent_load = 1
-map("n", "<leader>gb", ":GitBlameToggle<CR>")
 require("nvim-autopairs").setup({
 	disable_filetype = { "TelescopePrompt", "vim" },
 })
@@ -99,7 +96,7 @@ require("kenji.trouble")
 require("luasnip.loaders.from_vscode").lazy_load()
 require("kenji.tree-sitter")
 require("kenji.quickfix")
-require("gitsigns").setup()
+require("kenji.git")
 
 vim.cmd([[
 " Close location list or quickfix list if they are present,
@@ -190,3 +187,33 @@ require("leap").add_default_mappings()
 -- 		require("neotest-rust"),
 -- 	},
 -- })
+--
+--
+
+-- setup neo-tree
+vim.keymap.set("n", "<Leader>e", ":Neotree position=current reveal<CR>")
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require("neo-tree").setup({
+	filesystem = {
+		hijack_netrw_behavior = "open_current",
+	},
+	buffers = {
+		follow_current_file = {
+			enabled = true,
+			leave_dirs_open = true,
+		},
+		group_empty_dirs = true,
+	},
+	event_handlers = {
+		{
+			event = "neo_tree_buffer_enter",
+			handler = function(arg)
+				vim.cmd([[
+          setlocal relativenumber
+        ]])
+			end,
+		},
+	},
+})

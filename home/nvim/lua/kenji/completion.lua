@@ -126,3 +126,70 @@ vim.api.nvim_set_keymap(
 	"<cmd>:lua require('copilot.suggestion').toggle_auto_trigger()<cr>",
 	{ noremap = false, nowait = true }
 )
+
+require("CopilotChat").setup({
+	debug = false, -- Enable debugging
+	-- See Configuration section for rest
+	prompts = {
+		BetterNamings = "Please provide better names for the following variables and functions.",
+		Documentation = "Please provide documentation for the following code.",
+		-- Text related prompts
+		Summarize = "Please summarize the following text.",
+		Spelling = "Please correct any grammar and spelling errors in the following text.",
+		Wording = "Please improve the grammar and wording of the following text.",
+		Concise = "Please rewrite the following text to make it more concise.",
+	},
+	event = "VeryLazy",
+})
+
+-- local chat = require("CopilotChat")
+-- local select = require("CopilotChat.select")
+-- -- Use unnamed register for the selection
+-- opts.selection = select.unnamed
+--
+-- -- Inline chat with Copilot
+-- vim.api.nvim_create_user_command("CopilotChatInline", function(args)
+-- 	chat.ask(args.args, {
+-- 		selection = select.visual,
+-- 		window = {
+-- 			layout = "float",
+-- 			relative = "cursor",
+-- 			width = 1,
+-- 			height = 0.4,
+-- 			row = 1,
+-- 		},
+-- 	})
+-- end, { nargs = "*", range = true })
+--
+
+vim.api.nvim_create_user_command("CopilotChatTelescopePromptActions", function(args)
+	local actions = require("CopilotChat.actions")
+	require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+end, { nargs = "*", range = true })
+--
+vim.api.nvim_create_user_command("CopilotChatTelescopeHelpActions", function(args)
+	local actions = require("CopilotChat.actions")
+	require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+end, { nargs = "*", range = true })
+
+vim.api.nvim_set_keymap("n", "<leader>cce", "<cmd>CopilotChatExplain<cr>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap("n", "<leader>ccn", "<cmd>CopilotChatBetterNaming<cr>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap("n", "<space>cct", "<cmd>CopilotChatTests<cr>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap("n", "<space>ccw", "<cmd>CopilotChatToggle<cr>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<space>ccp",
+	"<cmd>CopilotChatTelescopePromptActions<cr>",
+	{ noremap = false, nowait = true }
+)
+vim.api.nvim_set_keymap(
+	"n",
+	"<space>cch",
+	"<cmd>CopilotChatTelescopeHelpActions<cr>",
+	{ noremap = false, nowait = true }
+)
+-- Code related commands
+-- { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+-- { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
+-- { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
+-- { "<leader>ccn", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
