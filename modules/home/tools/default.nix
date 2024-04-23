@@ -21,7 +21,7 @@ let
     ruff-lsp
     ruff
     nil
-    # nixd
+    nixd
     # pylyzer
     python311Packages.python-lsp-server
     rust-analyzer
