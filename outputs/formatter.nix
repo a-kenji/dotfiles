@@ -8,7 +8,6 @@
       programs.deadnix.enable = true;
       programs.nixfmt.enable = true;
       programs.rustfmt.enable = true;
-      programs.statix.enable = true;
       programs.taplo.enable = true;
       programs.yamlfmt.enable = true;
     };
