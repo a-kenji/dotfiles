@@ -32,7 +32,6 @@ let
   ];
   linters = with pkgs; [
     proselint
-    statix
     codespell
     deadnix
     editorconfig-checker

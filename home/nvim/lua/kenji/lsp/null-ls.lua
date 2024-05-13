@@ -11,7 +11,6 @@ require("null-ls").setup({
 		-- require("null-ls").builtins.code_actions.gitsigns,
 		require("null-ls").builtins.code_actions.proselint,
 		require("null-ls").builtins.code_actions.shellcheck,
-		require("null-ls").builtins.code_actions.statix,
 
 		require("null-ls").builtins.diagnostics.actionlint,
 		require("null-ls").builtins.diagnostics.checkmake,
@@ -23,7 +22,6 @@ require("null-ls").setup({
 		}),
 		require("null-ls").builtins.diagnostics.fish,
 		-- require("null-ls").builtins.diagnostics.flake8,
-		require("null-ls").builtins.diagnostics.statix,
 		-- .with,
 		-- ({
 		-- 	condition = function(utils)
