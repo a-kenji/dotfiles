@@ -26,6 +26,7 @@ let
     cmp-fish
     cmp-zsh
     copilot-cmp
+    cmp-tmux
     # copilot-vim
     copilot-lua
   ];
