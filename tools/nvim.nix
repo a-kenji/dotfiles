@@ -22,6 +22,7 @@ _: {
         vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.edge}')
         vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.leap-nvim}')
         vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.lualine-nvim}')
+        vim.api.nvim_command('set runtimepath^=${pkgs.vimPlugins.better-escape-nvim}')
         -- vim.api.nvim_command('let &packpath=${plugins}')
         -- vim.api.nvim_command('let packpath^= ${plugins}')
         vim.o.termguicolors = true
@@ -61,6 +62,10 @@ _: {
          vim.keymap.set('n', '<C-P>', builtin.find_files, {})
          vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
          vim.keymap.set('n', ';', ':', {noremap = true})
+
+        require("better_escape").setup {
+          mapping = {"fd"}, 
+        }
       '';
       plugins = pkgs.linkFarm "plugins" {
         lspconfig = pkgs.vimPlugins.nvim-lspconfig;
