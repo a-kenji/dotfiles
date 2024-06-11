@@ -22,6 +22,7 @@ let
     ruff
     nil
     nixd
+    gopls
     # pylyzer
     python311Packages.python-lsp-server
     rust-analyzer
