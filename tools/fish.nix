@@ -33,6 +33,7 @@ _: {
       '';
 
       atuin-init-fish = pkgs.runCommand "atuin-fish" { } ''
+        export HOME=$(mktemp -d)
         ${lib.getExe pkgs.atuin} init fish > $out
       '';
       direnv-init-fish = pkgs.runCommand "direnv-fish" { } ''
