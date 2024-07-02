@@ -80,6 +80,7 @@ _: {
       };
     in {
       packages.v = pkgs.writeScriptBin "v" ''
+        #!${pkgs.bash}/bin/bash
         set -efux
         unset VIMINIT
         export PATH=$PATH:${
