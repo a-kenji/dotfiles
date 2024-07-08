@@ -105,7 +105,6 @@ let
         harpoon2
         leap-nvim
         neo-tree-nvim
-        nvim-spectre
         neogen
         neoscroll-nvim
         nvim-autopairs
