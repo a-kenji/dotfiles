@@ -132,6 +132,9 @@ in {
             show_help = false
             enter_accept = false
             show_tabs = false
+            auto_sync = true
+            sync_frequency = "10m"
+            sync_address = "http://vyr:8888"
           ''
         };
         source ${
