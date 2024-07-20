@@ -158,7 +158,7 @@ require("telescope").setup({
 			command = {
 				"sg",
 				"--json=stream",
-			}, -- must have --json=stream
+			},  -- must have --json=stream
 			grep_open_files = false, -- search in opened files
 			lang = nil, -- string value, specify language for ast-grep `nil` for default
 		},
@@ -198,6 +198,4 @@ if vim.fn.executable("gh") == 1 then
 end
 
 require("telescope").load_extension("fzf")
--- require("telescope").load_extension("smart_history")
-require("telescope").load_extension("frecency")
 require("telescope").load_extension("project")

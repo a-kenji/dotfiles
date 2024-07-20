@@ -47,7 +47,6 @@ let
     playground
   ];
   telescope = with pkgs.vimPlugins; [
-    telescope-frecency-nvim
     telescope-fzf-native-nvim
     telescope-nvim
     telescope-project-nvim
