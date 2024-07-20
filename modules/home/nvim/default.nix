@@ -66,7 +66,6 @@ let
     aerial-nvim
     copilot-lualine
     lualine-nvim
-    nvim-code-action-menu
     nvim-lightbulb
     nvim-notify
     nvim-scrollbar
