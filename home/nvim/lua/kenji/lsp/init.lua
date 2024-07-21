@@ -6,7 +6,7 @@ vim.api.nvim_set_keymap("n", "<space>vrn", ":lua vim.lsp.buf.rename()<CR>", { no
 vim.api.nvim_set_keymap("n", "<space>f", ":lua vim.lsp.buf.format()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vcA", ":lua vim.lsp.buf.code_action()<CR>", { noremap = false, nowait = true })
-vim.api.nvim_set_keymap("n", "<space>vca", "<CMD> CodeActionMenu <CR>", { noremap = false, nowait = true })
+vim.api.nvim_set_keymap("n", "<space>vca", ":lua vim.lsp.buf.code_action()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>D", ":lua vim.lsp.buf.type_definition()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "<space>vsd", ":lua vim.diagnostic.open_float()<CR>", { noremap = false, nowait = true })
 vim.api.nvim_set_keymap("n", "g[", ":lua vim.diagnostic.goto_next()<CR>", { noremap = false, nowait = true })
