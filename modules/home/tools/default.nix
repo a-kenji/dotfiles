@@ -28,7 +28,7 @@ let
     rust-analyzer
     sumneko-lua-language-server
     texlab
-    typst-lsp
+    # typst-lsp
     typos-lsp
   ];
   linters = with pkgs; [
