@@ -217,8 +217,3 @@ vim.api.nvim_set_keymap(
 	"<cmd>CopilotChatTelescopeHelpActions<cr>",
 	{ noremap = false, nowait = true }
 )
--- Code related commands
--- { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
--- { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
--- { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
--- { "<leader>ccn", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
