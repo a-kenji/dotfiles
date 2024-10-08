@@ -5,10 +5,6 @@ let
     name = "copilot-lualine";
     src = inputs.copilot-lualine;
   };
-  copilot-chat-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "CopilotChat";
-    src = inputs.copilot-chat-nvim;
-  };
 
   themes = with pkgs.vimPlugins; [ edge everforest sonokai ];
   completion = with pkgs.vimPlugins; [
