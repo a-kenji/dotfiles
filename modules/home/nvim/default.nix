@@ -114,9 +114,6 @@ let
         {
           plugin = sqlite-lua;
           config = ''
-            lua << EOF
-            require("init")
-            EOF
             let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
           '';
         }
