@@ -73,8 +73,14 @@ require("lspconfig").rust_analyzer.setup({
 				importPrefix = "by_self",
 			},
 			diagnostics = {
+				enable = true,
+				enableExperimental = true,
 				disabled = { "unresolved-import" },
 			},
+			check = {
+			command = "clippy",
+			extraEnv = { CARGO_TARGET_DIR = "/tmp/rust-analyzer" },
+		      },
 			cargo = {
 				loadOutDirsFromCheck = true,
 			},
@@ -84,6 +90,11 @@ require("lspconfig").rust_analyzer.setup({
 			checkOnSave = {
 				command = "clippy",
 			},
+			server = {
+        extraEnv = {
+          CARGO_TARGET_DIR = "/tmp/rust-analyzer",
+        },
+      },
 		},
 	},
 })
