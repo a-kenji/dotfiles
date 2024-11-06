@@ -1,36 +1,46 @@
-{ self, self', lib, pkgs, ... }:
+{
+  self,
+  self',
+  lib,
+  pkgs,
+  ...
+}:
 let
-  hmConfiguration = { modules ? [ ], stateVersion ? "23.11", }:
+  hmConfiguration =
+    {
+      modules ? [ ],
+      stateVersion ? "23.11",
+    }:
     (self.inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = modules ++ [{
-        _module.args.self = self;
-        _module.args.inputs = self.inputs;
+      modules = modules ++ [
+        {
+          _module.args.self = self;
+          _module.args.inputs = self.inputs;
 
-        home = {
-          inherit stateVersion;
-          username = lib.mkDefault "kenji";
-          homeDirectory = lib.mkDefault "/home/kenji";
-          enableNixpkgsReleaseCheck = false;
-        };
+          home = {
+            inherit stateVersion;
+            username = lib.mkDefault "kenji";
+            homeDirectory = lib.mkDefault "/home/kenji";
+            enableNixpkgsReleaseCheck = false;
+          };
 
-        manual = {
-          html.enable = false;
-          manpages.enable = false;
-          json.enable = false;
-        };
-      }];
+          manual = {
+            html.enable = false;
+            manpages.enable = false;
+            json.enable = false;
+          };
+        }
+      ];
     });
-in {
+in
+{
   minimal = hmConfiguration { };
   neovim = hmConfiguration { modules = [ self'.legacyPackages.home.nvim ]; };
-  helix =
-    hmConfiguration { modules = [ self'.legacyPackages.home.editor.helix ]; };
+  helix = hmConfiguration { modules = [ self'.legacyPackages.home.editor.helix ]; };
   tools = hmConfiguration { modules = [ self'.legacyPackages.home.tools ]; };
-  nushell =
-    hmConfiguration { modules = [ self'.legacyPackages.home.shell.nu ]; };
-  fish =
-    hmConfiguration { modules = [ self'.legacyPackages.home.shell.fish ]; };
+  nushell = hmConfiguration { modules = [ self'.legacyPackages.home.shell.nu ]; };
+  fish = hmConfiguration { modules = [ self'.legacyPackages.home.shell.fish ]; };
   default = hmConfiguration {
     modules = [
       self'.legacyPackages.home.nvim

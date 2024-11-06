@@ -1,17 +1,14 @@
 name: pull-request
-
 on:
   pull_request:
     # Add `labeled`, so we can trigger a new run by adding a `pr-run-test` label
     types: [opened, reopened, synchronize, labeled]
-
 concurrency:
   # This adds `job` to the key so when running full tests, we don't cancel the
   # overlapping jobs, since GH relies on them passing before allowing a PR to
   # pass.
   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.job }}
   cancel-in-progress: true
-
 jobs:
   pr-run-test:
     uses: ./.github/workflows/on-label-pr-run-test.yml

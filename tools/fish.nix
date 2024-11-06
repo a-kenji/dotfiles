@@ -1,5 +1,6 @@
 _: {
-  perSystem = { pkgs, lib, ... }:
+  perSystem =
+    { pkgs, lib, ... }:
     let
       config-fish = ''
         # source once
@@ -17,13 +18,11 @@ _: {
           source ${starship-init-fish}
         end
 
-        export ATUIN_CONFIG_DIR=${
-          pkgs.writeTextDir "/config.toml" ''
-            update_check = false
-            show_preview = true
-            style = "compact"
-          ''
-        };
+        export ATUIN_CONFIG_DIR=${pkgs.writeTextDir "/config.toml" ''
+          update_check = false
+          show_preview = true
+          style = "compact"
+        ''};
 
         source ${atuin-init-fish}
         source ${direnv-init-fish}
@@ -47,10 +46,12 @@ _: {
         add_newline = false;
         scan_timeout = 1;
         battery = {
-          display = [{
-            threshold = 33;
-            style = "red bold";
-          }];
+          display = [
+            {
+              threshold = 33;
+              style = "red bold";
+            }
+          ];
         };
         package.disabled = true;
         rust.disabled = true;
@@ -69,16 +70,15 @@ _: {
           (pkgs.writeTextDir "fish/completions/.empty" "")
         ];
       };
-    in {
+    in
+    {
       packages.fish = pkgs.writeScriptBin "fish" ''
         set -x
         export XDG_CONFIG_HOME_SAVE=$XDG_CONFIG_HOME
         export XDG_CONFIG_HOME=${config}
         exec ${lib.getExe pkgs.fish}
         # \
-              # --init-command 'source ${
-                pkgs.writeScript "fish-config" config-fish
-              }' \
+              # --init-command 'source ${pkgs.writeScript "fish-config" config-fish}' \
               # --no-config "$@"
       '';
     };

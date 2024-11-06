@@ -1,3 +1,4 @@
-{ pkgs, configDir, ... }: {
+{ pkgs, configDir, ... }:
+{
   helix = import ./helix.nix { inherit pkgs configDir; };
 }

@@ -1,4 +1,9 @@
-{ pkgs, configDir, inputs, ... }:
+{
+  pkgs,
+  configDir,
+  inputs,
+  ...
+}:
 let
   nvimDir = configDir + "/nvim";
   copilot-lualine = pkgs.vimUtils.buildVimPlugin {
@@ -6,7 +11,11 @@ let
     src = inputs.copilot-lualine;
   };
 
-  themes = with pkgs.vimPlugins; [ edge everforest sonokai ];
+  themes = with pkgs.vimPlugins; [
+    edge
+    everforest
+    sonokai
+  ];
   completion = with pkgs.vimPlugins; [
     cmp-buffer
     cmp-cmdline-history
@@ -76,7 +85,10 @@ let
     vim-nix
     vim-nixhash
   ];
-  snippets = with pkgs.vimPlugins; [ friendly-snippets luasnip ];
+  snippets = with pkgs.vimPlugins; [
+    friendly-snippets
+    luasnip
+  ];
   neovim = {
     enable = true;
     viAlias = true;
@@ -87,7 +99,8 @@ let
     withNodeJs = true;
     extraPackages = [ ];
     #extraLuaPackages = ps: [ (ps.callPackage ./tiktoken-lua.nix { }) ];
-    plugins = with pkgs.vimPlugins;
+    plugins =
+      with pkgs.vimPlugins;
       [
         #copilot-chat-nvim
         better-escape-nvim
@@ -117,11 +130,20 @@ let
             let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
           '';
         }
-      ] ++ completion ++ git ++ lsp ++ nix ++ snippets ++ telescope
+      ]
+      ++ completion
+      ++ git
+      ++ lsp
+      ++ nix
+      ++ snippets
+      ++ telescope
       # ++ testing
-      ++ themes ++ tree-sitter ++ ui;
+      ++ themes
+      ++ tree-sitter
+      ++ ui;
   };
-in {
+in
+{
   programs.neovim = neovim;
 
   xdg.configFile = {

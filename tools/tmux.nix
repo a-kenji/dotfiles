@@ -1,5 +1,6 @@
 _: {
-  perSystem = { pkgs, lib, ... }:
+  perSystem =
+    { pkgs, lib, ... }:
     let
       tmuxconf = ''
         unbind-key C-b
@@ -62,7 +63,8 @@ _: {
         set -g set-titles on
         set -g set-titles-string "#{session_name}:#{window_name}:#{pane_current_path}"
       '';
-    in {
+    in
+    {
       packages.tmux = pkgs.writeScriptBin "tmux" ''
         export TMUX_CONFIG=${pkgs.writeTextDir "/.tmux.conf" tmuxconf}
         exec ${lib.getExe pkgs.tmux} "$@"

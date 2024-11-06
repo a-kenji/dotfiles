@@ -11,32 +11,31 @@ jobs:
     name: "nix flake check"
     environment: cachix
     steps:
-    - uses: actions/checkout@v4
-    - uses: cachix/install-nix-action@v30
-      with:
-        extra_nix_config: |
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-    - uses: cachix/cachix-action@v15
-      with:
-        name: kenji
-        # If you chose API tokens for write access OR if you have a private cache
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix flake check -Lv
-
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v15
+        with:
+          name: kenji
+          # If you chose API tokens for write access OR if you have a private cache
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - run: nix flake check -Lv
   lint:
     runs-on: ubuntu-latest
     name: "lint actions"
     environment: cachix
     steps:
-    - uses: actions/checkout@v4
-    - uses: cachix/install-nix-action@v30
-      with:
-        extra_nix_config: |
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-    - uses: cachix/cachix-action@v15
-      with:
-        name: kenji
-        # If you chose API tokens for write access OR if you have a private cache
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - name: "actionlint"
-      run: nix develop .#fmtShell --command actionlint
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - uses: cachix/cachix-action@v15
+        with:
+          name: kenji
+          # If you chose API tokens for write access OR if you have a private cache
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: "actionlint"
+        run: nix develop .#fmtShell --command actionlint

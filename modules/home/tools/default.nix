@@ -14,7 +14,11 @@ let
     difftastic
     delta
   ];
-  base = with pkgs; [ coreutils diffutils binutils ];
+  base = with pkgs; [
+    coreutils
+    diffutils
+    binutils
+  ];
   language-servers = with pkgs; [
     clang-tools
     marksman
@@ -71,6 +75,7 @@ let
     repgrep
     ast-grep
   ];
-in {
+in
+{
   home.packages = gitPkgs ++ base ++ extended ++ language-servers ++ linters;
 }

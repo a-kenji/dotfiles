@@ -1,8 +1,15 @@
 _: {
-  perSystem = { pkgs, ... }:
+  perSystem =
+    { pkgs, ... }:
     let
       vim_appname = "kenjinvim";
-      deps = [ pkgs.nil pkgs.nixpkgs-fmt pkgs.taplo-lsp pkgs.ripgrep pkgs.fd ];
+      deps = [
+        pkgs.nil
+        pkgs.nixpkgs-fmt
+        pkgs.taplo-lsp
+        pkgs.ripgrep
+        pkgs.fd
+      ];
       nvim_config = pkgs.writeText "nvim_config" ''
         -- # vim.opt.runtimepath = '${pkgs.neovim}/share'
         -- # vim.api.nvim_command('set runtimepath^=~/.vim')
@@ -78,7 +85,8 @@ _: {
         # telescope = pkgs.vimPlugins.telescope-nvim;
         "init.lua" = nvim_config;
       };
-    in {
+    in
+    {
       packages.v = pkgs.writeScriptBin "v" ''
         #!${pkgs.bash}/bin/bash
         set -efux

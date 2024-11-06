@@ -3,7 +3,6 @@ on:
   workflow_dispatch: # allows manual triggering
   schedule:
     - cron: '0 6 * * SUN' # runs weekly on sunday at 06:00
-
 jobs:
   lockfile:
     runs-on: ubuntu-latest
@@ -19,7 +18,7 @@ jobs:
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v24
         with:
-            token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
-            pr-labels: |
-              dependencies
-              nix
+          token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
+          pr-labels: |
+            dependencies
+            nix

@@ -1,35 +1,42 @@
-{ pkgs, self, self', }:
+{
+  pkgs,
+  self,
+  self',
+}:
 let
   home = "/home/${user}";
   servername = "${home}/nvim-socket";
   checkfile = "${home}/checkhealth";
   nvimBin = "${home}/.nix-profile/bin/nvim";
   user = "alice";
-in pkgs.nixosTest {
+in
+pkgs.nixosTest {
   name = "neovim-configuration";
-  nodes.machine = { ... }: {
-    imports = [
-      self.inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager.users = {
-          ${user} = {
-            imports = [ self'.legacyPackages.home.nvim ];
-            programs.home-manager.enable = true;
-            home.username = user;
-            home.stateVersion = "23.11";
+  nodes.machine =
+    { ... }:
+    {
+      imports = [
+        self.inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager.users = {
+            ${user} = {
+              imports = [ self'.legacyPackages.home.nvim ];
+              programs.home-manager.enable = true;
+              home.username = user;
+              home.stateVersion = "23.11";
+            };
           };
-        };
-      }
-    ];
+        }
+      ];
 
-    users.users.${user} = {
-      createHome = true;
-      uid = 1000;
-      isNormalUser = true;
+      users.users.${user} = {
+        createHome = true;
+        uid = 1000;
+        isNormalUser = true;
+      };
+      virtualisation.graphics = false;
+      documentation.enable = false;
     };
-    virtualisation.graphics = false;
-    documentation.enable = false;
-  };
 
   testScript = ''
     from shlex import quote

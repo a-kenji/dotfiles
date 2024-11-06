@@ -1,8 +1,16 @@
 _: {
-  perSystem = { pkgs, lib, self', ... }:
+  perSystem =
+    {
+      pkgs,
+      lib,
+      self',
+      ...
+    }:
     let
       alacritty-yml = (pkgs.formats.yaml { }).generate "alacritty.yml" {
-        shell = { program = lib.getExe self'.packages.fish; };
+        shell = {
+          program = lib.getExe self'.packages.fish;
+        };
         font = {
           normal = {
             family = "Fira Code Nerd Font Mono";
@@ -81,7 +89,8 @@ _: {
           };
         };
       };
-    in {
+    in
+    {
       packages.alacritty = pkgs.writeScriptBin "alacritty" ''
         exec ${lib.getExe pkgs.alacritty} --config-file ${alacritty-yml}  "$@"
       '';

@@ -1,5 +1,6 @@
 _: {
-  perSystem = { pkgs, ... }:
+  perSystem =
+    { pkgs, ... }:
     let
       fira-code = ''
         <?xml version="1.0"?>
@@ -31,11 +32,10 @@ _: {
           </match>
         </fontconfig>
       '';
-    in {
+    in
+    {
       packages.fonts = pkgs.writeScriptBin "set-fonts" ''
-        export FONTCONFIG_FILE=${
-          pkgs.writeTextDir "10-fira-code.conf" fira-code
-        }
+        export FONTCONFIG_FILE=${pkgs.writeTextDir "10-fira-code.conf" fira-code}
       '';
     };
 }

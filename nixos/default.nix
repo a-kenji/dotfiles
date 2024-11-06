@@ -7,15 +7,21 @@ let
     { _module.args.inputs = inputs; }
     {
       imports = [
-        ({ pkgs, ... }: {
-          nix.nixPath =
-            [ "nixpkgs=${pkgs.path}" "home-manager=${inputs.home-manager}" ];
-          documentation.info.enable = false;
-        })
+        (
+          { pkgs, ... }:
+          {
+            nix.nixPath = [
+              "nixpkgs=${pkgs.path}"
+              "home-manager=${inputs.home-manager}"
+            ];
+            documentation.info.enable = false;
+          }
+        )
       ];
     }
   ];
-in {
+in
+{
   flake.nixosConfigurations = {
     common-test = nixosSystem {
       system = "x86_64-linux";
