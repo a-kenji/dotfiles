@@ -99,7 +99,7 @@ require("lspconfig").rust_analyzer.setup({
 	},
 })
 
-require("lspconfig").ruff_lsp.setup({})
+require("lspconfig").ruff.setup({})
 require("lspconfig").gopls.setup({})
 require("lspconfig").mutt_ls.setup({})
 
