@@ -22,7 +22,6 @@ let
   language-servers = with pkgs; [
     clang-tools
     marksman
-    ruff-lsp
     ruff
     nil
     nixd
