@@ -67,6 +67,9 @@ require("lspconfig").rust_analyzer.setup({
 	filetypes = { "rust" },
 	settings = {
 		["rust-analyzer"] = {
+			rust = {
+				analyzerTargetDir = true,
+			},
 			assist = {
 				importGranularity = "module",
 				importMergeBehavior = "module",
@@ -78,9 +81,9 @@ require("lspconfig").rust_analyzer.setup({
 				disabled = { "unresolved-import" },
 			},
 			check = {
-			command = "clippy",
-			extraEnv = { CARGO_TARGET_DIR = "/tmp/rust-analyzer" },
-		      },
+				command = "clippy",
+				extraEnv = { CARGO_TARGET_DIR = "/tmp/rust-analyzer" },
+			},
 			cargo = {
 				loadOutDirsFromCheck = true,
 			},
@@ -91,10 +94,10 @@ require("lspconfig").rust_analyzer.setup({
 				command = "clippy",
 			},
 			server = {
-        extraEnv = {
-          CARGO_TARGET_DIR = "/tmp/rust-analyzer",
-        },
-      },
+				extraEnv = {
+					CARGO_TARGET_DIR = "/tmp/rust-analyzer",
+				},
+			},
 		},
 	},
 })
