@@ -13,6 +13,10 @@ let
     git-absorb
     difftastic
     delta
+    tinymist
+    lazyjj
+    jujutsu
+    jjui
   ];
   base = with pkgs; [
     coreutils
@@ -26,12 +30,10 @@ let
     nil
     nixd
     gopls
-    # pylyzer
     python311Packages.python-lsp-server
     rust-analyzer
     sumneko-lua-language-server
     texlab
-    # typst-lsp
     typos-lsp
   ];
   linters = with pkgs; [

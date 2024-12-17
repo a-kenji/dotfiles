@@ -143,7 +143,7 @@ require("lspconfig").nil_ls.setup({
 -- end nil lsp
 require("lspconfig").nixd.setup({})
 require("lspconfig").nushell.setup({})
-require("lspconfig").typst_lsp.setup({})
+require("lspconfig").tinymist.setup({})
 require("lspconfig").typos_lsp.setup({})
 require("lspconfig").ocamllsp.setup({})
 
