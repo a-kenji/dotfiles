@@ -13,10 +13,7 @@ let
     git-absorb
     difftastic
     delta
-    tinymist
-    lazyjj
     jujutsu
-    jjui
   ];
   base = with pkgs; [
     coreutils
@@ -35,6 +32,7 @@ let
     sumneko-lua-language-server
     texlab
     typos-lsp
+    tinymist
   ];
   linters = with pkgs; [
     proselint
