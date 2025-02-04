@@ -1,7 +1,7 @@
 _: {
   imports = [
     ./atuin.nix
-    ./broot.nix
+    # /broot.nix
     ./skim.nix
     ./direnv.nix
     ./starship.nix
