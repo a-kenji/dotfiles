@@ -46,7 +46,6 @@ let
   ];
   extended = with pkgs; [
     alacritty
-    ark
     bat
     fd
     foot
